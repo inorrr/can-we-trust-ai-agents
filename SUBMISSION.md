@@ -6,8 +6,6 @@
 
 **Technical demonstration (5:50):** [Watch on YouTube](https://youtu.be/P9cKPBVAGNo)
 
-[Full narrated demo script](docs/DEMO_SCRIPT.md) · [Condensed recording talking points](docs/DEMO_OUTLINE.md)
-
 ## Topic, audience, and publication purpose
 
 **The Agent Trust Check** asks: what evidence should we require before giving an AI agent permission to act? The audience is developers and product managers evaluating tool-using software agents. Each piece connects recent disclosures, evaluation results, and practitioner arguments to decisions about permissions, containment, monitoring, accountability, and recovery. The series uses an opinionated essay voice while separating source claims from interpretation and qualified evidence.

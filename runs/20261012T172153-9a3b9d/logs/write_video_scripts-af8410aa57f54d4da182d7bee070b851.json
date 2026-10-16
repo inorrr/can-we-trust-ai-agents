@@ -1,0 +1,57 @@
+{
+  "stage": "write_video_scripts",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:57:45.453007Z",
+  "finished_at": "2026-10-12T17:58:10.687459Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.033858,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0d091637cd46347e016acd1fa119f487d281fe254e8c219b31",
+      "usage": {
+        "input_tokens": 36144,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1465,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37609
+      },
+      "cost_usd": 0.0168016,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/3873a4a29dc14c65a9cd1d2cff9ea51c-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0945518175427cfc016acd1faa8cdc87d281f36b8b61485d90",
+      "usage": {
+        "input_tokens": 37653,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1247,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38900
+      },
+      "cost_usd": 0.017056400000000003,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/e2122fee58db45ac830b85eef9f050f8-request.json"
+    }
+  ],
+  "errors": [
+    "Generated content lacks as-of date"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-16T00:56:55.910822Z",
+  "finished_at": "2026-10-16T00:57:00.338989Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": [
+    "AttributeError: stage failed; inspect source access or configuration"
+  ]
+}

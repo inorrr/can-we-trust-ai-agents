@@ -1,0 +1,87 @@
+{
+  "method": "built-in image_gen",
+  "asset_count": 10,
+  "visual_review": "All ten images visually inspected for scene relevance and consistent style. Conceptual illustrations, no empirical charts or product screenshots.",
+  "images": [
+    {
+      "file": "video_02/scene_01.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_02/scene_02.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_02/scene_03.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_02/scene_04.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_02/scene_05.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_03/scene_01.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_03/scene_02.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_03/scene_03.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_03/scene_04.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    },
+    {
+      "file": "video_03/scene_05.png",
+      "width": 1672,
+      "height": 941,
+      "aspect_ratio": 1.776833,
+      "use": "Fill a 16:9 Google Vids canvas; native generation dimensions are rounded to whole pixels.",
+      "ai_generated": true
+    }
+  ]
+}

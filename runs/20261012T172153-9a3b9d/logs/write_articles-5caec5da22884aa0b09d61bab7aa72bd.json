@@ -1,0 +1,57 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:55:46.430861Z",
+  "finished_at": "2026-10-12T17:56:15.850843Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.0342492,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_01a221cda35474a1016acd1f2a623887d2bf674f2774b88371",
+      "usage": {
+        "input_tokens": 36066,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1626,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37692
+      },
+      "cost_usd": 0.017028,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/811099498826467da2b939a845a34c15-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_05550b4b498fecee016acd1f36204487d2b00cd3f55d2877ca",
+      "usage": {
+        "input_tokens": 37717,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1334,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39051
+      },
+      "cost_usd": 0.0172212,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/c4d8b6a7551748d7be8ab2e64ac524a5-request.json"
+    }
+  ],
+  "errors": [
+    "Generated content dropped or changed claim IDs"
+  ]
+}

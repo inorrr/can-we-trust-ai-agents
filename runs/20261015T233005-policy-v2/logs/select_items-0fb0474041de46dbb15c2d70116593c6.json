@@ -1,0 +1,36 @@
+{
+  "stage": "select_items",
+  "status": "completed",
+  "input_count": 15,
+  "output_count": 15,
+  "started_at": "2026-10-15T23:30:13.455936Z",
+  "finished_at": "2026-10-15T23:30:37.773363Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.0553244,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_056f7e089426b1c9016ad162073bd887d2b48ca53ae8d7c082",
+      "usage": {
+        "input_tokens": 130055,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2064,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 132119
+      },
+      "cost_usd": 0.0553244,
+      "status": "completed",
+      "request_path": "runs/20261015T233005-policy-v2/model_calls/b40504ea4b1d4b9ea7c51a8ccf3f13ea-request.json"
+    }
+  ],
+  "errors": []
+}

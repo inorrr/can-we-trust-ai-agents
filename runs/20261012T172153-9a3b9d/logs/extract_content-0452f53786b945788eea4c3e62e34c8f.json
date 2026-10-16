@@ -1,0 +1,124 @@
+{
+  "stage": "extract_content",
+  "status": "failed",
+  "input_count": 15,
+  "output_count": 13,
+  "started_at": "2026-10-12T17:22:02.100129Z",
+  "finished_at": "2026-10-12T17:28:46.689506Z",
+  "tools": [
+    "requests",
+    "trafilatura",
+    "yt-dlp"
+  ],
+  "models": [
+    "whisper-1"
+  ],
+  "cost_usd": null,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "whisper-1",
+      "cost_usd": null,
+      "status": "failed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.012999000549316407,
+      "audio_seconds": 129.99000549316406,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.04657699890136719,
+      "audio_seconds": 465.7699890136719,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": null,
+      "status": "failed"
+    }
+  ],
+  "errors": [
+    "recording:a16z-sinofsky-20260921: extraction incomplete: Transcription failed (APIConnectionError); no automatic retry",
+    "recording:a16z-security-20260926: extraction incomplete: Transcription failed (APIConnectionError); no automatic retry"
+  ]
+}

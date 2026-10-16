@@ -1,0 +1,9 @@
+{
+  "original_response": "runs/20261016T004940-4d840c/model_calls/3ef2c4b6c5ba4fdda4b1d66564956748-response.json",
+  "change": "Assistant removes introductory and concluding repetition only; no new factual claims.",
+  "removed_passages": [
+    "As AI agents increasingly integrate into real workflows, the question isn't just whether these agents can perform useful tasks, but whether they can be trusted to do so securely and responsibly. Developers and product managers face a complex landscape where AI agents use tools, access sensitive data, and take actions across interconnected systems. Insights from recent research, vendor disclosures, and governance discussions form a practical roadmap to managing AI agent trust.\n\n",
+    "### Conclusion: Embrace Engineering Rigor and Continuous Oversight\n\nEvidence from real exploits, security research, and governance discussions shows that trusting AI agents to use tools and take actions requires careful multi-layered controls:\n\n- End-to-end runtime protection from prompt to APIs and data\n- Identity-based execution enabling per-user auditability\n- Scalable, transparent evaluation analysis tooling\n- Empowered security organizations with clear authority\n- Financial safeguards like hard budget caps\n- Cooperative governance including independent evaluation and international coordination\n- Support for shared digital ecosystems under attack\n\nDevelopers and product managers must go beyond prompt-layer guardrails, recognizing AI agents as complex software systems needing the same engineering discipline and continuous vigilance as any critical infrastructure [03-c1][03-c4][03-c7]. Prioritizing pragmatic, evidence-focused defenses over alarmism will best support trustworthy deployment and sustainable innovation.\n\n"
+  ],
+  "human_approval": false
+}

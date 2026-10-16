@@ -1,0 +1,5 @@
+{
+  "response_path": "runs/20261012T172153-9a3b9d/model_calls/5470d3cca55d44279a1c2603b73f670f-response.json",
+  "replayed_at": "2026-10-12T17:48:53.924227Z",
+  "reason": "Deterministic claim-ID serialization; source/policy bindings verified"
+}

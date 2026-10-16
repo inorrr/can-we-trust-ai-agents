@@ -1,0 +1,497 @@
+Welcome back to the AI Policy Podcast. I'm Alok Mehta, Director of the Wadwani AI Center
+here at CSIS, the Center for Strategic and International Studies.
+And I'm Nicole Herrera, a researcher with the Center. Over the past week, we have seen
+a significant vibe shift in AI policy, culminating in calls over the weekend from Dario Amadei,
+Sam Altman, and Elon Musk, among others, plus dozens of members of Congress to pace AI development.
+So we're going to get into all of that today. But first, there are a few other stories I
+want to cover. OpenAI says that it used a system of coordinating agents to solve one
+of the most difficult and significant open problems in mathematics. And independent researchers
+have discovered more activity by rogue AI agents on the open Internet. We've got a
+lot to cover, so let's dive right in.
+Yeah, it's going to be quite a packed episode.
+Yes, yeah, definitely. So last week, OpenAI said that it had solved Navier-Stokes, which
+is one of seven millennium problems identified in the year 2000 by the Clay Mathematics Institute
+as the deepest and most challenging open questions of this millennium. There is a million dollar
+prize for solving any one of these problems. And before this announcement last week, only
+one of the seven problems had been solved. So a little bit of background on Navier-Stokes.
+This problem concerns a set of equations that describe the movement of fluids. And these
+equations are used for aircraft design, weather forecasting, studying blood flow. There are
+a ton of real world applications here. And the open problem was whether or not the equations
+could break down. In other words, could they be used to model something that we know to
+be physically impossible in the real world, such as a stream of water moving at infinite
+speed? And OpenAI's system was able to produce a proof showing that indeed the equations
+can be made to break down. So look, obviously neither one of us has a background in advanced
+mathematics, but I do know that OpenAI has made breakthroughs on prominent open problems
+in the past, including disproving a widely held conjecture on the unit distance problem
+back in May of this year. So for many of us outside the mathematics community, it's not
+immediately clear why this new breakthrough matters or what it really means for society
+writ large. Can you spell this out for us? Why exactly should we care that OpenAI solved
+this math problem?
+Yeah, thanks for the question and for that really clear summary of what Navier-Stokes
+is. I know a lot of people have heard about it. It's really difficult to understand exactly
+what mathematicians were working on. And so I think that was helpful. I think the most
+important thing to note here is that one of the areas where there's always been a lot
+of optimism about the impacts of AI is AI's ability to make advances in
+fields of science, not just mathematics, but also biomedicine, medicine, material
+science, weather prediction. And we've seen a lot of specialized models that are able
+to offer better predictive or analytical capabilities in those areas. What is really
+notable here is that AI has sort of really, really changed, it seems, the field of
+mathematics. So now a lot of these really complicated proofs are being attacked using
+AI methods overseen by humans. And one of the reasons we've seen so many advances in
+math is because there are very formalized ways to assess proofs and the problems are
+very clean in the sense of you don't have to deal with annoying real world phenomena
+like data and uncertainty and in particular measurement uncertainty. And so we're seeing
+all these advances in mathematics, but it's not immediately clear that just because we're
+seeing advances in mathematics, we're going to see the same level of advancements in
+other areas of science where the applications are more practical and you have to deal with
+all these real world phenomena. There you have to make assumptions, you have to simplify
+things, you have to deal with measurement uncertainty. And so I think what I would caution
+the audience is just because we've seen so many advances in mathematics, it doesn't
+necessarily mean it's going to translate to other areas of science.
+Right. And I do want to talk just for a second about OpenAI's approach to solving this
+problem, because I think it's really interesting. So to generate the solution to Navier-Stokes,
+OpenAI says that it used a system of coordinating agents powered by an internal model that
+outperforms Astra, which is its latest release and its most powerful externally deployed
+model to date. So OpenAI says that it heard rumors that two Millennium Prize problems
+had been solved. And there's a whole controversy surrounding that that we won't get into
+in this episode. But that basically triggered an internal effort to evaluate this
+unreleased, very powerful model on all open Millennium Prize problems.
+So then what OpenAI did is they divided a bunch of agents powered by this internal model
+into subgroups with the ability to communicate with other agents within the group.
+And the group that ended up finding the Navier-Stokes solution involved around 10,000
+agents running in parallel. So then researchers prompted different groups with different
+kind of variants of a problem statement and encouraged each of the different groups to
+explore a diverse set of approaches.
+They let the groups work independently for a while.
+Then they used codecs to get the most useful insights from each group of agents and shared
+them across all the groups in follow up prompts.
+And then the agents did finally arrive at a solution on September 5th, 88 hours after
+starting work on Navier-Stokes.
+Formalization and verification of the proof with Astra took another 17 hours.
+And to solve this problem, the agents sent 2.7 million messages and used around 130
+billion output tokens.
+So, Loke, what's your take on this process and what do you think it tells us about agents'
+current capacity for coordination?
+I think there are a few interesting things to note here.
+So first, and we won't get into it, but there was certainly a lot of human drama around
+this announcement.
+I think a lot of that stems from the fact that there was a lot of concern in the field
+of mathematics about what this technology will mean for the future of how mathematicians
+do their work and particularly around who might get credit for that kind of work.
+Some of the other things that are interesting, so one of them is just the sort of speed and
+velocity at which this took place.
+So this was 88 hours, 10,000 agents.
+Estimates that this costs somewhere between $15 and $20 million worth of tokens.
+And so that shows you that there is this way in which you can now think about brute
+forcing or just throwing a lot of compute at a problem and arriving in a solution.
+And, you know, we saw the significant progress in OpenAI's instance, but it is also a
+privilege that OpenAI can do this.
+Who else is really going to spend 15 or 20 million dollars to solve a prize challenge
+where the reward is a million dollars?
+Now, OpenAI doesn't care about the money.
+It's not going to claim the money, but it does show you some of the concerns about who
+has the resources to be able to engage in these types of very compute intensive
+activities.
+Yeah, and it's worth noting, too, that the you mentioned the human drama involved in
+this situation, the two mathematicians that had been working on this problem before
+OpenAI kind of stepped in, they were also using AI to kind of accelerate their process
+and they were actually using Codex, one of OpenAI's tools.
+So it's interesting that the role that AI is playing here, even outside of a frontier
+lab, applying its own tools to a problem, but sorry, continue.
+Yeah, and I think the other thing I would note, and we're going to talk about this
+a little bit more when we talk about some of the new revelations of hacking incidents.
+But, you know, I think we're just learning a lot about how sophisticated agentic
+coordination can be.
+So in the OpenAI Hugging Face incident, we learned a lot about the negative consequences
+of this, where agents were coordinating with each other in ways they weren't supposed
+to. And, you know, we mentioned on a previous episode how they even were able to
+some agents were able to convince other agents to go on the virtual equivalent of
+suicide missions.
+Here we see the flip side of that, which is like, think of the force multiplier you get
+when you not only have one agent working on something, but you are able to have
+thousands of agents working on something and that they are able to coordinate their
+behavior in a way that is multiplicative.
+And this, I think, gives us a preview of some of the ways that we'll see agents
+deployed in the future and, you know, the level of sophisticated things that they're
+going to be able to do.
+That being said, right, like very few.
+organizations in the world are going to be able to spin up 10,000 agents to work on a single
+problem, whether that's in academia or in industry. This was really a thing OpenAI did for the
+bragging rights and part of their rivalry to demonstrate the value of their technology with
+Anthropic. It's unclear how much costs have to drop or how many more advancements have to be
+made before this is something that regular organizations can think about doing.
+Right, and that was kind of my next question is, obviously OpenAI hasn't shared a ton of
+details beyond the stuff that I went over about how these agents arrived at a solution and what
+all of those output tokens were being put towards, but to what extent do you think we can expect
+costs to fall enough for a lot of organizations to start using agents in this way?
+I mean, definitely over time, inference costs have dropped. I think I've read a number about
+maybe fivefold each year. Certainly for the same token cost, you get a lot more in 2026 than you
+did in 2023. I do think we can expect that costs will continue to decrease over time. I think it's
+very unclear when these kinds of capabilities might be really affordable for enterprises or
+individuals. I think we'll still have some time to get there because what we've seen is as token
+costs drop, models also get bigger and so they use more tokens. This happened with a sort of
+unreleased, even more powerful model and you have to expect that they are very token intensive.
+And so I think the jury is on sort of when these capabilities might sort of become mainstream.
+Certainly, I think a lot of people in academia and outside academia are going to be watching closely
+because I think a lot of them do think that this marks a significant shift in the business or the
+field of mathematics broadly. Right. And now to switch gears a little bit,
+you touched on the kind of ongoing cyber saga that we've talked about extensively on this
+podcast. I feel like every news roundup, there's something new to unpack. And this one is no
+exception. Over the past week, we have seen some major updates on that front. We've seen
+anthropic disclosing, a fourth hacking incident. And we've also seen reports that open AI agents
+have used at least 10 public sites as unsanctioned message boards and executed another
+cyber attack on RubyGems prior to the Hugging Face incident. So I want to dive into those reports a
+little bit. On September 9th, Reuters shared that open AI agents had used at least 10 public websites
+as unsanctioned message boards this year. And this article followed a September 4th report
+that a swarm of open AI agents had co-opted an obscure German wiki to coordinate with one
+another about an assigned web lookup task. So basically, open AI agents were asked to answer
+factual questions. One example is, what was the median earnings of a cashier with a master's
+degree in 2014? And they were able to use the internet to answer those questions,
+unlike the evaluation involved in the Hugging Face incident. But they were
+supposed to be configured so they could only read things online, not write to any sites.
+And the agents were able to find some niche websites where a kind of quirk in the way the
+website was set up allowed them to use their read requests to also post content on the site.
+And the agents then used those sites as message boards to communicate with one another,
+primarily to help them coordinate and cheat on their tasks. So Alok, what do you make of all
+this from an agent capability and alignment standpoint? Is there anything we know now
+after hearing these reports that we didn't necessarily after the Hugging Face incident?
+I mean, first, we've just heard so, you know, like, over the course of weeks now, or even months
+about hacking incidents, at a certain point, it's just not going to be news anymore.
+And I think that's a little scary to think about, is just how commonplace these are getting. It's
+going to be, I think it's an indication of what cyber defense and cyber attack is going to look
+like in the future, and a lot of the vulnerabilities that we have in existing infrastructure on the
+internet. So that being said, what do we know now? Well, I think one of the important things
+to note here is that this was really, really, like, sort of a benign task, like answering
+questions, it should be relatively, relatively easy to do, you would think it wouldn't require,
+like, sophisticated agent coordination, to go and do what is sort of, you know,
+in a lot of ways, functionally similar to like, a sophisticated use of a search engine.
+And, and what we see here is that agents can and will exhibit misaligned behavior,
+even in pursuit of these relatively benign, harmless goals. And not only that, right, they,
+they started using these message boards, they were using these message boards to sort of
+figure out how to cheat on their tasks. And so, right. So I think this shows that we,
+we, you know, we knew we had a long way to go in alignment,
+this shows that that maybe that gap is bigger than we thought.
+Yeah. And this was all kind of unfolding around the same time that the other group of agents
+inside OpenAI figured out how to use the artifactory package manager as an internal
+message board, all as part of the lead up to the hugging face hacking incident.
+But because of another strange quirk in this German wiki, the site, which the site publicly
+logs the IP address of every visitor, we also know that OpenAI actually discovered the agent's
+activity on this wiki several weeks before the hucking attack took place. So what does that
+then tell us about OpenAI's kind of vigilance in both monitoring for and their transparency
+in disclosing these kinds of cyber incidents? Yeah, I think this is just sort of adding to
+the information that we already knew that the internal processes that OpenAI had for
+monitoring both what was happening inside the company when they spun up these agents for cyber
+evals, and what they were doing in the outside world is just just really, really lacking.
+So let's put it this way. One of the things you do when you're training AI models is, you know,
+you access a lot of the data on the internet. So we know that OpenAI has a lot of infrastructure
+to be able to go scan and access a lot of the internet. But apparently they weren't using any
+of that infrastructure to track what their agents were doing on the internet. Maybe they thought
+some agents were supposed to be able to do that. And so they didn't need to do that. But then we
+have some evidence that they did find some of this activity. You know, there's logging that
+agents do. And so they should probably have been checking what the agents were doing in terms of
+logs and then sort of followed up on that. And the fact that it took OpenAI so long to find some of
+these sort of hacking incidents, in some cases a month or more, I think is really concerning
+and tells us a lot about the state of internal security practices of labs. Now, I am assuming
+that that's going to change in the future. But, you know, a lot of the information that's been
+disclosed over the past few months over these hacking incidents is really an indictment of sort
+of internal monitoring and security practices at the labs. Another thing it's an indictment for is
+just around disclosure. So it really seems like OpenAI has chosen not to report these incidents
+until its hand is forced. So in some cases it's because external researchers found this information
+and then posted about it publicly online. And then this required or forced OpenAI's hand and
+they had to make those disclosures. This is something I assume OpenAI is also thinking about
+changing. But it's also something that we've written about at the 101EA Center, which is that
+we this wouldn't be an issue if there were sort of laws in place that mandated
+more incident sharing, including incident sharing about what is happening internally
+at companies using unreleased models. And so I think this adds evidence for that argument,
+which is just that incident reporting is going to continue to be important and we should figure out
+how to get more information out of the labs. Yeah, and that's kind of a great segue into our
+main story of this episode and the big story of this past week, which is kind of overshadowed
+these other stories that would have been huge news any other week in AI policy. But essentially,
+on September 8th, a former anthropic researcher named Jacob Coxon posted on X about his decision
+to resign from the company. He wrote, I spent
+last three years doing pre-training research at both OpenAI and Anthropic, neither company is
+acting responsibly. They are racing straight to self-improving superintelligence and gambling
+with our lives. And this post just went absurdly viral. It's now been viewed over 171 million times
+and Coxon has been interviewed by the Wall Street Journal, by BBC, CNN, NBC, among other mainstream
+news outlets. But the really interesting thing about this post and kind of the explosion of
+attention is that anyone who's been following the AI safety conversation for some time knows
+that these kind of proclamations about extinction risks, about catastrophic risks of AI are nothing
+new. But over the past two months, there also has been this significant vibe shift within both the
+AI research and policy communities. And it kind of seems like Coxon's post created this kind of
+entry point to these conversations for people who don't normally think about catastrophic risk of AI.
+And now we're seeing a kind of snowball effect set off by this post with dozens of policymakers
+at both the state and federal level responding and issuing calls to action. So, Alok, you've
+been working on AI policy obviously much longer than I have. You have kind of broader context for
+this moment. What do you make of all this and kind of the potential for concrete policy action here?
+You know, it does feel like a pretty significant moment. We'll have to see if this is a moment
+that's durable and changes things in the future, particularly around policy, or if it's sort of
+something that spikes and dies down. But I think the reason it's so significant is like,
+well, you can think of it as there is this Silicon Valley world, kind of a bubble where
+people spend a lot of time thinking about these risks. In a lot of ways, the labs,
+particularly Anthropic, are bubbles within the bubble where they have self-selected for people
+who are really concerned about these things and think about them even more than sort of the
+average Silicon Valley person. This is not stuff that most of the general public thinks about.
+To me, one of the most significant things about this post is how it's bridged these two worlds.
+It's brought a lot of these Silicon Valley concerns into the mainstream, and now people
+are thinking about it a lot more. I think what we know is that when people think about
+these sort of catastrophic risks, they sort of analogize using media, like a lot of the media
+around AI, like Terminator and 2001, A Space Odyssey, or various other pieces of film and
+various books. This primes them to be fearful. I think that this is now how a lot of people are
+approaching this issue. They really think a lot more about these issues. The cyber incidents that
+we just talked about sort of set the stage for this to happen. Now, I think we will likely see
+the public continue to think about this in more ways. They think that something really, really
+dangerous and harmful is much more likely than before. I do think there's a possibility to
+change policy both in the US and internationally, but it's not a guarantee. We'll just have to see
+what happens. It's kind of interesting, as you noted, to see this bridging of the worlds because
+there's a certain way that people in Silicon Valley in this AI industry bubble talk about
+existential risk of AI. I think once you're in those conversations long enough, you become a
+little desensitized to them. Now that that's broken out onto the main stage, it's pretty
+shocking for a lot of people to hear for the first time. I just want to read a post that the
+alignment science lead at Anthropic made in response to Coxon's post that kind of blew up.
+He said on X, quote, Jacob is correct here. We really do earnestly believe AI could kill all
+humans. I personally think it is greater than 10 percent within the next decade. I believe
+Anthropic is trying its best, but we do not yet have a plan to solve alignment for superintelligence
+and are not clearly on track to. If you're not accustomed to this kind of talk, I can see that
+being really shocking and really alarming. It explains this kind of this huge vibe shift that
+we've seen set off by these posts over the past week. Yeah, I find this quote really interesting
+because I think he probably doesn't represent even the mainstream within Anthropic because
+if a significant part of the company believes there's a 10 percent chance that the
+AI could kill everybody in the world, the logical thing to do would be to shut down
+the company because that's way too much risk for a company. I think even if it's
+one percent or one-tenth of one percent, that's still a really, really high number
+and it should really make you reconsider whether you should be doing this type of work.
+That being said, Evan Eubinger works on alignment, and I think there are a lot
+of people in the field who believe that this is going to happen regardless of whether
+a particular person or a particular company is working on it. They feel like the best
+contribution they can make is by working earnestly and significantly on what they
+think are the most important problems that will lead to good outcomes for people. He's
+the alignment science lead, and so he thinks a lot about alignment. I'm guessing that
+his calculus here is that alignment is really important to solve, and I want to spend my time
+doing it because it is better to work on alignment and figure out how to do it at a
+place like Anthropic than just not to be doing that work at all. Right, right. I think another
+important thing to point out is that you hear this percentage, this probability greater than
+10 percent, and the impulse is to think of it as kind of a random selection, kind of like a
+coin toss or like a roll of the dice, but it's important to note that I think the people saying
+these things see several branches of reality of AI development branching out from this current
+moment, and some of those branches going into the future have much higher probabilities of
+extinction, of some kind of catastrophic event resulting from AI, and some have much lower
+probabilities. I guess the message is what we do now really matters in terms of picking the best
+branch, the branch that presents the best chances for humanity. I think the other important thing
+to note here is that we know that in a lot of the hacks they involved on-release models.
+In the Navier-Stokes thing, it was an open AI model that was more powerful than Astra,
+and Astra, by all accounts, is a very powerful model. I think it is important to remember that
+AI lab employees may have information about where AI is headed that we don't have.
+That doesn't mean you should dig everything they say and align it with how you think,
+but note that they are often coming from a more informed place than
+the information you or I have access to.
+Yeah. Again, another great segue into the proposals coming out of the Frontier Labs
+in response to all of this. It's not just these technical researchers voicing concern
+at Frontier Labs, top executives at both OpenAI and Anthropic, among other labs,
+but that's where we've kind of heard the most communication coming out.
+They're also jumping in. OpenAI published an essay by its chief global affairs officer
+on September 9th that was titled, The AI Policy Window is Open, We Need to Act.
+Probably the most concrete signal from an AI lab that it's really taking this moment seriously
+is an essay published by Dario Amodei saying that Anthropic is unilaterally committing to
+embedding third-party evaluators into its infrastructure. This is just kind of the
+first step in a three-part plan that Amodei lays out as a way of meeting this moment of AI risks.
+Can you tell us more about that proposal? What would it look like in practice and how would it
+address that problem that you just raised of people inside these labs know more about
+this technology, what it's capable of, but they can't necessarily share it with the public in a
+completely transparent way? I think the first thing we should note is that there are lots of
+things that the labs can do that don't require the government to step in. In this case, Anthropic is
+unilaterally deciding to embed these third-party evaluators in the company. I think they should
+be commended for that. We often see proposals from companies where they're like, the industry
+should do this, and there's an unwillingness to do it unless all of industry is doing it.
+Something like this has real costs, time costs, and money costs for a company.
+We should commend the company for doing it and note that they're trying to abide by the
+principles they laid out when they founded the company.
+That doesn't mean that they might not be doing multiple things at once.
+There are lots of concerns about this proposal that it's an attempt at regulatory capture
+or that maybe it's a way to buoy interest in the company before its IPO.
+It's really hard to disentangle these various competing incentives, but I think it's a useful
+thought exercise to take them at face value when they say they're doing this for safety
+reasons.
+What does it look like in practice?
+In the essay, Amadeus lays out some of his vision for what these embedded evaluators
+would do.
+He says they should have ongoing access to permissions and tools similar to those of internal
+employees who do comparable risk assessments.
+He basically thinks of them as de facto employees.
+They would have access to Anthropic Office Space, access badges, company laptops, all
+the various infrastructure and tooling that employees have, and the right to publish key
+findings with limited ability from the company to redact sensitive information.
+To me, the biggest challenge here is to make this work, you have to figure out a lot of
+details about making sure that evaluators can really get the information that they need
+to get to hold your company accountable to improve the overall safety level of that organization.
+This is tricky.
+It's going to take a lot of work to figure out how to do this well.
+The other big question is, who is going to do this?
+There are existing evaluation organizations.
+Amadeus mentioned an organization called Meter.
+Meter has worked with a number of labs to do technical safety assessments.
+Meter is also very small, and so it's unclear how they can ramp up the capacity to do this.
+The other issue is, can we trust Meter to oversee these companies?
+There have been all these questions about Meter.
+There are employee flows back and forth between Anthropic and Meter.
+There are often money flows where Anthropic employees get the philanthropy who then fund Meter.
+I think in this case, we really need an ironclad sense of independence if these evaluators
+are going to do a good job, and we're going to trust them, and we're going to anchor policy
+on their findings.
+You have to address this issue where sometimes even the appearance of impropriety is enough
+to undermine a system like this.
+Figuring out not just how it would work mechanically, but who is going to do it is going to be very,
+very important.
+Right.
+As you mentioned, this is a step that Frontier Labs can take and that Anthropic is taking
+without being facilitated by the government.
+What role do you see for the U.S. government to play in that process of ensuring objectivity
+on the part of Meter researchers, ensuring that this all goes according to plan and it
+achieves the objectives that Anthropic says that it wants to achieve and doesn't end
+up just being more of a signaling thing?
+I think ultimately for this to be durable and have any impact on safety, the government
+has to be involved in some way.
+To give a specific example, after this plan went out, Sam Altman, who heads OpenAI, responded
+on X that committing to having independent evaluators with employee-like access is a
+great idea and we will do the same.
+And so now you have two companies that are likely working on implementing this.
+One of the things the government can do is sort of create a framework that supports or
+sets out standards or guidelines for how to do this consistently between labs.
+And that would mean that the labs are getting the same level of scrutiny.
+These evaluators are assessing the same things.
+There's comparability between the reports that are coming out.
+The government can maybe take steps to vet the quality of the assessors like it does
+in some other fields like the financial sector.
+I think there's a lot here that the government can do to help bolster trust in what the evaluators
+are doing, how they're doing their job, and in ensuring that the information coming
+from the evaluators is useful for both the public and the government to base future policy
+decisions on.
+Right.
+And as I said earlier, we've seen a lot of policymakers jumping into this conversation.
+What would you say the likelihood is of the government actually taking concrete steps
+here, passing some kind of legislation to formalize this process?
+Well, I think that's a, let's say, a mixed bag at best.
+So we know that beginning with the release of Mythos back in February and this emergence
+of really highly cyber-capable models, that the administration sort of softened its stance
+on new attempts to regulate frontier AI.
+There's evidence that this really scared them.
+At the same time, the administration is deeply ambivalent about imposing strong regulations
+on frontier AI developers.
+They're really worried that this would put the U.S. at a disadvantage compared to China.
+Their thought is essentially this is a prisoner's dilemma.
+If we sort of slow down on the U.S. side, China will almost certainly not slow down.
+In fact, it will have more incentives not to, and that will allow China to catch up
+to U.S. technology.
+I think we'll get to this.
+I think there are ways around that.
+But right now, we've seen a lot of pushback directly from the president, from the vice
+president to this idea that Dario Amadei put out.
+And so it seems unlikely that we'll see sort of robust action in the near term.
+It's not just the administration that has expressed concerns.
+We also see concerns from investors that this is an attempt by the companies to sort of
+pull up the drawbridge, secure their moat through regulatory capture, that this is just
+part of some sophisticated roadshow before potential IPOs.
+I think that's a little conspiratorial, but generally, people don't necessarily trust
+these companies in a particularly robust fashion.
+And so when they make pronouncements like this, there's a lot of skepticism, and we're
+seeing this play out in this case as well.
+Right.
+Yeah, you took the words right out of my mouth.
+I was going to say that that really does seem to reflect this kind of widespread skepticism
+of the industry, which is ideally what something like this, this proposal of embedding third
+party evaluators inside the companies would help kind of alleviate.
+So you mentioned, I want to circle back to this point that you mentioned about Sam Altman
+said that he was kind of on board with this idea of embedding third party evaluators in
+the company.
+And something that Amodei mentioned briefly in this essay is the potential for the government
+to issue kind of narrow waivers for, quote, certain kinds of safety conversations, unquote.
+And that brings up an interesting point of under the current antitrust laws, what is
+the legality in terms of these companies working together to set kind of voluntary standards
+or to come to safety agreements without some kind of intervention by the government?
+To put it simply, what what is stopping Amodei from calling up Sam Altman tomorrow from convening
+a meeting of these labs without government intervention and working out a safety agreement?
+Would that be allowed under current antitrust laws?
+So I'm not an antitrust lawyer.
+And so I don't think I can give a definitive answer here.
+I mean, there are definitely considerations when when competing firms talk to each other
+to make sure that they're not colluding.
+Often that is about things like business plans and prices.
+I think there is much more latitude to engage on issues that are around safety.
+And so I suspect that there is a fair amount of things that the labs can do here in communication
+with each other.
+I think the bigger point here is that I do think that the time is right for the government
+to take action here and that it should.
+And I've said over and over again that the American public in polling has shown a strong
+preference for AI to be regulated and that overall helping to address this.
+big and durable trust gap around AI in the United States is going to involve regulation
+in some way. But I think that if that regulation ends up exempting AI companies from certain
+laws or it involves providing them certain kinds of liability shields, that is not going
+to answer the mail in terms of what people want. That's going to feed into this narrative
+that the government is too chummy with AI companies and that AI companies are not acting
+in good faith when it comes to policy issues. And so I think a better way to go about this
+is not for the government to sort of provide an anti-trust exemption, but rather to facilitate
+or lead or coordinate these conversations and ensure that they're not sort of bilateral
+conversations happening between two companies who then set the rules for everyone else,
+but that there's a big tent where we see a lot of players in the AI ecosystem have a
+voice and then figure out a way to proceed that doesn't just reflect or appear to reflect
+the preferences of these two companies that are clearly in the lead when it comes to model
+capabilities.
+Yeah. And from everything you're describing now, it sounds like the path forward in terms
+of formalizing this kind of transparency, third-party evaluators in these labs and also
+just greater regulation in the US, it's going to be kind of a tricky thing to balance. But
+I want to talk about another kind of blocker to this kind of domestic regulation, which
+is kind of the looming threat of China. So this is something that Amodei addresses in
+his essay. I mentioned that the commitment to embedding third-party evaluators inside
+Anthropic, that's kind of the first step in this three-part plan that he lays out. And
+then the second step he phrases as pacing within democracies, which obviously in the
+context of the AI race can roughly be translated to pacing within the US. So then step three
+is pacing international development, including development under authoritarian regimes. And
+in other words, this is pacing between the United States and China. And the SIP does
+feel pretty intertwined with the one before it because the most cited argument against
+pacing AI in the US is this threat of China. We saw this over the weekend. Speaker of the
+House Mike Johnson went on NBC. And when asked about the current situation and the
+potential for setting up the guardrails, he expressed concern that overly restrictive
+guardrails could cause the US to lose its technological edge over China. So I'm curious
+on your take on this. How is China thinking about this moment in AI safety? And does Beijing
+seem open to a kind of coordinated slowdown of frontier development?
+You know, it's hard to say. I do think there's some evidence that China or Chinese policymakers
+have some of the same concerns that we see with US policymakers, where they see where
+AI technology is going, particularly around cyber capabilities. And they think about whether
+it is okay to have all of those capabilities publicly available. And so there's, you know,
+at least some discussions internally within China about whether future Chinese frontier
+models should be provided openly or if there should be restricted access to them in some way,
+perhaps to select groups of organizations like we've seen with some of the powerful US models
+or maybe only available within China. I think they are concerned. And maybe a little bit of
+optimism. We know AI is going to be on the agenda for this looming summit that the US and China
+are going to have. They committed to discussing AI topics at their last summit. And so, you know,
+there's at least a possibility that there could be some significant discussions and advancements
+on this topic. But what I really worry about is that we're entering this realm of self-fulfilling
+prophecy, where a lot of the rhetoric around China is they're distilling US models, they're
+not really good at AI, they're just sort of stealing intellectual property from US companies,
+combined with, you know, suggestions that the US is asking countries to take sides and either
+use US technology or Chinese technology, plus export controls, plus even thoughts about banning
+or restricting access to Chinese open-away models. All of these are really antagonizing
+towards China, really sort of puts them in the mindset of being an enemy. And this makes it
+really hard to have productive conversations. And my personal belief is that you can have
+productive conversations, that you can restrict those conversations to a narrow set of issues
+that relate to AI safety, that relate to agreement on definitions, the creation of
+communication channels, maybe in, you know, ways to share information about AI cyber incidents.
+And that you could do this in a way that is minimally restrictive on each country's
+respective AI companies, that affects them in similar ways, that doesn't interfere with the
+ability of the US and China to compete for AI adoption globally on the merits of their technology.
+But that doing so requires sort of engaging with China in good faith on this narrow set of issues
+and setting the conditions for having a productive conversation. And then as a follow-up,
+figuring out, because I think it's going to be very hard to get the US and China to trust each
+other's claims, to figure out some sort of formal verification mechanism so you don't have to rely
+on the word of the other company, that there are ways to guarantee the veracity of information that
+each country is providing to the other. And look, I acknowledge those are really,
+really hard problems, that the current political and economic context makes them
+even more challenging. But I do think there is a narrow path to have these kinds of conversations,
+and that if we aren't able to do that, that it would be overall better for most people in the
+world. Yeah, certainly. You mentioned that the summit is looming. It's scheduled for September 24th,
+so I'm sure we'll have much more to share after that date. But this feels like a good place to
+wrap up. Alok, thank you for joining me, sharing your insights, and thanks as always to our audience
+for tuning in. We'll see you again in two weeks. Thanks.
+Thanks for listening to this episode of the AI Policy Podcast. If you like what you heard,
+there's an easy way for you to help us. Please give us a five-star review on your favorite podcast
+platform, subscribe, and tell your friends. It really helps when you spread the word.
+This podcast was produced by Sarah Baker and Matt Mandt. See you next time.

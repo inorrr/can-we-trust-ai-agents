@@ -1,0 +1,44 @@
+{
+  "stage": "write_video_scripts",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:56:52.341387Z",
+  "finished_at": "2026-10-12T17:57:13.496207Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": null,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0c1fbf7719c61840016acd1f6d51f887d2be93e28c53cbf266",
+      "usage": {
+        "input_tokens": 36144,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1444,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37588
+      },
+      "cost_usd": 0.016768,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/cb1739837ad14e9c8f41566a35394633-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "cost_usd": null,
+      "status": "failed",
+      "error_type": "APIConnectionError"
+    }
+  ],
+  "errors": [
+    "OpenAI request failed (APIConnectionError); no automatic retry. Check billing/model access/network."
+  ]
+}

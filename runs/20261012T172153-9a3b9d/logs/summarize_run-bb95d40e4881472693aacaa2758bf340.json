@@ -1,0 +1,14 @@
+{
+  "stage": "summarize_run",
+  "status": "completed",
+  "input_count": 497,
+  "output_count": 1,
+  "started_at": "2026-10-16T01:04:26.744177Z",
+  "finished_at": "2026-10-16T01:04:26.877062Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

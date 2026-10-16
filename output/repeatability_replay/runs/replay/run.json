@@ -1,0 +1,8 @@
+{
+  "run_id": "isolated-withheld-item-replay",
+  "started_at": "2026-10-16T00:49:40.716678Z",
+  "as_of_date": "2026-10-16",
+  "mode": "replay",
+  "previous_run_id": "20261015T233005-policy-v2",
+  "note": "Deliberately withholds one real retained eligible record from the isolated baseline. Not a new live collection or newly discovered item. No model calls."
+}

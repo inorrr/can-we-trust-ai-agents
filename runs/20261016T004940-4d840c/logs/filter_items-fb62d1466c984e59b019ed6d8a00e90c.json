@@ -1,0 +1,14 @@
+{
+  "stage": "filter_items",
+  "status": "completed",
+  "input_count": 15,
+  "output_count": 15,
+  "started_at": "2026-10-16T00:50:33.381357Z",
+  "finished_at": "2026-10-16T00:50:33.383011Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

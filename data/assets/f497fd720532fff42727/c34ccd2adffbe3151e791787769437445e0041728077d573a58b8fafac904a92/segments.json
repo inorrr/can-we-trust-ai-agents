@@ -1,0 +1,2984 @@
+[
+  {
+    "segment_id": "s00001",
+    "start_seconds": 0.0,
+    "end_seconds": 16.1200008392334,
+    "text": "Welcome back to the AI Policy Podcast. I'm Alok Mehta, Director of the Wadwani AI Center"
+  },
+  {
+    "segment_id": "s00002",
+    "start_seconds": 16.1200008392334,
+    "end_seconds": 20.520000457763672,
+    "text": "here at CSIS, the Center for Strategic and International Studies."
+  },
+  {
+    "segment_id": "s00003",
+    "start_seconds": 20.520000457763672,
+    "end_seconds": 24.719999313354492,
+    "text": "And I'm Nicole Herrera, a researcher with the Center. Over the past week, we have seen"
+  },
+  {
+    "segment_id": "s00004",
+    "start_seconds": 24.719999313354492,
+    "end_seconds": 31.040000915527344,
+    "text": "a significant vibe shift in AI policy, culminating in calls over the weekend from Dario Amadei,"
+  },
+  {
+    "segment_id": "s00005",
+    "start_seconds": 31.040000915527344,
+    "end_seconds": 37.0,
+    "text": "Sam Altman, and Elon Musk, among others, plus dozens of members of Congress to pace AI development."
+  },
+  {
+    "segment_id": "s00006",
+    "start_seconds": 37.0,
+    "end_seconds": 41.15999984741211,
+    "text": "So we're going to get into all of that today. But first, there are a few other stories I"
+  },
+  {
+    "segment_id": "s00007",
+    "start_seconds": 41.15999984741211,
+    "end_seconds": 47.040000915527344,
+    "text": "want to cover. OpenAI says that it used a system of coordinating agents to solve one"
+  },
+  {
+    "segment_id": "s00008",
+    "start_seconds": 47.040000915527344,
+    "end_seconds": 52.18000030517578,
+    "text": "of the most difficult and significant open problems in mathematics. And independent researchers"
+  },
+  {
+    "segment_id": "s00009",
+    "start_seconds": 52.18000030517578,
+    "end_seconds": 56.900001525878906,
+    "text": "have discovered more activity by rogue AI agents on the open Internet. We've got a"
+  },
+  {
+    "segment_id": "s00010",
+    "start_seconds": 56.900001525878906,
+    "end_seconds": 58.459999084472656,
+    "text": "lot to cover, so let's dive right in."
+  },
+  {
+    "segment_id": "s00011",
+    "start_seconds": 58.459999084472656,
+    "end_seconds": 61.58000183105469,
+    "text": "Yeah, it's going to be quite a packed episode."
+  },
+  {
+    "segment_id": "s00012",
+    "start_seconds": 61.58000183105469,
+    "end_seconds": 67.94000244140625,
+    "text": "Yes, yeah, definitely. So last week, OpenAI said that it had solved Navier-Stokes, which"
+  },
+  {
+    "segment_id": "s00013",
+    "start_seconds": 67.94000244140625,
+    "end_seconds": 74.62000274658203,
+    "text": "is one of seven millennium problems identified in the year 2000 by the Clay Mathematics Institute"
+  },
+  {
+    "segment_id": "s00014",
+    "start_seconds": 74.62000274658203,
+    "end_seconds": 80.22000122070312,
+    "text": "as the deepest and most challenging open questions of this millennium. There is a million dollar"
+  },
+  {
+    "segment_id": "s00015",
+    "start_seconds": 80.26000213623047,
+    "end_seconds": 85.0199966430664,
+    "text": "prize for solving any one of these problems. And before this announcement last week, only"
+  },
+  {
+    "segment_id": "s00016",
+    "start_seconds": 85.0199966430664,
+    "end_seconds": 91.0999984741211,
+    "text": "one of the seven problems had been solved. So a little bit of background on Navier-Stokes."
+  },
+  {
+    "segment_id": "s00017",
+    "start_seconds": 91.0999984741211,
+    "end_seconds": 96.77999877929688,
+    "text": "This problem concerns a set of equations that describe the movement of fluids. And these"
+  },
+  {
+    "segment_id": "s00018",
+    "start_seconds": 96.77999877929688,
+    "end_seconds": 101.58000183105469,
+    "text": "equations are used for aircraft design, weather forecasting, studying blood flow. There are"
+  },
+  {
+    "segment_id": "s00019",
+    "start_seconds": 101.58000183105469,
+    "end_seconds": 106.5,
+    "text": "a ton of real world applications here. And the open problem was whether or not the equations"
+  },
+  {
+    "segment_id": "s00020",
+    "start_seconds": 106.5,
+    "end_seconds": 110.69999694824219,
+    "text": "could break down. In other words, could they be used to model something that we know to"
+  },
+  {
+    "segment_id": "s00021",
+    "start_seconds": 110.69999694824219,
+    "end_seconds": 115.45999908447266,
+    "text": "be physically impossible in the real world, such as a stream of water moving at infinite"
+  },
+  {
+    "segment_id": "s00022",
+    "start_seconds": 115.45999908447266,
+    "end_seconds": 121.18000030517578,
+    "text": "speed? And OpenAI's system was able to produce a proof showing that indeed the equations"
+  },
+  {
+    "segment_id": "s00023",
+    "start_seconds": 121.18000030517578,
+    "end_seconds": 126.94000244140625,
+    "text": "can be made to break down. So look, obviously neither one of us has a background in advanced"
+  },
+  {
+    "segment_id": "s00024",
+    "start_seconds": 126.94000244140625,
+    "end_seconds": 132.05999755859375,
+    "text": "mathematics, but I do know that OpenAI has made breakthroughs on prominent open problems"
+  },
+  {
+    "segment_id": "s00025",
+    "start_seconds": 132.05999755859375,
+    "end_seconds": 137.5399932861328,
+    "text": "in the past, including disproving a widely held conjecture on the unit distance problem"
+  },
+  {
+    "segment_id": "s00026",
+    "start_seconds": 137.5399932861328,
+    "end_seconds": 142.4600067138672,
+    "text": "back in May of this year. So for many of us outside the mathematics community, it's not"
+  },
+  {
+    "segment_id": "s00027",
+    "start_seconds": 142.4600067138672,
+    "end_seconds": 147.3800048828125,
+    "text": "immediately clear why this new breakthrough matters or what it really means for society"
+  },
+  {
+    "segment_id": "s00028",
+    "start_seconds": 147.3800048828125,
+    "end_seconds": 153.02000427246094,
+    "text": "writ large. Can you spell this out for us? Why exactly should we care that OpenAI solved"
+  },
+  {
+    "segment_id": "s00029",
+    "start_seconds": 153.02000427246094,
+    "end_seconds": 154.02000427246094,
+    "text": "this math problem?"
+  },
+  {
+    "segment_id": "s00030",
+    "start_seconds": 154.94000244140625,
+    "end_seconds": 161.82000732421875,
+    "text": "Yeah, thanks for the question and for that really clear summary of what Navier-Stokes"
+  },
+  {
+    "segment_id": "s00031",
+    "start_seconds": 161.82000732421875,
+    "end_seconds": 166.94000244140625,
+    "text": "is. I know a lot of people have heard about it. It's really difficult to understand exactly"
+  },
+  {
+    "segment_id": "s00032",
+    "start_seconds": 166.94000244140625,
+    "end_seconds": 173.25999450683594,
+    "text": "what mathematicians were working on. And so I think that was helpful. I think the most"
+  },
+  {
+    "segment_id": "s00033",
+    "start_seconds": 173.25999450683594,
+    "end_seconds": 177.66000366210938,
+    "text": "important thing to note here is that one of the areas where there's always been a lot"
+  },
+  {
+    "segment_id": "s00034",
+    "start_seconds": 177.6999969482422,
+    "end_seconds": 183.97999572753906,
+    "text": "of optimism about the impacts of AI is AI's ability to make advances in"
+  },
+  {
+    "segment_id": "s00035",
+    "start_seconds": 184.94000244140625,
+    "end_seconds": 192.86000061035156,
+    "text": "fields of science, not just mathematics, but also biomedicine, medicine, material"
+  },
+  {
+    "segment_id": "s00036",
+    "start_seconds": 192.86000061035156,
+    "end_seconds": 197.74000549316406,
+    "text": "science, weather prediction. And we've seen a lot of specialized models that are able"
+  },
+  {
+    "segment_id": "s00037",
+    "start_seconds": 197.74000549316406,
+    "end_seconds": 206.17999267578125,
+    "text": "to offer better predictive or analytical capabilities in those areas. What is really"
+  },
+  {
+    "segment_id": "s00038",
+    "start_seconds": 206.17999267578125,
+    "end_seconds": 213.77999877929688,
+    "text": "notable here is that AI has sort of really, really changed, it seems, the field of"
+  },
+  {
+    "segment_id": "s00039",
+    "start_seconds": 213.77999877929688,
+    "end_seconds": 219.4600067138672,
+    "text": "mathematics. So now a lot of these really complicated proofs are being attacked using"
+  },
+  {
+    "segment_id": "s00040",
+    "start_seconds": 219.4600067138672,
+    "end_seconds": 225.3800048828125,
+    "text": "AI methods overseen by humans. And one of the reasons we've seen so many advances in"
+  },
+  {
+    "segment_id": "s00041",
+    "start_seconds": 225.3800048828125,
+    "end_seconds": 233.74000549316406,
+    "text": "math is because there are very formalized ways to assess proofs and the problems are"
+  },
+  {
+    "segment_id": "s00042",
+    "start_seconds": 233.74000549316406,
+    "end_seconds": 237.4199981689453,
+    "text": "very clean in the sense of you don't have to deal with annoying real world phenomena"
+  },
+  {
+    "segment_id": "s00043",
+    "start_seconds": 237.4199981689453,
+    "end_seconds": 245.5,
+    "text": "like data and uncertainty and in particular measurement uncertainty. And so we're seeing"
+  },
+  {
+    "segment_id": "s00044",
+    "start_seconds": 245.5,
+    "end_seconds": 251.86000061035156,
+    "text": "all these advances in mathematics, but it's not immediately clear that just because we're"
+  },
+  {
+    "segment_id": "s00045",
+    "start_seconds": 251.86000061035156,
+    "end_seconds": 256.4599914550781,
+    "text": "seeing advances in mathematics, we're going to see the same level of advancements in"
+  },
+  {
+    "segment_id": "s00046",
+    "start_seconds": 256.6600036621094,
+    "end_seconds": 262.0199890136719,
+    "text": "other areas of science where the applications are more practical and you have to deal with"
+  },
+  {
+    "segment_id": "s00047",
+    "start_seconds": 262.0199890136719,
+    "end_seconds": 267.6199951171875,
+    "text": "all these real world phenomena. There you have to make assumptions, you have to simplify"
+  },
+  {
+    "segment_id": "s00048",
+    "start_seconds": 267.6199951171875,
+    "end_seconds": 273.7799987792969,
+    "text": "things, you have to deal with measurement uncertainty. And so I think what I would caution"
+  },
+  {
+    "segment_id": "s00049",
+    "start_seconds": 273.7799987792969,
+    "end_seconds": 278.8999938964844,
+    "text": "the audience is just because we've seen so many advances in mathematics, it doesn't"
+  },
+  {
+    "segment_id": "s00050",
+    "start_seconds": 278.8999938964844,
+    "end_seconds": 282.1400146484375,
+    "text": "necessarily mean it's going to translate to other areas of science."
+  },
+  {
+    "segment_id": "s00051",
+    "start_seconds": 282.6600036621094,
+    "end_seconds": 287.9800109863281,
+    "text": "Right. And I do want to talk just for a second about OpenAI's approach to solving this"
+  },
+  {
+    "segment_id": "s00052",
+    "start_seconds": 287.9800109863281,
+    "end_seconds": 292.6600036621094,
+    "text": "problem, because I think it's really interesting. So to generate the solution to Navier-Stokes,"
+  },
+  {
+    "segment_id": "s00053",
+    "start_seconds": 292.8599853515625,
+    "end_seconds": 300.1000061035156,
+    "text": "OpenAI says that it used a system of coordinating agents powered by an internal model that"
+  },
+  {
+    "segment_id": "s00054",
+    "start_seconds": 300.1000061035156,
+    "end_seconds": 305.3399963378906,
+    "text": "outperforms Astra, which is its latest release and its most powerful externally deployed"
+  },
+  {
+    "segment_id": "s00055",
+    "start_seconds": 305.3399963378906,
+    "end_seconds": 311.6600036621094,
+    "text": "model to date. So OpenAI says that it heard rumors that two Millennium Prize problems"
+  },
+  {
+    "segment_id": "s00056",
+    "start_seconds": 311.6600036621094,
+    "end_seconds": 316.0199890136719,
+    "text": "had been solved. And there's a whole controversy surrounding that that we won't get into"
+  },
+  {
+    "segment_id": "s00057",
+    "start_seconds": 316.0199890136719,
+    "end_seconds": 321.739990234375,
+    "text": "in this episode. But that basically triggered an internal effort to evaluate this"
+  },
+  {
+    "segment_id": "s00058",
+    "start_seconds": 321.739990234375,
+    "end_seconds": 326.260009765625,
+    "text": "unreleased, very powerful model on all open Millennium Prize problems."
+  },
+  {
+    "segment_id": "s00059",
+    "start_seconds": 327.05999755859375,
+    "end_seconds": 332.05999755859375,
+    "text": "So then what OpenAI did is they divided a bunch of agents powered by this internal model"
+  },
+  {
+    "segment_id": "s00060",
+    "start_seconds": 332.05999755859375,
+    "end_seconds": 337.1000061035156,
+    "text": "into subgroups with the ability to communicate with other agents within the group."
+  },
+  {
+    "segment_id": "s00061",
+    "start_seconds": 337.3399963378906,
+    "end_seconds": 342.4599914550781,
+    "text": "And the group that ended up finding the Navier-Stokes solution involved around 10,000"
+  },
+  {
+    "segment_id": "s00062",
+    "start_seconds": 342.4599914550781,
+    "end_seconds": 347.5400085449219,
+    "text": "agents running in parallel. So then researchers prompted different groups with different"
+  },
+  {
+    "segment_id": "s00063",
+    "start_seconds": 347.7799987792969,
+    "end_seconds": 352.6199951171875,
+    "text": "kind of variants of a problem statement and encouraged each of the different groups to"
+  },
+  {
+    "segment_id": "s00064",
+    "start_seconds": 352.6199951171875,
+    "end_seconds": 355.0199890136719,
+    "text": "explore a diverse set of approaches."
+  },
+  {
+    "segment_id": "s00065",
+    "start_seconds": 355.29998779296875,
+    "end_seconds": 357.739990234375,
+    "text": "They let the groups work independently for a while."
+  },
+  {
+    "segment_id": "s00066",
+    "start_seconds": 357.9800109863281,
+    "end_seconds": 363.05999755859375,
+    "text": "Then they used codecs to get the most useful insights from each group of agents and shared"
+  },
+  {
+    "segment_id": "s00067",
+    "start_seconds": 363.05999755859375,
+    "end_seconds": 366.70001220703125,
+    "text": "them across all the groups in follow up prompts."
+  },
+  {
+    "segment_id": "s00068",
+    "start_seconds": 367.5799865722656,
+    "end_seconds": 372.94000244140625,
+    "text": "And then the agents did finally arrive at a solution on September 5th, 88 hours after"
+  },
+  {
+    "segment_id": "s00069",
+    "start_seconds": 372.94000244140625,
+    "end_seconds": 374.739990234375,
+    "text": "starting work on Navier-Stokes."
+  },
+  {
+    "segment_id": "s00070",
+    "start_seconds": 375.29998779296875,
+    "end_seconds": 380.05999755859375,
+    "text": "Formalization and verification of the proof with Astra took another 17 hours."
+  },
+  {
+    "segment_id": "s00071",
+    "start_seconds": 380.260009765625,
+    "end_seconds": 386.05999755859375,
+    "text": "And to solve this problem, the agents sent 2.7 million messages and used around 130"
+  },
+  {
+    "segment_id": "s00072",
+    "start_seconds": 386.05999755859375,
+    "end_seconds": 387.5799865722656,
+    "text": "billion output tokens."
+  },
+  {
+    "segment_id": "s00073",
+    "start_seconds": 387.94000244140625,
+    "end_seconds": 392.6199951171875,
+    "text": "So, Loke, what's your take on this process and what do you think it tells us about agents'"
+  },
+  {
+    "segment_id": "s00074",
+    "start_seconds": 392.6199951171875,
+    "end_seconds": 395.0199890136719,
+    "text": "current capacity for coordination?"
+  },
+  {
+    "segment_id": "s00075",
+    "start_seconds": 396.70001220703125,
+    "end_seconds": 399.6600036621094,
+    "text": "I think there are a few interesting things to note here."
+  },
+  {
+    "segment_id": "s00076",
+    "start_seconds": 399.6600036621094,
+    "end_seconds": 404.3800048828125,
+    "text": "So first, and we won't get into it, but there was certainly a lot of human drama around"
+  },
+  {
+    "segment_id": "s00077",
+    "start_seconds": 404.3800048828125,
+    "end_seconds": 405.5,
+    "text": "this announcement."
+  },
+  {
+    "segment_id": "s00078",
+    "start_seconds": 405.6600036621094,
+    "end_seconds": 411.6199951171875,
+    "text": "I think a lot of that stems from the fact that there was a lot of concern in the field"
+  },
+  {
+    "segment_id": "s00079",
+    "start_seconds": 411.6199951171875,
+    "end_seconds": 417.9800109863281,
+    "text": "of mathematics about what this technology will mean for the future of how mathematicians"
+  },
+  {
+    "segment_id": "s00080",
+    "start_seconds": 417.9800109863281,
+    "end_seconds": 422.9800109863281,
+    "text": "do their work and particularly around who might get credit for that kind of work."
+  },
+  {
+    "segment_id": "s00081",
+    "start_seconds": 423.0199890136719,
+    "end_seconds": 430.94000244140625,
+    "text": "Some of the other things that are interesting, so one of them is just the sort of speed and"
+  },
+  {
+    "segment_id": "s00082",
+    "start_seconds": 430.94000244140625,
+    "end_seconds": 433.6199951171875,
+    "text": "velocity at which this took place."
+  },
+  {
+    "segment_id": "s00083",
+    "start_seconds": 433.82000732421875,
+    "end_seconds": 437.1400146484375,
+    "text": "So this was 88 hours, 10,000 agents."
+  },
+  {
+    "segment_id": "s00084",
+    "start_seconds": 437.82000732421875,
+    "end_seconds": 445.6600036621094,
+    "text": "Estimates that this costs somewhere between $15 and $20 million worth of tokens."
+  },
+  {
+    "segment_id": "s00085",
+    "start_seconds": 446.29998779296875,
+    "end_seconds": 453.82000732421875,
+    "text": "And so that shows you that there is this way in which you can now think about brute"
+  },
+  {
+    "segment_id": "s00086",
+    "start_seconds": 453.82000732421875,
+    "end_seconds": 458.6199951171875,
+    "text": "forcing or just throwing a lot of compute at a problem and arriving in a solution."
+  },
+  {
+    "segment_id": "s00087",
+    "start_seconds": 459.4599914550781,
+    "end_seconds": 469.260009765625,
+    "text": "And, you know, we saw the significant progress in OpenAI's instance, but it is also a"
+  },
+  {
+    "segment_id": "s00088",
+    "start_seconds": 469.260009765625,
+    "end_seconds": 471.1400146484375,
+    "text": "privilege that OpenAI can do this."
+  },
+  {
+    "segment_id": "s00089",
+    "start_seconds": 472.0199890136719,
+    "end_seconds": 480.5799865722656,
+    "text": "Who else is really going to spend 15 or 20 million dollars to solve a prize challenge"
+  },
+  {
+    "segment_id": "s00090",
+    "start_seconds": 480.5799865722656,
+    "end_seconds": 482.3800048828125,
+    "text": "where the reward is a million dollars?"
+  },
+  {
+    "segment_id": "s00091",
+    "start_seconds": 482.5,
+    "end_seconds": 484.1000061035156,
+    "text": "Now, OpenAI doesn't care about the money."
+  },
+  {
+    "segment_id": "s00092",
+    "start_seconds": 484.1000061035156,
+    "end_seconds": 489.6199951171875,
+    "text": "It's not going to claim the money, but it does show you some of the concerns about who"
+  },
+  {
+    "segment_id": "s00093",
+    "start_seconds": 489.6199951171875,
+    "end_seconds": 496.29998779296875,
+    "text": "has the resources to be able to engage in these types of very compute intensive"
+  },
+  {
+    "segment_id": "s00094",
+    "start_seconds": 496.29998779296875,
+    "end_seconds": 497.0199890136719,
+    "text": "activities."
+  },
+  {
+    "segment_id": "s00095",
+    "start_seconds": 497.3800048828125,
+    "end_seconds": 501.4599914550781,
+    "text": "Yeah, and it's worth noting, too, that the you mentioned the human drama involved in"
+  },
+  {
+    "segment_id": "s00096",
+    "start_seconds": 501.4599914550781,
+    "end_seconds": 506.1000061035156,
+    "text": "this situation, the two mathematicians that had been working on this problem before"
+  },
+  {
+    "segment_id": "s00097",
+    "start_seconds": 506.1000061035156,
+    "end_seconds": 511.7799987792969,
+    "text": "OpenAI kind of stepped in, they were also using AI to kind of accelerate their process"
+  },
+  {
+    "segment_id": "s00098",
+    "start_seconds": 511.7799987792969,
+    "end_seconds": 514.4600219726562,
+    "text": "and they were actually using Codex, one of OpenAI's tools."
+  },
+  {
+    "segment_id": "s00099",
+    "start_seconds": 514.4600219726562,
+    "end_seconds": 519.780029296875,
+    "text": "So it's interesting that the role that AI is playing here, even outside of a frontier"
+  },
+  {
+    "segment_id": "s00100",
+    "start_seconds": 519.780029296875,
+    "end_seconds": 522.6599731445312,
+    "text": "lab, applying its own tools to a problem, but sorry, continue."
+  },
+  {
+    "segment_id": "s00101",
+    "start_seconds": 523.2999877929688,
+    "end_seconds": 526.97998046875,
+    "text": "Yeah, and I think the other thing I would note, and we're going to talk about this"
+  },
+  {
+    "segment_id": "s00102",
+    "start_seconds": 526.97998046875,
+    "end_seconds": 532.0999755859375,
+    "text": "a little bit more when we talk about some of the new revelations of hacking incidents."
+  },
+  {
+    "segment_id": "s00103",
+    "start_seconds": 532.3400268554688,
+    "end_seconds": 537.9000244140625,
+    "text": "But, you know, I think we're just learning a lot about how sophisticated agentic"
+  },
+  {
+    "segment_id": "s00104",
+    "start_seconds": 537.9000244140625,
+    "end_seconds": 539.219970703125,
+    "text": "coordination can be."
+  },
+  {
+    "segment_id": "s00105",
+    "start_seconds": 539.8200073242188,
+    "end_seconds": 546.5,
+    "text": "So in the OpenAI Hugging Face incident, we learned a lot about the negative consequences"
+  },
+  {
+    "segment_id": "s00106",
+    "start_seconds": 546.5,
+    "end_seconds": 550.9000244140625,
+    "text": "of this, where agents were coordinating with each other in ways they weren't supposed"
+  },
+  {
+    "segment_id": "s00107",
+    "start_seconds": 550.9000244140625,
+    "end_seconds": 556.4199829101562,
+    "text": "to. And, you know, we mentioned on a previous episode how they even were able to"
+  },
+  {
+    "segment_id": "s00108",
+    "start_seconds": 557.02001953125,
+    "end_seconds": 561.0599975585938,
+    "text": "some agents were able to convince other agents to go on the virtual equivalent of"
+  },
+  {
+    "segment_id": "s00109",
+    "start_seconds": 561.260009765625,
+    "end_seconds": 562.5,
+    "text": "suicide missions."
+  },
+  {
+    "segment_id": "s00110",
+    "start_seconds": 563.1400146484375,
+    "end_seconds": 568.4600219726562,
+    "text": "Here we see the flip side of that, which is like, think of the force multiplier you get"
+  },
+  {
+    "segment_id": "s00111",
+    "start_seconds": 568.4600219726562,
+    "end_seconds": 574.3400268554688,
+    "text": "when you not only have one agent working on something, but you are able to have"
+  },
+  {
+    "segment_id": "s00112",
+    "start_seconds": 574.5800170898438,
+    "end_seconds": 579.1799926757812,
+    "text": "thousands of agents working on something and that they are able to coordinate their"
+  },
+  {
+    "segment_id": "s00113",
+    "start_seconds": 579.1799926757812,
+    "end_seconds": 583.1799926757812,
+    "text": "behavior in a way that is multiplicative."
+  },
+  {
+    "segment_id": "s00114",
+    "start_seconds": 583.9000244140625,
+    "end_seconds": 590.1799926757812,
+    "text": "And this, I think, gives us a preview of some of the ways that we'll see agents"
+  },
+  {
+    "segment_id": "s00115",
+    "start_seconds": 590.3800048828125,
+    "end_seconds": 595.6599731445312,
+    "text": "deployed in the future and, you know, the level of sophisticated things that they're"
+  },
+  {
+    "segment_id": "s00116",
+    "start_seconds": 595.6599731445312,
+    "end_seconds": 596.780029296875,
+    "text": "going to be able to do."
+  },
+  {
+    "segment_id": "s00117",
+    "start_seconds": 597.5,
+    "end_seconds": 599.97998046875,
+    "text": "That being said, right, like very few."
+  },
+  {
+    "segment_id": "s00118",
+    "start_seconds": 600.0,
+    "end_seconds": 605.1199998855591,
+    "text": "organizations in the world are going to be able to spin up 10,000 agents to work on a single"
+  },
+  {
+    "segment_id": "s00119",
+    "start_seconds": 605.1199998855591,
+    "end_seconds": 612.7200002670288,
+    "text": "problem, whether that's in academia or in industry. This was really a thing OpenAI did for the"
+  },
+  {
+    "segment_id": "s00120",
+    "start_seconds": 612.7200002670288,
+    "end_seconds": 619.3600006103516,
+    "text": "bragging rights and part of their rivalry to demonstrate the value of their technology with"
+  },
+  {
+    "segment_id": "s00121",
+    "start_seconds": 619.3600006103516,
+    "end_seconds": 627.2000007629395,
+    "text": "Anthropic. It's unclear how much costs have to drop or how many more advancements have to be"
+  },
+  {
+    "segment_id": "s00122",
+    "start_seconds": 627.2000007629395,
+    "end_seconds": 631.2800006866455,
+    "text": "made before this is something that regular organizations can think about doing."
+  },
+  {
+    "segment_id": "s00123",
+    "start_seconds": 632.1599998474121,
+    "end_seconds": 637.7599983215332,
+    "text": "Right, and that was kind of my next question is, obviously OpenAI hasn't shared a ton of"
+  },
+  {
+    "segment_id": "s00124",
+    "start_seconds": 637.7599983215332,
+    "end_seconds": 643.439998626709,
+    "text": "details beyond the stuff that I went over about how these agents arrived at a solution and what"
+  },
+  {
+    "segment_id": "s00125",
+    "start_seconds": 643.439998626709,
+    "end_seconds": 649.1199989318848,
+    "text": "all of those output tokens were being put towards, but to what extent do you think we can expect"
+  },
+  {
+    "segment_id": "s00126",
+    "start_seconds": 649.1199989318848,
+    "end_seconds": 654.7999992370605,
+    "text": "costs to fall enough for a lot of organizations to start using agents in this way?"
+  },
+  {
+    "segment_id": "s00127",
+    "start_seconds": 654.7999992370605,
+    "end_seconds": 662.2400016784668,
+    "text": "I mean, definitely over time, inference costs have dropped. I think I've read a number about"
+  },
+  {
+    "segment_id": "s00128",
+    "start_seconds": 662.2400016784668,
+    "end_seconds": 671.7600021362305,
+    "text": "maybe fivefold each year. Certainly for the same token cost, you get a lot more in 2026 than you"
+  },
+  {
+    "segment_id": "s00129",
+    "start_seconds": 671.7600021362305,
+    "end_seconds": 679.8399963378906,
+    "text": "did in 2023. I do think we can expect that costs will continue to decrease over time. I think it's"
+  },
+  {
+    "segment_id": "s00130",
+    "start_seconds": 679.8399963378906,
+    "end_seconds": 689.0400009155273,
+    "text": "very unclear when these kinds of capabilities might be really affordable for enterprises or"
+  },
+  {
+    "segment_id": "s00131",
+    "start_seconds": 689.0400009155273,
+    "end_seconds": 694.8000030517578,
+    "text": "individuals. I think we'll still have some time to get there because what we've seen is as token"
+  },
+  {
+    "segment_id": "s00132",
+    "start_seconds": 696.2399978637695,
+    "end_seconds": 701.7600021362305,
+    "text": "costs drop, models also get bigger and so they use more tokens. This happened with a sort of"
+  },
+  {
+    "segment_id": "s00133",
+    "start_seconds": 701.7600021362305,
+    "end_seconds": 708.1600036621094,
+    "text": "unreleased, even more powerful model and you have to expect that they are very token intensive."
+  },
+  {
+    "segment_id": "s00134",
+    "start_seconds": 708.2399978637695,
+    "end_seconds": 717.9199981689453,
+    "text": "And so I think the jury is on sort of when these capabilities might sort of become mainstream."
+  },
+  {
+    "segment_id": "s00135",
+    "start_seconds": 719.120002746582,
+    "end_seconds": 724.879997253418,
+    "text": "Certainly, I think a lot of people in academia and outside academia are going to be watching closely"
+  },
+  {
+    "segment_id": "s00136",
+    "start_seconds": 724.879997253418,
+    "end_seconds": 731.1999969482422,
+    "text": "because I think a lot of them do think that this marks a significant shift in the business or the"
+  },
+  {
+    "segment_id": "s00137",
+    "start_seconds": 731.1999969482422,
+    "end_seconds": 736.9600067138672,
+    "text": "field of mathematics broadly. Right. And now to switch gears a little bit,"
+  },
+  {
+    "segment_id": "s00138",
+    "start_seconds": 736.9600067138672,
+    "end_seconds": 741.8399963378906,
+    "text": "you touched on the kind of ongoing cyber saga that we've talked about extensively on this"
+  },
+  {
+    "segment_id": "s00139",
+    "start_seconds": 741.8399963378906,
+    "end_seconds": 746.8000030517578,
+    "text": "podcast. I feel like every news roundup, there's something new to unpack. And this one is no"
+  },
+  {
+    "segment_id": "s00140",
+    "start_seconds": 746.8000030517578,
+    "end_seconds": 752.0800018310547,
+    "text": "exception. Over the past week, we have seen some major updates on that front. We've seen"
+  },
+  {
+    "segment_id": "s00141",
+    "start_seconds": 752.0800018310547,
+    "end_seconds": 757.8399963378906,
+    "text": "anthropic disclosing, a fourth hacking incident. And we've also seen reports that open AI agents"
+  },
+  {
+    "segment_id": "s00142",
+    "start_seconds": 757.8399963378906,
+    "end_seconds": 763.5200042724609,
+    "text": "have used at least 10 public sites as unsanctioned message boards and executed another"
+  },
+  {
+    "segment_id": "s00143",
+    "start_seconds": 763.5200042724609,
+    "end_seconds": 771.0399932861328,
+    "text": "cyber attack on RubyGems prior to the Hugging Face incident. So I want to dive into those reports a"
+  },
+  {
+    "segment_id": "s00144",
+    "start_seconds": 771.0399932861328,
+    "end_seconds": 777.9199981689453,
+    "text": "little bit. On September 9th, Reuters shared that open AI agents had used at least 10 public websites"
+  },
+  {
+    "segment_id": "s00145",
+    "start_seconds": 777.9199981689453,
+    "end_seconds": 783.2799987792969,
+    "text": "as unsanctioned message boards this year. And this article followed a September 4th report"
+  },
+  {
+    "segment_id": "s00146",
+    "start_seconds": 783.2799987792969,
+    "end_seconds": 790.0,
+    "text": "that a swarm of open AI agents had co-opted an obscure German wiki to coordinate with one"
+  },
+  {
+    "segment_id": "s00147",
+    "start_seconds": 790.0,
+    "end_seconds": 796.2400054931641,
+    "text": "another about an assigned web lookup task. So basically, open AI agents were asked to answer"
+  },
+  {
+    "segment_id": "s00148",
+    "start_seconds": 796.2400054931641,
+    "end_seconds": 802.0800018310547,
+    "text": "factual questions. One example is, what was the median earnings of a cashier with a master's"
+  },
+  {
+    "segment_id": "s00149",
+    "start_seconds": 802.0800018310547,
+    "end_seconds": 808.8000030517578,
+    "text": "degree in 2014? And they were able to use the internet to answer those questions,"
+  },
+  {
+    "segment_id": "s00150",
+    "start_seconds": 808.8000030517578,
+    "end_seconds": 815.3600006103516,
+    "text": "unlike the evaluation involved in the Hugging Face incident. But they were"
+  },
+  {
+    "segment_id": "s00151",
+    "start_seconds": 815.3600006103516,
+    "end_seconds": 820.4799957275391,
+    "text": "supposed to be configured so they could only read things online, not write to any sites."
+  },
+  {
+    "segment_id": "s00152",
+    "start_seconds": 820.4799957275391,
+    "end_seconds": 825.9199981689453,
+    "text": "And the agents were able to find some niche websites where a kind of quirk in the way the"
+  },
+  {
+    "segment_id": "s00153",
+    "start_seconds": 825.9199981689453,
+    "end_seconds": 831.5200042724609,
+    "text": "website was set up allowed them to use their read requests to also post content on the site."
+  },
+  {
+    "segment_id": "s00154",
+    "start_seconds": 831.5200042724609,
+    "end_seconds": 836.1600036621094,
+    "text": "And the agents then used those sites as message boards to communicate with one another,"
+  },
+  {
+    "segment_id": "s00155",
+    "start_seconds": 836.1600036621094,
+    "end_seconds": 841.6000061035156,
+    "text": "primarily to help them coordinate and cheat on their tasks. So Alok, what do you make of all"
+  },
+  {
+    "segment_id": "s00156",
+    "start_seconds": 841.6000061035156,
+    "end_seconds": 846.8800048828125,
+    "text": "this from an agent capability and alignment standpoint? Is there anything we know now"
+  },
+  {
+    "segment_id": "s00157",
+    "start_seconds": 847.6799926757812,
+    "end_seconds": 851.9199981689453,
+    "text": "after hearing these reports that we didn't necessarily after the Hugging Face incident?"
+  },
+  {
+    "segment_id": "s00158",
+    "start_seconds": 852.8800048828125,
+    "end_seconds": 859.8399963378906,
+    "text": "I mean, first, we've just heard so, you know, like, over the course of weeks now, or even months"
+  },
+  {
+    "segment_id": "s00159",
+    "start_seconds": 859.8399963378906,
+    "end_seconds": 864.0799865722656,
+    "text": "about hacking incidents, at a certain point, it's just not going to be news anymore."
+  },
+  {
+    "segment_id": "s00160",
+    "start_seconds": 864.7200012207031,
+    "end_seconds": 870.5599975585938,
+    "text": "And I think that's a little scary to think about, is just how commonplace these are getting. It's"
+  },
+  {
+    "segment_id": "s00161",
+    "start_seconds": 870.5599975585938,
+    "end_seconds": 878.3999938964844,
+    "text": "going to be, I think it's an indication of what cyber defense and cyber attack is going to look"
+  },
+  {
+    "segment_id": "s00162",
+    "start_seconds": 878.3999938964844,
+    "end_seconds": 884.9599914550781,
+    "text": "like in the future, and a lot of the vulnerabilities that we have in existing infrastructure on the"
+  },
+  {
+    "segment_id": "s00163",
+    "start_seconds": 884.9599914550781,
+    "end_seconds": 893.4400024414062,
+    "text": "internet. So that being said, what do we know now? Well, I think one of the important things"
+  },
+  {
+    "segment_id": "s00164",
+    "start_seconds": 894.239990234375,
+    "end_seconds": 899.3599853515625,
+    "text": "to note here is that this was really, really, like, sort of a benign task, like answering"
+  },
+  {
+    "segment_id": "s00165",
+    "start_seconds": 899.3599853515625,
+    "end_seconds": 907.2000122070312,
+    "text": "questions, it should be relatively, relatively easy to do, you would think it wouldn't require,"
+  },
+  {
+    "segment_id": "s00166",
+    "start_seconds": 907.2000122070312,
+    "end_seconds": 914.4800109863281,
+    "text": "like, sophisticated agent coordination, to go and do what is sort of, you know,"
+  },
+  {
+    "segment_id": "s00167",
+    "start_seconds": 914.4800109863281,
+    "end_seconds": 919.9200134277344,
+    "text": "in a lot of ways, functionally similar to like, a sophisticated use of a search engine."
+  },
+  {
+    "segment_id": "s00168",
+    "start_seconds": 920.3200073242188,
+    "end_seconds": 927.2000122070312,
+    "text": "And, and what we see here is that agents can and will exhibit misaligned behavior,"
+  },
+  {
+    "segment_id": "s00169",
+    "start_seconds": 927.2000122070312,
+    "end_seconds": 934.7200012207031,
+    "text": "even in pursuit of these relatively benign, harmless goals. And not only that, right, they,"
+  },
+  {
+    "segment_id": "s00170",
+    "start_seconds": 936.7999877929688,
+    "end_seconds": 940.9599914550781,
+    "text": "they started using these message boards, they were using these message boards to sort of"
+  },
+  {
+    "segment_id": "s00171",
+    "start_seconds": 942.0799865722656,
+    "end_seconds": 948.0,
+    "text": "figure out how to cheat on their tasks. And so, right. So I think this shows that we,"
+  },
+  {
+    "segment_id": "s00172",
+    "start_seconds": 948.7200012207031,
+    "end_seconds": 951.9200134277344,
+    "text": "we, you know, we knew we had a long way to go in alignment,"
+  },
+  {
+    "segment_id": "s00173",
+    "start_seconds": 951.9200134277344,
+    "end_seconds": 954.7999877929688,
+    "text": "this shows that that maybe that gap is bigger than we thought."
+  },
+  {
+    "segment_id": "s00174",
+    "start_seconds": 955.9200134277344,
+    "end_seconds": 962.1600036621094,
+    "text": "Yeah. And this was all kind of unfolding around the same time that the other group of agents"
+  },
+  {
+    "segment_id": "s00175",
+    "start_seconds": 962.1600036621094,
+    "end_seconds": 967.1199951171875,
+    "text": "inside OpenAI figured out how to use the artifactory package manager as an internal"
+  },
+  {
+    "segment_id": "s00176",
+    "start_seconds": 967.1199951171875,
+    "end_seconds": 972.6400146484375,
+    "text": "message board, all as part of the lead up to the hugging face hacking incident."
+  },
+  {
+    "segment_id": "s00177",
+    "start_seconds": 973.6000061035156,
+    "end_seconds": 980.0799865722656,
+    "text": "But because of another strange quirk in this German wiki, the site, which the site publicly"
+  },
+  {
+    "segment_id": "s00178",
+    "start_seconds": 980.0799865722656,
+    "end_seconds": 986.0799865722656,
+    "text": "logs the IP address of every visitor, we also know that OpenAI actually discovered the agent's"
+  },
+  {
+    "segment_id": "s00179",
+    "start_seconds": 986.0799865722656,
+    "end_seconds": 992.0,
+    "text": "activity on this wiki several weeks before the hucking attack took place. So what does that"
+  },
+  {
+    "segment_id": "s00180",
+    "start_seconds": 992.0,
+    "end_seconds": 997.760009765625,
+    "text": "then tell us about OpenAI's kind of vigilance in both monitoring for and their transparency"
+  },
+  {
+    "segment_id": "s00181",
+    "start_seconds": 997.760009765625,
+    "end_seconds": 1004.7999877929688,
+    "text": "in disclosing these kinds of cyber incidents? Yeah, I think this is just sort of adding to"
+  },
+  {
+    "segment_id": "s00182",
+    "start_seconds": 1004.7999877929688,
+    "end_seconds": 1010.4800109863281,
+    "text": "the information that we already knew that the internal processes that OpenAI had for"
+  },
+  {
+    "segment_id": "s00183",
+    "start_seconds": 1010.4800109863281,
+    "end_seconds": 1015.3599853515625,
+    "text": "monitoring both what was happening inside the company when they spun up these agents for cyber"
+  },
+  {
+    "segment_id": "s00184",
+    "start_seconds": 1015.3599853515625,
+    "end_seconds": 1020.1600036621094,
+    "text": "evals, and what they were doing in the outside world is just just really, really lacking."
+  },
+  {
+    "segment_id": "s00185",
+    "start_seconds": 1021.0400085449219,
+    "end_seconds": 1028.3200073242188,
+    "text": "So let's put it this way. One of the things you do when you're training AI models is, you know,"
+  },
+  {
+    "segment_id": "s00186",
+    "start_seconds": 1028.3200073242188,
+    "end_seconds": 1033.5199890136719,
+    "text": "you access a lot of the data on the internet. So we know that OpenAI has a lot of infrastructure"
+  },
+  {
+    "segment_id": "s00187",
+    "start_seconds": 1033.5199890136719,
+    "end_seconds": 1039.6799926757812,
+    "text": "to be able to go scan and access a lot of the internet. But apparently they weren't using any"
+  },
+  {
+    "segment_id": "s00188",
+    "start_seconds": 1039.6799926757812,
+    "end_seconds": 1045.2799987792969,
+    "text": "of that infrastructure to track what their agents were doing on the internet. Maybe they thought"
+  },
+  {
+    "segment_id": "s00189",
+    "start_seconds": 1045.9200134277344,
+    "end_seconds": 1052.239990234375,
+    "text": "some agents were supposed to be able to do that. And so they didn't need to do that. But then we"
+  },
+  {
+    "segment_id": "s00190",
+    "start_seconds": 1052.239990234375,
+    "end_seconds": 1057.9200134277344,
+    "text": "have some evidence that they did find some of this activity. You know, there's logging that"
+  },
+  {
+    "segment_id": "s00191",
+    "start_seconds": 1057.9200134277344,
+    "end_seconds": 1065.0400085449219,
+    "text": "agents do. And so they should probably have been checking what the agents were doing in terms of"
+  },
+  {
+    "segment_id": "s00192",
+    "start_seconds": 1065.0400085449219,
+    "end_seconds": 1071.5199890136719,
+    "text": "logs and then sort of followed up on that. And the fact that it took OpenAI so long to find some of"
+  },
+  {
+    "segment_id": "s00193",
+    "start_seconds": 1071.5199890136719,
+    "end_seconds": 1077.2799987792969,
+    "text": "these sort of hacking incidents, in some cases a month or more, I think is really concerning"
+  },
+  {
+    "segment_id": "s00194",
+    "start_seconds": 1078.0,
+    "end_seconds": 1083.3599853515625,
+    "text": "and tells us a lot about the state of internal security practices of labs. Now, I am assuming"
+  },
+  {
+    "segment_id": "s00195",
+    "start_seconds": 1083.3599853515625,
+    "end_seconds": 1091.1199951171875,
+    "text": "that that's going to change in the future. But, you know, a lot of the information that's been"
+  },
+  {
+    "segment_id": "s00196",
+    "start_seconds": 1091.1199951171875,
+    "end_seconds": 1097.6799926757812,
+    "text": "disclosed over the past few months over these hacking incidents is really an indictment of sort"
+  },
+  {
+    "segment_id": "s00197",
+    "start_seconds": 1097.6799926757812,
+    "end_seconds": 1104.6400146484375,
+    "text": "of internal monitoring and security practices at the labs. Another thing it's an indictment for is"
+  },
+  {
+    "segment_id": "s00198",
+    "start_seconds": 1104.6400146484375,
+    "end_seconds": 1117.280029296875,
+    "text": "just around disclosure. So it really seems like OpenAI has chosen not to report these incidents"
+  },
+  {
+    "segment_id": "s00199",
+    "start_seconds": 1118.0800170898438,
+    "end_seconds": 1123.5999755859375,
+    "text": "until its hand is forced. So in some cases it's because external researchers found this information"
+  },
+  {
+    "segment_id": "s00200",
+    "start_seconds": 1123.5999755859375,
+    "end_seconds": 1129.52001953125,
+    "text": "and then posted about it publicly online. And then this required or forced OpenAI's hand and"
+  },
+  {
+    "segment_id": "s00201",
+    "start_seconds": 1129.52001953125,
+    "end_seconds": 1137.52001953125,
+    "text": "they had to make those disclosures. This is something I assume OpenAI is also thinking about"
+  },
+  {
+    "segment_id": "s00202",
+    "start_seconds": 1137.52001953125,
+    "end_seconds": 1144.4000244140625,
+    "text": "changing. But it's also something that we've written about at the 101EA Center, which is that"
+  },
+  {
+    "segment_id": "s00203",
+    "start_seconds": 1144.719970703125,
+    "end_seconds": 1150.7999877929688,
+    "text": "we this wouldn't be an issue if there were sort of laws in place that mandated"
+  },
+  {
+    "segment_id": "s00204",
+    "start_seconds": 1151.9199829101562,
+    "end_seconds": 1156.8800048828125,
+    "text": "more incident sharing, including incident sharing about what is happening internally"
+  },
+  {
+    "segment_id": "s00205",
+    "start_seconds": 1156.8800048828125,
+    "end_seconds": 1164.3200073242188,
+    "text": "at companies using unreleased models. And so I think this adds evidence for that argument,"
+  },
+  {
+    "segment_id": "s00206",
+    "start_seconds": 1164.3200073242188,
+    "end_seconds": 1171.4400024414062,
+    "text": "which is just that incident reporting is going to continue to be important and we should figure out"
+  },
+  {
+    "segment_id": "s00207",
+    "start_seconds": 1171.4400024414062,
+    "end_seconds": 1177.5999755859375,
+    "text": "how to get more information out of the labs. Yeah, and that's kind of a great segue into our"
+  },
+  {
+    "segment_id": "s00208",
+    "start_seconds": 1177.5999755859375,
+    "end_seconds": 1182.7999877929688,
+    "text": "main story of this episode and the big story of this past week, which is kind of overshadowed"
+  },
+  {
+    "segment_id": "s00209",
+    "start_seconds": 1182.7999877929688,
+    "end_seconds": 1189.52001953125,
+    "text": "these other stories that would have been huge news any other week in AI policy. But essentially,"
+  },
+  {
+    "segment_id": "s00210",
+    "start_seconds": 1189.52001953125,
+    "end_seconds": 1196.6400146484375,
+    "text": "on September 8th, a former anthropic researcher named Jacob Coxon posted on X about his decision"
+  },
+  {
+    "segment_id": "s00211",
+    "start_seconds": 1196.6400146484375,
+    "end_seconds": 1199.9199829101562,
+    "text": "to resign from the company. He wrote, I spent"
+  },
+  {
+    "segment_id": "s00212",
+    "start_seconds": 1200.0,
+    "end_seconds": 1205.920000076294,
+    "text": "last three years doing pre-training research at both OpenAI and Anthropic, neither company is"
+  },
+  {
+    "segment_id": "s00213",
+    "start_seconds": 1205.920000076294,
+    "end_seconds": 1212.3999996185303,
+    "text": "acting responsibly. They are racing straight to self-improving superintelligence and gambling"
+  },
+  {
+    "segment_id": "s00214",
+    "start_seconds": 1212.3999996185303,
+    "end_seconds": 1220.5599994659424,
+    "text": "with our lives. And this post just went absurdly viral. It's now been viewed over 171 million times"
+  },
+  {
+    "segment_id": "s00215",
+    "start_seconds": 1220.5599994659424,
+    "end_seconds": 1228.7199993133545,
+    "text": "and Coxon has been interviewed by the Wall Street Journal, by BBC, CNN, NBC, among other mainstream"
+  },
+  {
+    "segment_id": "s00216",
+    "start_seconds": 1228.7199993133545,
+    "end_seconds": 1235.3600006103516,
+    "text": "news outlets. But the really interesting thing about this post and kind of the explosion of"
+  },
+  {
+    "segment_id": "s00217",
+    "start_seconds": 1235.3600006103516,
+    "end_seconds": 1240.7999992370605,
+    "text": "attention is that anyone who's been following the AI safety conversation for some time knows"
+  },
+  {
+    "segment_id": "s00218",
+    "start_seconds": 1240.7999992370605,
+    "end_seconds": 1247.6800003051758,
+    "text": "that these kind of proclamations about extinction risks, about catastrophic risks of AI are nothing"
+  },
+  {
+    "segment_id": "s00219",
+    "start_seconds": 1247.6800003051758,
+    "end_seconds": 1253.5200004577637,
+    "text": "new. But over the past two months, there also has been this significant vibe shift within both the"
+  },
+  {
+    "segment_id": "s00220",
+    "start_seconds": 1253.5200004577637,
+    "end_seconds": 1259.2799987792969,
+    "text": "AI research and policy communities. And it kind of seems like Coxon's post created this kind of"
+  },
+  {
+    "segment_id": "s00221",
+    "start_seconds": 1259.2799987792969,
+    "end_seconds": 1265.4400024414062,
+    "text": "entry point to these conversations for people who don't normally think about catastrophic risk of AI."
+  },
+  {
+    "segment_id": "s00222",
+    "start_seconds": 1265.4400024414062,
+    "end_seconds": 1272.4800033569336,
+    "text": "And now we're seeing a kind of snowball effect set off by this post with dozens of policymakers"
+  },
+  {
+    "segment_id": "s00223",
+    "start_seconds": 1272.4800033569336,
+    "end_seconds": 1278.3199996948242,
+    "text": "at both the state and federal level responding and issuing calls to action. So, Alok, you've"
+  },
+  {
+    "segment_id": "s00224",
+    "start_seconds": 1278.3199996948242,
+    "end_seconds": 1283.1999969482422,
+    "text": "been working on AI policy obviously much longer than I have. You have kind of broader context for"
+  },
+  {
+    "segment_id": "s00225",
+    "start_seconds": 1283.2799987792969,
+    "end_seconds": 1289.3600006103516,
+    "text": "this moment. What do you make of all this and kind of the potential for concrete policy action here?"
+  },
+  {
+    "segment_id": "s00226",
+    "start_seconds": 1290.2399978637695,
+    "end_seconds": 1295.3600006103516,
+    "text": "You know, it does feel like a pretty significant moment. We'll have to see if this is a moment"
+  },
+  {
+    "segment_id": "s00227",
+    "start_seconds": 1295.3600006103516,
+    "end_seconds": 1302.3199996948242,
+    "text": "that's durable and changes things in the future, particularly around policy, or if it's sort of"
+  },
+  {
+    "segment_id": "s00228",
+    "start_seconds": 1303.0400009155273,
+    "end_seconds": 1308.3199996948242,
+    "text": "something that spikes and dies down. But I think the reason it's so significant is like,"
+  },
+  {
+    "segment_id": "s00229",
+    "start_seconds": 1308.879997253418,
+    "end_seconds": 1315.6800003051758,
+    "text": "well, you can think of it as there is this Silicon Valley world, kind of a bubble where"
+  },
+  {
+    "segment_id": "s00230",
+    "start_seconds": 1315.6800003051758,
+    "end_seconds": 1321.9199981689453,
+    "text": "people spend a lot of time thinking about these risks. In a lot of ways, the labs,"
+  },
+  {
+    "segment_id": "s00231",
+    "start_seconds": 1321.9199981689453,
+    "end_seconds": 1326.8000030517578,
+    "text": "particularly Anthropic, are bubbles within the bubble where they have self-selected for people"
+  },
+  {
+    "segment_id": "s00232",
+    "start_seconds": 1327.4400024414062,
+    "end_seconds": 1334.3999938964844,
+    "text": "who are really concerned about these things and think about them even more than sort of the"
+  },
+  {
+    "segment_id": "s00233",
+    "start_seconds": 1334.3999938964844,
+    "end_seconds": 1344.0,
+    "text": "average Silicon Valley person. This is not stuff that most of the general public thinks about."
+  },
+  {
+    "segment_id": "s00234",
+    "start_seconds": 1346.479995727539,
+    "end_seconds": 1352.8000030517578,
+    "text": "To me, one of the most significant things about this post is how it's bridged these two worlds."
+  },
+  {
+    "segment_id": "s00235",
+    "start_seconds": 1352.8000030517578,
+    "end_seconds": 1358.0,
+    "text": "It's brought a lot of these Silicon Valley concerns into the mainstream, and now people"
+  },
+  {
+    "segment_id": "s00236",
+    "start_seconds": 1358.0800018310547,
+    "end_seconds": 1365.6000061035156,
+    "text": "are thinking about it a lot more. I think what we know is that when people think about"
+  },
+  {
+    "segment_id": "s00237",
+    "start_seconds": 1365.6000061035156,
+    "end_seconds": 1371.520004272461,
+    "text": "these sort of catastrophic risks, they sort of analogize using media, like a lot of the media"
+  },
+  {
+    "segment_id": "s00238",
+    "start_seconds": 1371.520004272461,
+    "end_seconds": 1382.5599975585938,
+    "text": "around AI, like Terminator and 2001, A Space Odyssey, or various other pieces of film and"
+  },
+  {
+    "segment_id": "s00239",
+    "start_seconds": 1382.5599975585938,
+    "end_seconds": 1392.9600067138672,
+    "text": "various books. This primes them to be fearful. I think that this is now how a lot of people are"
+  },
+  {
+    "segment_id": "s00240",
+    "start_seconds": 1392.9600067138672,
+    "end_seconds": 1400.8800048828125,
+    "text": "approaching this issue. They really think a lot more about these issues. The cyber incidents that"
+  },
+  {
+    "segment_id": "s00241",
+    "start_seconds": 1400.8800048828125,
+    "end_seconds": 1407.3600006103516,
+    "text": "we just talked about sort of set the stage for this to happen. Now, I think we will likely see"
+  },
+  {
+    "segment_id": "s00242",
+    "start_seconds": 1407.9199981689453,
+    "end_seconds": 1415.6799926757812,
+    "text": "the public continue to think about this in more ways. They think that something really, really"
+  },
+  {
+    "segment_id": "s00243",
+    "start_seconds": 1415.6799926757812,
+    "end_seconds": 1422.0800018310547,
+    "text": "dangerous and harmful is much more likely than before. I do think there's a possibility to"
+  },
+  {
+    "segment_id": "s00244",
+    "start_seconds": 1422.0800018310547,
+    "end_seconds": 1427.2799987792969,
+    "text": "change policy both in the US and internationally, but it's not a guarantee. We'll just have to see"
+  },
+  {
+    "segment_id": "s00245",
+    "start_seconds": 1427.2799987792969,
+    "end_seconds": 1433.520004272461,
+    "text": "what happens. It's kind of interesting, as you noted, to see this bridging of the worlds because"
+  },
+  {
+    "segment_id": "s00246",
+    "start_seconds": 1433.520004272461,
+    "end_seconds": 1439.8399963378906,
+    "text": "there's a certain way that people in Silicon Valley in this AI industry bubble talk about"
+  },
+  {
+    "segment_id": "s00247",
+    "start_seconds": 1439.8399963378906,
+    "end_seconds": 1445.0399932861328,
+    "text": "existential risk of AI. I think once you're in those conversations long enough, you become a"
+  },
+  {
+    "segment_id": "s00248",
+    "start_seconds": 1445.0399932861328,
+    "end_seconds": 1452.3200073242188,
+    "text": "little desensitized to them. Now that that's broken out onto the main stage, it's pretty"
+  },
+  {
+    "segment_id": "s00249",
+    "start_seconds": 1452.3200073242188,
+    "end_seconds": 1459.4400024414062,
+    "text": "shocking for a lot of people to hear for the first time. I just want to read a post that the"
+  },
+  {
+    "segment_id": "s00250",
+    "start_seconds": 1459.4400024414062,
+    "end_seconds": 1465.6799926757812,
+    "text": "alignment science lead at Anthropic made in response to Coxon's post that kind of blew up."
+  },
+  {
+    "segment_id": "s00251",
+    "start_seconds": 1466.4800109863281,
+    "end_seconds": 1472.4800109863281,
+    "text": "He said on X, quote, Jacob is correct here. We really do earnestly believe AI could kill all"
+  },
+  {
+    "segment_id": "s00252",
+    "start_seconds": 1472.4800109863281,
+    "end_seconds": 1477.4400024414062,
+    "text": "humans. I personally think it is greater than 10 percent within the next decade. I believe"
+  },
+  {
+    "segment_id": "s00253",
+    "start_seconds": 1477.4400024414062,
+    "end_seconds": 1483.1199951171875,
+    "text": "Anthropic is trying its best, but we do not yet have a plan to solve alignment for superintelligence"
+  },
+  {
+    "segment_id": "s00254",
+    "start_seconds": 1483.2000122070312,
+    "end_seconds": 1489.760009765625,
+    "text": "and are not clearly on track to. If you're not accustomed to this kind of talk, I can see that"
+  },
+  {
+    "segment_id": "s00255",
+    "start_seconds": 1489.760009765625,
+    "end_seconds": 1494.9599914550781,
+    "text": "being really shocking and really alarming. It explains this kind of this huge vibe shift that"
+  },
+  {
+    "segment_id": "s00256",
+    "start_seconds": 1494.9599914550781,
+    "end_seconds": 1502.1600036621094,
+    "text": "we've seen set off by these posts over the past week. Yeah, I find this quote really interesting"
+  },
+  {
+    "segment_id": "s00257",
+    "start_seconds": 1502.1600036621094,
+    "end_seconds": 1508.3999938964844,
+    "text": "because I think he probably doesn't represent even the mainstream within Anthropic because"
+  },
+  {
+    "segment_id": "s00258",
+    "start_seconds": 1509.1199951171875,
+    "end_seconds": 1513.2000122070312,
+    "text": "if a significant part of the company believes there's a 10 percent chance that the"
+  },
+  {
+    "segment_id": "s00259",
+    "start_seconds": 1514.5599975585938,
+    "end_seconds": 1520.4800109863281,
+    "text": "AI could kill everybody in the world, the logical thing to do would be to shut down"
+  },
+  {
+    "segment_id": "s00260",
+    "start_seconds": 1520.4800109863281,
+    "end_seconds": 1525.6799926757812,
+    "text": "the company because that's way too much risk for a company. I think even if it's"
+  },
+  {
+    "segment_id": "s00261",
+    "start_seconds": 1525.6799926757812,
+    "end_seconds": 1532.3200073242188,
+    "text": "one percent or one-tenth of one percent, that's still a really, really high number"
+  },
+  {
+    "segment_id": "s00262",
+    "start_seconds": 1533.0400085449219,
+    "end_seconds": 1539.2799987792969,
+    "text": "and it should really make you reconsider whether you should be doing this type of work."
+  },
+  {
+    "segment_id": "s00263",
+    "start_seconds": 1539.2799987792969,
+    "end_seconds": 1545.5199890136719,
+    "text": "That being said, Evan Eubinger works on alignment, and I think there are a lot"
+  },
+  {
+    "segment_id": "s00264",
+    "start_seconds": 1545.5199890136719,
+    "end_seconds": 1549.760009765625,
+    "text": "of people in the field who believe that this is going to happen regardless of whether"
+  },
+  {
+    "segment_id": "s00265",
+    "start_seconds": 1551.3599853515625,
+    "end_seconds": 1556.1600036621094,
+    "text": "a particular person or a particular company is working on it. They feel like the best"
+  },
+  {
+    "segment_id": "s00266",
+    "start_seconds": 1556.1600036621094,
+    "end_seconds": 1561.2000122070312,
+    "text": "contribution they can make is by working earnestly and significantly on what they"
+  },
+  {
+    "segment_id": "s00267",
+    "start_seconds": 1561.2000122070312,
+    "end_seconds": 1567.3599853515625,
+    "text": "think are the most important problems that will lead to good outcomes for people. He's"
+  },
+  {
+    "segment_id": "s00268",
+    "start_seconds": 1567.3599853515625,
+    "end_seconds": 1571.6799926757812,
+    "text": "the alignment science lead, and so he thinks a lot about alignment. I'm guessing that"
+  },
+  {
+    "segment_id": "s00269",
+    "start_seconds": 1571.6799926757812,
+    "end_seconds": 1577.2799987792969,
+    "text": "his calculus here is that alignment is really important to solve, and I want to spend my time"
+  },
+  {
+    "segment_id": "s00270",
+    "start_seconds": 1577.2799987792969,
+    "end_seconds": 1582.5599975585938,
+    "text": "doing it because it is better to work on alignment and figure out how to do it at a"
+  },
+  {
+    "segment_id": "s00271",
+    "start_seconds": 1582.5599975585938,
+    "end_seconds": 1589.8399963378906,
+    "text": "place like Anthropic than just not to be doing that work at all. Right, right. I think another"
+  },
+  {
+    "segment_id": "s00272",
+    "start_seconds": 1590.3999938964844,
+    "end_seconds": 1597.8399963378906,
+    "text": "important thing to point out is that you hear this percentage, this probability greater than"
+  },
+  {
+    "segment_id": "s00273",
+    "start_seconds": 1597.8399963378906,
+    "end_seconds": 1604.4800109863281,
+    "text": "10 percent, and the impulse is to think of it as kind of a random selection, kind of like a"
+  },
+  {
+    "segment_id": "s00274",
+    "start_seconds": 1604.4800109863281,
+    "end_seconds": 1611.2000122070312,
+    "text": "coin toss or like a roll of the dice, but it's important to note that I think the people saying"
+  },
+  {
+    "segment_id": "s00275",
+    "start_seconds": 1611.2000122070312,
+    "end_seconds": 1619.0400085449219,
+    "text": "these things see several branches of reality of AI development branching out from this current"
+  },
+  {
+    "segment_id": "s00276",
+    "start_seconds": 1619.0400085449219,
+    "end_seconds": 1624.3200073242188,
+    "text": "moment, and some of those branches going into the future have much higher probabilities of"
+  },
+  {
+    "segment_id": "s00277",
+    "start_seconds": 1625.1199951171875,
+    "end_seconds": 1630.239990234375,
+    "text": "extinction, of some kind of catastrophic event resulting from AI, and some have much lower"
+  },
+  {
+    "segment_id": "s00278",
+    "start_seconds": 1630.239990234375,
+    "end_seconds": 1636.5599975585938,
+    "text": "probabilities. I guess the message is what we do now really matters in terms of picking the best"
+  },
+  {
+    "segment_id": "s00279",
+    "start_seconds": 1636.5599975585938,
+    "end_seconds": 1643.1199951171875,
+    "text": "branch, the branch that presents the best chances for humanity. I think the other important thing"
+  },
+  {
+    "segment_id": "s00280",
+    "start_seconds": 1643.2000122070312,
+    "end_seconds": 1647.9200134277344,
+    "text": "to note here is that we know that in a lot of the hacks they involved on-release models."
+  },
+  {
+    "segment_id": "s00281",
+    "start_seconds": 1649.6000061035156,
+    "end_seconds": 1654.239990234375,
+    "text": "In the Navier-Stokes thing, it was an open AI model that was more powerful than Astra,"
+  },
+  {
+    "segment_id": "s00282",
+    "start_seconds": 1654.239990234375,
+    "end_seconds": 1660.3200073242188,
+    "text": "and Astra, by all accounts, is a very powerful model. I think it is important to remember that"
+  },
+  {
+    "segment_id": "s00283",
+    "start_seconds": 1661.9200134277344,
+    "end_seconds": 1667.1199951171875,
+    "text": "AI lab employees may have information about where AI is headed that we don't have."
+  },
+  {
+    "segment_id": "s00284",
+    "start_seconds": 1667.6799926757812,
+    "end_seconds": 1674.5599975585938,
+    "text": "That doesn't mean you should dig everything they say and align it with how you think,"
+  },
+  {
+    "segment_id": "s00285",
+    "start_seconds": 1674.5599975585938,
+    "end_seconds": 1678.3200073242188,
+    "text": "but note that they are often coming from a more informed place than"
+  },
+  {
+    "segment_id": "s00286",
+    "start_seconds": 1679.1199951171875,
+    "end_seconds": 1680.9599914550781,
+    "text": "the information you or I have access to."
+  },
+  {
+    "segment_id": "s00287",
+    "start_seconds": 1681.9200134277344,
+    "end_seconds": 1688.6400146484375,
+    "text": "Yeah. Again, another great segue into the proposals coming out of the Frontier Labs"
+  },
+  {
+    "segment_id": "s00288",
+    "start_seconds": 1688.6400146484375,
+    "end_seconds": 1695.1199951171875,
+    "text": "in response to all of this. It's not just these technical researchers voicing concern"
+  },
+  {
+    "segment_id": "s00289",
+    "start_seconds": 1695.1199951171875,
+    "end_seconds": 1701.0400085449219,
+    "text": "at Frontier Labs, top executives at both OpenAI and Anthropic, among other labs,"
+  },
+  {
+    "segment_id": "s00290",
+    "start_seconds": 1701.0400085449219,
+    "end_seconds": 1704.4800109863281,
+    "text": "but that's where we've kind of heard the most communication coming out."
+  },
+  {
+    "segment_id": "s00291",
+    "start_seconds": 1705.0400085449219,
+    "end_seconds": 1710.0799865722656,
+    "text": "They're also jumping in. OpenAI published an essay by its chief global affairs officer"
+  },
+  {
+    "segment_id": "s00292",
+    "start_seconds": 1710.0799865722656,
+    "end_seconds": 1716.5599975585938,
+    "text": "on September 9th that was titled, The AI Policy Window is Open, We Need to Act."
+  },
+  {
+    "segment_id": "s00293",
+    "start_seconds": 1717.9199829101562,
+    "end_seconds": 1723.9199829101562,
+    "text": "Probably the most concrete signal from an AI lab that it's really taking this moment seriously"
+  },
+  {
+    "segment_id": "s00294",
+    "start_seconds": 1723.9199829101562,
+    "end_seconds": 1731.3599853515625,
+    "text": "is an essay published by Dario Amodei saying that Anthropic is unilaterally committing to"
+  },
+  {
+    "segment_id": "s00295",
+    "start_seconds": 1731.3599853515625,
+    "end_seconds": 1736.4000244140625,
+    "text": "embedding third-party evaluators into its infrastructure. This is just kind of the"
+  },
+  {
+    "segment_id": "s00296",
+    "start_seconds": 1736.4000244140625,
+    "end_seconds": 1744.0,
+    "text": "first step in a three-part plan that Amodei lays out as a way of meeting this moment of AI risks."
+  },
+  {
+    "segment_id": "s00297",
+    "start_seconds": 1744.719970703125,
+    "end_seconds": 1749.3599853515625,
+    "text": "Can you tell us more about that proposal? What would it look like in practice and how would it"
+  },
+  {
+    "segment_id": "s00298",
+    "start_seconds": 1749.6799926757812,
+    "end_seconds": 1755.3599853515625,
+    "text": "address that problem that you just raised of people inside these labs know more about"
+  },
+  {
+    "segment_id": "s00299",
+    "start_seconds": 1756.3200073242188,
+    "end_seconds": 1760.719970703125,
+    "text": "this technology, what it's capable of, but they can't necessarily share it with the public in a"
+  },
+  {
+    "segment_id": "s00300",
+    "start_seconds": 1760.719970703125,
+    "end_seconds": 1766.9600219726562,
+    "text": "completely transparent way? I think the first thing we should note is that there are lots of"
+  },
+  {
+    "segment_id": "s00301",
+    "start_seconds": 1766.9600219726562,
+    "end_seconds": 1773.6799926757812,
+    "text": "things that the labs can do that don't require the government to step in. In this case, Anthropic is"
+  },
+  {
+    "segment_id": "s00302",
+    "start_seconds": 1774.0,
+    "end_seconds": 1781.4400024414062,
+    "text": "unilaterally deciding to embed these third-party evaluators in the company. I think they should"
+  },
+  {
+    "segment_id": "s00303",
+    "start_seconds": 1781.4400024414062,
+    "end_seconds": 1787.2000122070312,
+    "text": "be commended for that. We often see proposals from companies where they're like, the industry"
+  },
+  {
+    "segment_id": "s00304",
+    "start_seconds": 1787.2000122070312,
+    "end_seconds": 1791.9199829101562,
+    "text": "should do this, and there's an unwillingness to do it unless all of industry is doing it."
+  },
+  {
+    "segment_id": "s00305",
+    "start_seconds": 1792.719970703125,
+    "end_seconds": 1797.3599853515625,
+    "text": "Something like this has real costs, time costs, and money costs for a company."
+  },
+  {
+    "segment_id": "s00306",
+    "start_seconds": 1800.0,
+    "end_seconds": 1807.4000000953674,
+    "text": "We should commend the company for doing it and note that they're trying to abide by the"
+  },
+  {
+    "segment_id": "s00307",
+    "start_seconds": 1807.4000000953674,
+    "end_seconds": 1811.3999996185303,
+    "text": "principles they laid out when they founded the company."
+  },
+  {
+    "segment_id": "s00308",
+    "start_seconds": 1811.3999996185303,
+    "end_seconds": 1815.6800003051758,
+    "text": "That doesn't mean that they might not be doing multiple things at once."
+  },
+  {
+    "segment_id": "s00309",
+    "start_seconds": 1815.6800003051758,
+    "end_seconds": 1820.2800006866455,
+    "text": "There are lots of concerns about this proposal that it's an attempt at regulatory capture"
+  },
+  {
+    "segment_id": "s00310",
+    "start_seconds": 1820.2800006866455,
+    "end_seconds": 1827.7800006866455,
+    "text": "or that maybe it's a way to buoy interest in the company before its IPO."
+  },
+  {
+    "segment_id": "s00311",
+    "start_seconds": 1827.7800006866455,
+    "end_seconds": 1834.8600006103516,
+    "text": "It's really hard to disentangle these various competing incentives, but I think it's a useful"
+  },
+  {
+    "segment_id": "s00312",
+    "start_seconds": 1834.8600006103516,
+    "end_seconds": 1839.5,
+    "text": "thought exercise to take them at face value when they say they're doing this for safety"
+  },
+  {
+    "segment_id": "s00313",
+    "start_seconds": 1839.5,
+    "end_seconds": 1840.8600006103516,
+    "text": "reasons."
+  },
+  {
+    "segment_id": "s00314",
+    "start_seconds": 1840.8600006103516,
+    "end_seconds": 1843.5800018310547,
+    "text": "What does it look like in practice?"
+  },
+  {
+    "segment_id": "s00315",
+    "start_seconds": 1843.5800018310547,
+    "end_seconds": 1850.5800018310547,
+    "text": "In the essay, Amadeus lays out some of his vision for what these embedded evaluators"
+  },
+  {
+    "segment_id": "s00316",
+    "start_seconds": 1850.5800018310547,
+    "end_seconds": 1851.5800018310547,
+    "text": "would do."
+  },
+  {
+    "segment_id": "s00317",
+    "start_seconds": 1851.5800018310547,
+    "end_seconds": 1856.3800010681152,
+    "text": "He says they should have ongoing access to permissions and tools similar to those of internal"
+  },
+  {
+    "segment_id": "s00318",
+    "start_seconds": 1856.3800010681152,
+    "end_seconds": 1859.7400016784668,
+    "text": "employees who do comparable risk assessments."
+  },
+  {
+    "segment_id": "s00319",
+    "start_seconds": 1859.7400016784668,
+    "end_seconds": 1864.3399963378906,
+    "text": "He basically thinks of them as de facto employees."
+  },
+  {
+    "segment_id": "s00320",
+    "start_seconds": 1864.3399963378906,
+    "end_seconds": 1871.4599990844727,
+    "text": "They would have access to Anthropic Office Space, access badges, company laptops, all"
+  },
+  {
+    "segment_id": "s00321",
+    "start_seconds": 1871.4599990844727,
+    "end_seconds": 1877.9800033569336,
+    "text": "the various infrastructure and tooling that employees have, and the right to publish key"
+  },
+  {
+    "segment_id": "s00322",
+    "start_seconds": 1877.9800033569336,
+    "end_seconds": 1886.0599975585938,
+    "text": "findings with limited ability from the company to redact sensitive information."
+  },
+  {
+    "segment_id": "s00323",
+    "start_seconds": 1886.0599975585938,
+    "end_seconds": 1892.5400009155273,
+    "text": "To me, the biggest challenge here is to make this work, you have to figure out a lot of"
+  },
+  {
+    "segment_id": "s00324",
+    "start_seconds": 1892.5400009155273,
+    "end_seconds": 1899.5800018310547,
+    "text": "details about making sure that evaluators can really get the information that they need"
+  },
+  {
+    "segment_id": "s00325",
+    "start_seconds": 1899.5800018310547,
+    "end_seconds": 1909.0199966430664,
+    "text": "to get to hold your company accountable to improve the overall safety level of that organization."
+  },
+  {
+    "segment_id": "s00326",
+    "start_seconds": 1909.0199966430664,
+    "end_seconds": 1910.0199966430664,
+    "text": "This is tricky."
+  },
+  {
+    "segment_id": "s00327",
+    "start_seconds": 1910.0199966430664,
+    "end_seconds": 1914.1800003051758,
+    "text": "It's going to take a lot of work to figure out how to do this well."
+  },
+  {
+    "segment_id": "s00328",
+    "start_seconds": 1914.1800003051758,
+    "end_seconds": 1918.0199966430664,
+    "text": "The other big question is, who is going to do this?"
+  },
+  {
+    "segment_id": "s00329",
+    "start_seconds": 1918.0199966430664,
+    "end_seconds": 1921.6600036621094,
+    "text": "There are existing evaluation organizations."
+  },
+  {
+    "segment_id": "s00330",
+    "start_seconds": 1921.6600036621094,
+    "end_seconds": 1925.6600036621094,
+    "text": "Amadeus mentioned an organization called Meter."
+  },
+  {
+    "segment_id": "s00331",
+    "start_seconds": 1925.6600036621094,
+    "end_seconds": 1930.3399963378906,
+    "text": "Meter has worked with a number of labs to do technical safety assessments."
+  },
+  {
+    "segment_id": "s00332",
+    "start_seconds": 1930.3399963378906,
+    "end_seconds": 1937.3000030517578,
+    "text": "Meter is also very small, and so it's unclear how they can ramp up the capacity to do this."
+  },
+  {
+    "segment_id": "s00333",
+    "start_seconds": 1937.8999938964844,
+    "end_seconds": 1944.6999969482422,
+    "text": "The other issue is, can we trust Meter to oversee these companies?"
+  },
+  {
+    "segment_id": "s00334",
+    "start_seconds": 1944.6999969482422,
+    "end_seconds": 1948.1000061035156,
+    "text": "There have been all these questions about Meter."
+  },
+  {
+    "segment_id": "s00335",
+    "start_seconds": 1948.1000061035156,
+    "end_seconds": 1951.9400024414062,
+    "text": "There are employee flows back and forth between Anthropic and Meter."
+  },
+  {
+    "segment_id": "s00336",
+    "start_seconds": 1951.9400024414062,
+    "end_seconds": 1960.020004272461,
+    "text": "There are often money flows where Anthropic employees get the philanthropy who then fund Meter."
+  },
+  {
+    "segment_id": "s00337",
+    "start_seconds": 1960.020004272461,
+    "end_seconds": 1966.6999969482422,
+    "text": "I think in this case, we really need an ironclad sense of independence if these evaluators"
+  },
+  {
+    "segment_id": "s00338",
+    "start_seconds": 1966.6999969482422,
+    "end_seconds": 1970.3800048828125,
+    "text": "are going to do a good job, and we're going to trust them, and we're going to anchor policy"
+  },
+  {
+    "segment_id": "s00339",
+    "start_seconds": 1970.3800048828125,
+    "end_seconds": 1972.5800018310547,
+    "text": "on their findings."
+  },
+  {
+    "segment_id": "s00340",
+    "start_seconds": 1972.5800018310547,
+    "end_seconds": 1979.3399963378906,
+    "text": "You have to address this issue where sometimes even the appearance of impropriety is enough"
+  },
+  {
+    "segment_id": "s00341",
+    "start_seconds": 1979.3399963378906,
+    "end_seconds": 1982.6999969482422,
+    "text": "to undermine a system like this."
+  },
+  {
+    "segment_id": "s00342",
+    "start_seconds": 1982.6999969482422,
+    "end_seconds": 1986.979995727539,
+    "text": "Figuring out not just how it would work mechanically, but who is going to do it is going to be very,"
+  },
+  {
+    "segment_id": "s00343",
+    "start_seconds": 1986.979995727539,
+    "end_seconds": 1987.979995727539,
+    "text": "very important."
+  },
+  {
+    "segment_id": "s00344",
+    "start_seconds": 1987.979995727539,
+    "end_seconds": 1988.979995727539,
+    "text": "Right."
+  },
+  {
+    "segment_id": "s00345",
+    "start_seconds": 1988.979995727539,
+    "end_seconds": 1994.2200012207031,
+    "text": "As you mentioned, this is a step that Frontier Labs can take and that Anthropic is taking"
+  },
+  {
+    "segment_id": "s00346",
+    "start_seconds": 1994.2200012207031,
+    "end_seconds": 1998.1799926757812,
+    "text": "without being facilitated by the government."
+  },
+  {
+    "segment_id": "s00347",
+    "start_seconds": 1998.1799926757812,
+    "end_seconds": 2004.3800048828125,
+    "text": "What role do you see for the U.S. government to play in that process of ensuring objectivity"
+  },
+  {
+    "segment_id": "s00348",
+    "start_seconds": 2004.3800048828125,
+    "end_seconds": 2011.3000030517578,
+    "text": "on the part of Meter researchers, ensuring that this all goes according to plan and it"
+  },
+  {
+    "segment_id": "s00349",
+    "start_seconds": 2011.3000030517578,
+    "end_seconds": 2014.8999938964844,
+    "text": "achieves the objectives that Anthropic says that it wants to achieve and doesn't end"
+  },
+  {
+    "segment_id": "s00350",
+    "start_seconds": 2014.8999938964844,
+    "end_seconds": 2019.2200012207031,
+    "text": "up just being more of a signaling thing?"
+  },
+  {
+    "segment_id": "s00351",
+    "start_seconds": 2019.2200012207031,
+    "end_seconds": 2025.8999938964844,
+    "text": "I think ultimately for this to be durable and have any impact on safety, the government"
+  },
+  {
+    "segment_id": "s00352",
+    "start_seconds": 2025.8999938964844,
+    "end_seconds": 2028.979995727539,
+    "text": "has to be involved in some way."
+  },
+  {
+    "segment_id": "s00353",
+    "start_seconds": 2028.979995727539,
+    "end_seconds": 2042.1399993896484,
+    "text": "To give a specific example, after this plan went out, Sam Altman, who heads OpenAI, responded"
+  },
+  {
+    "segment_id": "s00354",
+    "start_seconds": 2042.1399993896484,
+    "end_seconds": 2047.1399993896484,
+    "text": "on X that committing to having independent evaluators with employee-like access is a"
+  },
+  {
+    "segment_id": "s00355",
+    "start_seconds": 2047.1399993896484,
+    "end_seconds": 2050.8600006103516,
+    "text": "great idea and we will do the same."
+  },
+  {
+    "segment_id": "s00356",
+    "start_seconds": 2050.8600006103516,
+    "end_seconds": 2056.739990234375,
+    "text": "And so now you have two companies that are likely working on implementing this."
+  },
+  {
+    "segment_id": "s00357",
+    "start_seconds": 2056.739990234375,
+    "end_seconds": 2061.8599853515625,
+    "text": "One of the things the government can do is sort of create a framework that supports or"
+  },
+  {
+    "segment_id": "s00358",
+    "start_seconds": 2061.8599853515625,
+    "end_seconds": 2067.1799926757812,
+    "text": "sets out standards or guidelines for how to do this consistently between labs."
+  },
+  {
+    "segment_id": "s00359",
+    "start_seconds": 2067.1799926757812,
+    "end_seconds": 2072.019989013672,
+    "text": "And that would mean that the labs are getting the same level of scrutiny."
+  },
+  {
+    "segment_id": "s00360",
+    "start_seconds": 2072.019989013672,
+    "end_seconds": 2074.7000122070312,
+    "text": "These evaluators are assessing the same things."
+  },
+  {
+    "segment_id": "s00361",
+    "start_seconds": 2074.7000122070312,
+    "end_seconds": 2079.8999938964844,
+    "text": "There's comparability between the reports that are coming out."
+  },
+  {
+    "segment_id": "s00362",
+    "start_seconds": 2079.8999938964844,
+    "end_seconds": 2086.8800048828125,
+    "text": "The government can maybe take steps to vet the quality of the assessors like it does"
+  },
+  {
+    "segment_id": "s00363",
+    "start_seconds": 2086.8800048828125,
+    "end_seconds": 2089.260009765625,
+    "text": "in some other fields like the financial sector."
+  },
+  {
+    "segment_id": "s00364",
+    "start_seconds": 2089.260009765625,
+    "end_seconds": 2095.779998779297,
+    "text": "I think there's a lot here that the government can do to help bolster trust in what the evaluators"
+  },
+  {
+    "segment_id": "s00365",
+    "start_seconds": 2095.779998779297,
+    "end_seconds": 2103.5799865722656,
+    "text": "are doing, how they're doing their job, and in ensuring that the information coming"
+  },
+  {
+    "segment_id": "s00366",
+    "start_seconds": 2103.5799865722656,
+    "end_seconds": 2109.739990234375,
+    "text": "from the evaluators is useful for both the public and the government to base future policy"
+  },
+  {
+    "segment_id": "s00367",
+    "start_seconds": 2109.739990234375,
+    "end_seconds": 2111.0599975585938,
+    "text": "decisions on."
+  },
+  {
+    "segment_id": "s00368",
+    "start_seconds": 2111.0599975585938,
+    "end_seconds": 2112.0599975585938,
+    "text": "Right."
+  },
+  {
+    "segment_id": "s00369",
+    "start_seconds": 2112.0599975585938,
+    "end_seconds": 2117.980010986328,
+    "text": "And as I said earlier, we've seen a lot of policymakers jumping into this conversation."
+  },
+  {
+    "segment_id": "s00370",
+    "start_seconds": 2117.980010986328,
+    "end_seconds": 2121.739990234375,
+    "text": "What would you say the likelihood is of the government actually taking concrete steps"
+  },
+  {
+    "segment_id": "s00371",
+    "start_seconds": 2121.739990234375,
+    "end_seconds": 2126.1799926757812,
+    "text": "here, passing some kind of legislation to formalize this process?"
+  },
+  {
+    "segment_id": "s00372",
+    "start_seconds": 2126.1799926757812,
+    "end_seconds": 2130.4400024414062,
+    "text": "Well, I think that's a, let's say, a mixed bag at best."
+  },
+  {
+    "segment_id": "s00373",
+    "start_seconds": 2130.4400024414062,
+    "end_seconds": 2137.1199951171875,
+    "text": "So we know that beginning with the release of Mythos back in February and this emergence"
+  },
+  {
+    "segment_id": "s00374",
+    "start_seconds": 2137.1199951171875,
+    "end_seconds": 2144.9200134277344,
+    "text": "of really highly cyber-capable models, that the administration sort of softened its stance"
+  },
+  {
+    "segment_id": "s00375",
+    "start_seconds": 2144.9200134277344,
+    "end_seconds": 2151.239990234375,
+    "text": "on new attempts to regulate frontier AI."
+  },
+  {
+    "segment_id": "s00376",
+    "start_seconds": 2151.239990234375,
+    "end_seconds": 2154.5599975585938,
+    "text": "There's evidence that this really scared them."
+  },
+  {
+    "segment_id": "s00377",
+    "start_seconds": 2154.5599975585938,
+    "end_seconds": 2163.040008544922,
+    "text": "At the same time, the administration is deeply ambivalent about imposing strong regulations"
+  },
+  {
+    "segment_id": "s00378",
+    "start_seconds": 2163.040008544922,
+    "end_seconds": 2165.2000122070312,
+    "text": "on frontier AI developers."
+  },
+  {
+    "segment_id": "s00379",
+    "start_seconds": 2165.2000122070312,
+    "end_seconds": 2170.4400024414062,
+    "text": "They're really worried that this would put the U.S. at a disadvantage compared to China."
+  },
+  {
+    "segment_id": "s00380",
+    "start_seconds": 2170.4400024414062,
+    "end_seconds": 2173.3599853515625,
+    "text": "Their thought is essentially this is a prisoner's dilemma."
+  },
+  {
+    "segment_id": "s00381",
+    "start_seconds": 2173.3599853515625,
+    "end_seconds": 2181.8399963378906,
+    "text": "If we sort of slow down on the U.S. side, China will almost certainly not slow down."
+  },
+  {
+    "segment_id": "s00382",
+    "start_seconds": 2181.8399963378906,
+    "end_seconds": 2186.5599975585938,
+    "text": "In fact, it will have more incentives not to, and that will allow China to catch up"
+  },
+  {
+    "segment_id": "s00383",
+    "start_seconds": 2186.5599975585938,
+    "end_seconds": 2189.3599853515625,
+    "text": "to U.S. technology."
+  },
+  {
+    "segment_id": "s00384",
+    "start_seconds": 2189.3599853515625,
+    "end_seconds": 2190.3999938964844,
+    "text": "I think we'll get to this."
+  },
+  {
+    "segment_id": "s00385",
+    "start_seconds": 2190.3999938964844,
+    "end_seconds": 2192.7999877929688,
+    "text": "I think there are ways around that."
+  },
+  {
+    "segment_id": "s00386",
+    "start_seconds": 2192.7999877929688,
+    "end_seconds": 2198.279998779297,
+    "text": "But right now, we've seen a lot of pushback directly from the president, from the vice"
+  },
+  {
+    "segment_id": "s00387",
+    "start_seconds": 2198.279998779297,
+    "end_seconds": 2202.760009765625,
+    "text": "president to this idea that Dario Amadei put out."
+  },
+  {
+    "segment_id": "s00388",
+    "start_seconds": 2202.760009765625,
+    "end_seconds": 2211.1199951171875,
+    "text": "And so it seems unlikely that we'll see sort of robust action in the near term."
+  },
+  {
+    "segment_id": "s00389",
+    "start_seconds": 2211.3999938964844,
+    "end_seconds": 2216.6000061035156,
+    "text": "It's not just the administration that has expressed concerns."
+  },
+  {
+    "segment_id": "s00390",
+    "start_seconds": 2216.6000061035156,
+    "end_seconds": 2226.760009765625,
+    "text": "We also see concerns from investors that this is an attempt by the companies to sort of"
+  },
+  {
+    "segment_id": "s00391",
+    "start_seconds": 2226.760009765625,
+    "end_seconds": 2232.0799865722656,
+    "text": "pull up the drawbridge, secure their moat through regulatory capture, that this is just"
+  },
+  {
+    "segment_id": "s00392",
+    "start_seconds": 2232.0799865722656,
+    "end_seconds": 2238.2000122070312,
+    "text": "part of some sophisticated roadshow before potential IPOs."
+  },
+  {
+    "segment_id": "s00393",
+    "start_seconds": 2238.239990234375,
+    "end_seconds": 2246.9200134277344,
+    "text": "I think that's a little conspiratorial, but generally, people don't necessarily trust"
+  },
+  {
+    "segment_id": "s00394",
+    "start_seconds": 2246.9200134277344,
+    "end_seconds": 2250.6000061035156,
+    "text": "these companies in a particularly robust fashion."
+  },
+  {
+    "segment_id": "s00395",
+    "start_seconds": 2250.6000061035156,
+    "end_seconds": 2254.1199951171875,
+    "text": "And so when they make pronouncements like this, there's a lot of skepticism, and we're"
+  },
+  {
+    "segment_id": "s00396",
+    "start_seconds": 2254.1199951171875,
+    "end_seconds": 2256.480010986328,
+    "text": "seeing this play out in this case as well."
+  },
+  {
+    "segment_id": "s00397",
+    "start_seconds": 2256.480010986328,
+    "end_seconds": 2257.480010986328,
+    "text": "Right."
+  },
+  {
+    "segment_id": "s00398",
+    "start_seconds": 2257.480010986328,
+    "end_seconds": 2260.1199951171875,
+    "text": "Yeah, you took the words right out of my mouth."
+  },
+  {
+    "segment_id": "s00399",
+    "start_seconds": 2260.1199951171875,
+    "end_seconds": 2264.6799926757812,
+    "text": "I was going to say that that really does seem to reflect this kind of widespread skepticism"
+  },
+  {
+    "segment_id": "s00400",
+    "start_seconds": 2264.6799926757812,
+    "end_seconds": 2272.6799926757812,
+    "text": "of the industry, which is ideally what something like this, this proposal of embedding third"
+  },
+  {
+    "segment_id": "s00401",
+    "start_seconds": 2272.6799926757812,
+    "end_seconds": 2278.6000061035156,
+    "text": "party evaluators inside the companies would help kind of alleviate."
+  },
+  {
+    "segment_id": "s00402",
+    "start_seconds": 2278.6000061035156,
+    "end_seconds": 2285.040008544922,
+    "text": "So you mentioned, I want to circle back to this point that you mentioned about Sam Altman"
+  },
+  {
+    "segment_id": "s00403",
+    "start_seconds": 2285.040008544922,
+    "end_seconds": 2290.239990234375,
+    "text": "said that he was kind of on board with this idea of embedding third party evaluators in"
+  },
+  {
+    "segment_id": "s00404",
+    "start_seconds": 2290.239990234375,
+    "end_seconds": 2292.1600036621094,
+    "text": "the company."
+  },
+  {
+    "segment_id": "s00405",
+    "start_seconds": 2292.1600036621094,
+    "end_seconds": 2299.040008544922,
+    "text": "And something that Amodei mentioned briefly in this essay is the potential for the government"
+  },
+  {
+    "segment_id": "s00406",
+    "start_seconds": 2299.040008544922,
+    "end_seconds": 2307.8399963378906,
+    "text": "to issue kind of narrow waivers for, quote, certain kinds of safety conversations, unquote."
+  },
+  {
+    "segment_id": "s00407",
+    "start_seconds": 2307.8399963378906,
+    "end_seconds": 2314.1599731445312,
+    "text": "And that brings up an interesting point of under the current antitrust laws, what is"
+  },
+  {
+    "segment_id": "s00408",
+    "start_seconds": 2314.1599731445312,
+    "end_seconds": 2319.7999877929688,
+    "text": "the legality in terms of these companies working together to set kind of voluntary standards"
+  },
+  {
+    "segment_id": "s00409",
+    "start_seconds": 2319.7999877929688,
+    "end_seconds": 2326.47998046875,
+    "text": "or to come to safety agreements without some kind of intervention by the government?"
+  },
+  {
+    "segment_id": "s00410",
+    "start_seconds": 2326.47998046875,
+    "end_seconds": 2332.7999877929688,
+    "text": "To put it simply, what what is stopping Amodei from calling up Sam Altman tomorrow from convening"
+  },
+  {
+    "segment_id": "s00411",
+    "start_seconds": 2332.7999877929688,
+    "end_seconds": 2337.5599975585938,
+    "text": "a meeting of these labs without government intervention and working out a safety agreement?"
+  },
+  {
+    "segment_id": "s00412",
+    "start_seconds": 2337.5599975585938,
+    "end_seconds": 2340.4400024414062,
+    "text": "Would that be allowed under current antitrust laws?"
+  },
+  {
+    "segment_id": "s00413",
+    "start_seconds": 2340.4400024414062,
+    "end_seconds": 2343.5599975585938,
+    "text": "So I'm not an antitrust lawyer."
+  },
+  {
+    "segment_id": "s00414",
+    "start_seconds": 2343.5599975585938,
+    "end_seconds": 2346.1199951171875,
+    "text": "And so I don't think I can give a definitive answer here."
+  },
+  {
+    "segment_id": "s00415",
+    "start_seconds": 2346.1199951171875,
+    "end_seconds": 2353.6799926757812,
+    "text": "I mean, there are definitely considerations when when competing firms talk to each other"
+  },
+  {
+    "segment_id": "s00416",
+    "start_seconds": 2353.6799926757812,
+    "end_seconds": 2356.0399780273438,
+    "text": "to make sure that they're not colluding."
+  },
+  {
+    "segment_id": "s00417",
+    "start_seconds": 2356.0399780273438,
+    "end_seconds": 2359.719970703125,
+    "text": "Often that is about things like business plans and prices."
+  },
+  {
+    "segment_id": "s00418",
+    "start_seconds": 2359.719970703125,
+    "end_seconds": 2366.760009765625,
+    "text": "I think there is much more latitude to engage on issues that are around safety."
+  },
+  {
+    "segment_id": "s00419",
+    "start_seconds": 2366.760009765625,
+    "end_seconds": 2372.9400024414062,
+    "text": "And so I suspect that there is a fair amount of things that the labs can do here in communication"
+  },
+  {
+    "segment_id": "s00420",
+    "start_seconds": 2372.9400024414062,
+    "end_seconds": 2373.9400024414062,
+    "text": "with each other."
+  },
+  {
+    "segment_id": "s00421",
+    "start_seconds": 2373.9400024414062,
+    "end_seconds": 2382.7000122070312,
+    "text": "I think the bigger point here is that I do think that the time is right for the government"
+  },
+  {
+    "segment_id": "s00422",
+    "start_seconds": 2382.7000122070312,
+    "end_seconds": 2385.4600219726562,
+    "text": "to take action here and that it should."
+  },
+  {
+    "segment_id": "s00423",
+    "start_seconds": 2385.4600219726562,
+    "end_seconds": 2393.2999877929688,
+    "text": "And I've said over and over again that the American public in polling has shown a strong"
+  },
+  {
+    "segment_id": "s00424",
+    "start_seconds": 2393.2999877929688,
+    "end_seconds": 2400.0599975585938,
+    "text": "preference for AI to be regulated and that overall helping to address this."
+  },
+  {
+    "segment_id": "s00425",
+    "start_seconds": 2400.0,
+    "end_seconds": 2405.5199999809265,
+    "text": "big and durable trust gap around AI in the United States is going to involve regulation"
+  },
+  {
+    "segment_id": "s00426",
+    "start_seconds": 2405.5199999809265,
+    "end_seconds": 2412.739999771118,
+    "text": "in some way. But I think that if that regulation ends up exempting AI companies from certain"
+  },
+  {
+    "segment_id": "s00427",
+    "start_seconds": 2412.739999771118,
+    "end_seconds": 2419.8600006103516,
+    "text": "laws or it involves providing them certain kinds of liability shields, that is not going"
+  },
+  {
+    "segment_id": "s00428",
+    "start_seconds": 2419.8600006103516,
+    "end_seconds": 2423.680000305176,
+    "text": "to answer the mail in terms of what people want. That's going to feed into this narrative"
+  },
+  {
+    "segment_id": "s00429",
+    "start_seconds": 2423.680000305176,
+    "end_seconds": 2431.3999996185303,
+    "text": "that the government is too chummy with AI companies and that AI companies are not acting"
+  },
+  {
+    "segment_id": "s00430",
+    "start_seconds": 2431.3999996185303,
+    "end_seconds": 2437.0,
+    "text": "in good faith when it comes to policy issues. And so I think a better way to go about this"
+  },
+  {
+    "segment_id": "s00431",
+    "start_seconds": 2437.0,
+    "end_seconds": 2445.240001678467,
+    "text": "is not for the government to sort of provide an anti-trust exemption, but rather to facilitate"
+  },
+  {
+    "segment_id": "s00432",
+    "start_seconds": 2445.240001678467,
+    "end_seconds": 2450.560001373291,
+    "text": "or lead or coordinate these conversations and ensure that they're not sort of bilateral"
+  },
+  {
+    "segment_id": "s00433",
+    "start_seconds": 2450.560001373291,
+    "end_seconds": 2455.319999694824,
+    "text": "conversations happening between two companies who then set the rules for everyone else,"
+  },
+  {
+    "segment_id": "s00434",
+    "start_seconds": 2455.319999694824,
+    "end_seconds": 2460.400001525879,
+    "text": "but that there's a big tent where we see a lot of players in the AI ecosystem have a"
+  },
+  {
+    "segment_id": "s00435",
+    "start_seconds": 2460.400001525879,
+    "end_seconds": 2468.9199981689453,
+    "text": "voice and then figure out a way to proceed that doesn't just reflect or appear to reflect"
+  },
+  {
+    "segment_id": "s00436",
+    "start_seconds": 2468.9199981689453,
+    "end_seconds": 2474.120002746582,
+    "text": "the preferences of these two companies that are clearly in the lead when it comes to model"
+  },
+  {
+    "segment_id": "s00437",
+    "start_seconds": 2474.120002746582,
+    "end_seconds": 2475.120002746582,
+    "text": "capabilities."
+  },
+  {
+    "segment_id": "s00438",
+    "start_seconds": 2475.8399963378906,
+    "end_seconds": 2481.4400024414062,
+    "text": "Yeah. And from everything you're describing now, it sounds like the path forward in terms"
+  },
+  {
+    "segment_id": "s00439",
+    "start_seconds": 2481.4400024414062,
+    "end_seconds": 2488.0,
+    "text": "of formalizing this kind of transparency, third-party evaluators in these labs and also"
+  },
+  {
+    "segment_id": "s00440",
+    "start_seconds": 2488.0,
+    "end_seconds": 2493.6399993896484,
+    "text": "just greater regulation in the US, it's going to be kind of a tricky thing to balance. But"
+  },
+  {
+    "segment_id": "s00441",
+    "start_seconds": 2493.6399993896484,
+    "end_seconds": 2498.9599990844727,
+    "text": "I want to talk about another kind of blocker to this kind of domestic regulation, which"
+  },
+  {
+    "segment_id": "s00442",
+    "start_seconds": 2498.9599990844727,
+    "end_seconds": 2505.0800018310547,
+    "text": "is kind of the looming threat of China. So this is something that Amodei addresses in"
+  },
+  {
+    "segment_id": "s00443",
+    "start_seconds": 2505.0800018310547,
+    "end_seconds": 2510.199996948242,
+    "text": "his essay. I mentioned that the commitment to embedding third-party evaluators inside"
+  },
+  {
+    "segment_id": "s00444",
+    "start_seconds": 2510.199996948242,
+    "end_seconds": 2515.319999694824,
+    "text": "Anthropic, that's kind of the first step in this three-part plan that he lays out. And"
+  },
+  {
+    "segment_id": "s00445",
+    "start_seconds": 2515.319999694824,
+    "end_seconds": 2520.2399978637695,
+    "text": "then the second step he phrases as pacing within democracies, which obviously in the"
+  },
+  {
+    "segment_id": "s00446",
+    "start_seconds": 2520.2399978637695,
+    "end_seconds": 2528.720001220703,
+    "text": "context of the AI race can roughly be translated to pacing within the US. So then step three"
+  },
+  {
+    "segment_id": "s00447",
+    "start_seconds": 2528.720001220703,
+    "end_seconds": 2534.1199951171875,
+    "text": "is pacing international development, including development under authoritarian regimes. And"
+  },
+  {
+    "segment_id": "s00448",
+    "start_seconds": 2534.1199951171875,
+    "end_seconds": 2540.0800018310547,
+    "text": "in other words, this is pacing between the United States and China. And the SIP does"
+  },
+  {
+    "segment_id": "s00449",
+    "start_seconds": 2540.0800018310547,
+    "end_seconds": 2544.4400024414062,
+    "text": "feel pretty intertwined with the one before it because the most cited argument against"
+  },
+  {
+    "segment_id": "s00450",
+    "start_seconds": 2544.4400024414062,
+    "end_seconds": 2552.8399963378906,
+    "text": "pacing AI in the US is this threat of China. We saw this over the weekend. Speaker of the"
+  },
+  {
+    "segment_id": "s00451",
+    "start_seconds": 2552.8399963378906,
+    "end_seconds": 2559.4400024414062,
+    "text": "House Mike Johnson went on NBC. And when asked about the current situation and the"
+  },
+  {
+    "segment_id": "s00452",
+    "start_seconds": 2559.4400024414062,
+    "end_seconds": 2563.5599975585938,
+    "text": "potential for setting up the guardrails, he expressed concern that overly restrictive"
+  },
+  {
+    "segment_id": "s00453",
+    "start_seconds": 2563.5599975585938,
+    "end_seconds": 2570.6399993896484,
+    "text": "guardrails could cause the US to lose its technological edge over China. So I'm curious"
+  },
+  {
+    "segment_id": "s00454",
+    "start_seconds": 2570.6399993896484,
+    "end_seconds": 2577.4400024414062,
+    "text": "on your take on this. How is China thinking about this moment in AI safety? And does Beijing"
+  },
+  {
+    "segment_id": "s00455",
+    "start_seconds": 2577.520004272461,
+    "end_seconds": 2581.520004272461,
+    "text": "seem open to a kind of coordinated slowdown of frontier development?"
+  },
+  {
+    "segment_id": "s00456",
+    "start_seconds": 2583.3600006103516,
+    "end_seconds": 2592.0800018310547,
+    "text": "You know, it's hard to say. I do think there's some evidence that China or Chinese policymakers"
+  },
+  {
+    "segment_id": "s00457",
+    "start_seconds": 2592.0800018310547,
+    "end_seconds": 2595.9199981689453,
+    "text": "have some of the same concerns that we see with US policymakers, where they see where"
+  },
+  {
+    "segment_id": "s00458",
+    "start_seconds": 2595.9199981689453,
+    "end_seconds": 2600.479995727539,
+    "text": "AI technology is going, particularly around cyber capabilities. And they think about whether"
+  },
+  {
+    "segment_id": "s00459",
+    "start_seconds": 2600.479995727539,
+    "end_seconds": 2606.800003051758,
+    "text": "it is okay to have all of those capabilities publicly available. And so there's, you know,"
+  },
+  {
+    "segment_id": "s00460",
+    "start_seconds": 2606.800003051758,
+    "end_seconds": 2612.0800018310547,
+    "text": "at least some discussions internally within China about whether future Chinese frontier"
+  },
+  {
+    "segment_id": "s00461",
+    "start_seconds": 2612.0800018310547,
+    "end_seconds": 2617.4400024414062,
+    "text": "models should be provided openly or if there should be restricted access to them in some way,"
+  },
+  {
+    "segment_id": "s00462",
+    "start_seconds": 2617.4400024414062,
+    "end_seconds": 2625.520004272461,
+    "text": "perhaps to select groups of organizations like we've seen with some of the powerful US models"
+  },
+  {
+    "segment_id": "s00463",
+    "start_seconds": 2625.520004272461,
+    "end_seconds": 2635.4400024414062,
+    "text": "or maybe only available within China. I think they are concerned. And maybe a little bit of"
+  },
+  {
+    "segment_id": "s00464",
+    "start_seconds": 2635.4400024414062,
+    "end_seconds": 2642.5599975585938,
+    "text": "optimism. We know AI is going to be on the agenda for this looming summit that the US and China"
+  },
+  {
+    "segment_id": "s00465",
+    "start_seconds": 2642.5599975585938,
+    "end_seconds": 2649.759994506836,
+    "text": "are going to have. They committed to discussing AI topics at their last summit. And so, you know,"
+  },
+  {
+    "segment_id": "s00466",
+    "start_seconds": 2649.759994506836,
+    "end_seconds": 2655.1199951171875,
+    "text": "there's at least a possibility that there could be some significant discussions and advancements"
+  },
+  {
+    "segment_id": "s00467",
+    "start_seconds": 2655.1199951171875,
+    "end_seconds": 2661.9200134277344,
+    "text": "on this topic. But what I really worry about is that we're entering this realm of self-fulfilling"
+  },
+  {
+    "segment_id": "s00468",
+    "start_seconds": 2661.9200134277344,
+    "end_seconds": 2668.239990234375,
+    "text": "prophecy, where a lot of the rhetoric around China is they're distilling US models, they're"
+  },
+  {
+    "segment_id": "s00469",
+    "start_seconds": 2668.239990234375,
+    "end_seconds": 2674.480010986328,
+    "text": "not really good at AI, they're just sort of stealing intellectual property from US companies,"
+  },
+  {
+    "segment_id": "s00470",
+    "start_seconds": 2674.480010986328,
+    "end_seconds": 2682.0799865722656,
+    "text": "combined with, you know, suggestions that the US is asking countries to take sides and either"
+  },
+  {
+    "segment_id": "s00471",
+    "start_seconds": 2682.720001220703,
+    "end_seconds": 2693.6000061035156,
+    "text": "use US technology or Chinese technology, plus export controls, plus even thoughts about banning"
+  },
+  {
+    "segment_id": "s00472",
+    "start_seconds": 2693.6000061035156,
+    "end_seconds": 2700.0799865722656,
+    "text": "or restricting access to Chinese open-away models. All of these are really antagonizing"
+  },
+  {
+    "segment_id": "s00473",
+    "start_seconds": 2700.0799865722656,
+    "end_seconds": 2708.3999938964844,
+    "text": "towards China, really sort of puts them in the mindset of being an enemy. And this makes it"
+  },
+  {
+    "segment_id": "s00474",
+    "start_seconds": 2708.3999938964844,
+    "end_seconds": 2714.0,
+    "text": "really hard to have productive conversations. And my personal belief is that you can have"
+  },
+  {
+    "segment_id": "s00475",
+    "start_seconds": 2714.720001220703,
+    "end_seconds": 2719.4400024414062,
+    "text": "productive conversations, that you can restrict those conversations to a narrow set of issues"
+  },
+  {
+    "segment_id": "s00476",
+    "start_seconds": 2720.7999877929688,
+    "end_seconds": 2727.4400024414062,
+    "text": "that relate to AI safety, that relate to agreement on definitions, the creation of"
+  },
+  {
+    "segment_id": "s00477",
+    "start_seconds": 2727.4400024414062,
+    "end_seconds": 2734.7999877929688,
+    "text": "communication channels, maybe in, you know, ways to share information about AI cyber incidents."
+  },
+  {
+    "segment_id": "s00478",
+    "start_seconds": 2735.760009765625,
+    "end_seconds": 2744.0,
+    "text": "And that you could do this in a way that is minimally restrictive on each country's"
+  },
+  {
+    "segment_id": "s00479",
+    "start_seconds": 2744.0,
+    "end_seconds": 2749.9200134277344,
+    "text": "respective AI companies, that affects them in similar ways, that doesn't interfere with the"
+  },
+  {
+    "segment_id": "s00480",
+    "start_seconds": 2749.9200134277344,
+    "end_seconds": 2756.3999938964844,
+    "text": "ability of the US and China to compete for AI adoption globally on the merits of their technology."
+  },
+  {
+    "segment_id": "s00481",
+    "start_seconds": 2756.8800048828125,
+    "end_seconds": 2765.6799926757812,
+    "text": "But that doing so requires sort of engaging with China in good faith on this narrow set of issues"
+  },
+  {
+    "segment_id": "s00482",
+    "start_seconds": 2766.7999877929688,
+    "end_seconds": 2771.9200134277344,
+    "text": "and setting the conditions for having a productive conversation. And then as a follow-up,"
+  },
+  {
+    "segment_id": "s00483",
+    "start_seconds": 2773.279998779297,
+    "end_seconds": 2778.5599975585938,
+    "text": "figuring out, because I think it's going to be very hard to get the US and China to trust each"
+  },
+  {
+    "segment_id": "s00484",
+    "start_seconds": 2778.5599975585938,
+    "end_seconds": 2784.959991455078,
+    "text": "other's claims, to figure out some sort of formal verification mechanism so you don't have to rely"
+  },
+  {
+    "segment_id": "s00485",
+    "start_seconds": 2784.959991455078,
+    "end_seconds": 2790.0,
+    "text": "on the word of the other company, that there are ways to guarantee the veracity of information that"
+  },
+  {
+    "segment_id": "s00486",
+    "start_seconds": 2790.720001220703,
+    "end_seconds": 2795.6000061035156,
+    "text": "each country is providing to the other. And look, I acknowledge those are really,"
+  },
+  {
+    "segment_id": "s00487",
+    "start_seconds": 2795.6000061035156,
+    "end_seconds": 2800.959991455078,
+    "text": "really hard problems, that the current political and economic context makes them"
+  },
+  {
+    "segment_id": "s00488",
+    "start_seconds": 2801.6000061035156,
+    "end_seconds": 2807.9200134277344,
+    "text": "even more challenging. But I do think there is a narrow path to have these kinds of conversations,"
+  },
+  {
+    "segment_id": "s00489",
+    "start_seconds": 2807.9200134277344,
+    "end_seconds": 2814.0799865722656,
+    "text": "and that if we aren't able to do that, that it would be overall better for most people in the"
+  },
+  {
+    "segment_id": "s00490",
+    "start_seconds": 2814.0799865722656,
+    "end_seconds": 2823.2000122070312,
+    "text": "world. Yeah, certainly. You mentioned that the summit is looming. It's scheduled for September 24th,"
+  },
+  {
+    "segment_id": "s00491",
+    "start_seconds": 2823.2000122070312,
+    "end_seconds": 2829.4400024414062,
+    "text": "so I'm sure we'll have much more to share after that date. But this feels like a good place to"
+  },
+  {
+    "segment_id": "s00492",
+    "start_seconds": 2829.4400024414062,
+    "end_seconds": 2835.3599853515625,
+    "text": "wrap up. Alok, thank you for joining me, sharing your insights, and thanks as always to our audience"
+  },
+  {
+    "segment_id": "s00493",
+    "start_seconds": 2835.3599853515625,
+    "end_seconds": 2837.9200134277344,
+    "text": "for tuning in. We'll see you again in two weeks. Thanks."
+  },
+  {
+    "segment_id": "s00494",
+    "start_seconds": 2842.3200073242188,
+    "end_seconds": 2847.1199951171875,
+    "text": "Thanks for listening to this episode of the AI Policy Podcast. If you like what you heard,"
+  },
+  {
+    "segment_id": "s00495",
+    "start_seconds": 2847.1199951171875,
+    "end_seconds": 2852.1600036621094,
+    "text": "there's an easy way for you to help us. Please give us a five-star review on your favorite podcast"
+  },
+  {
+    "segment_id": "s00496",
+    "start_seconds": 2852.1600036621094,
+    "end_seconds": 2857.2000122070312,
+    "text": "platform, subscribe, and tell your friends. It really helps when you spread the word."
+  },
+  {
+    "segment_id": "s00497",
+    "start_seconds": 2857.2000122070312,
+    "end_seconds": 2865.519989013672,
+    "text": "This podcast was produced by Sarah Baker and Matt Mandt. See you next time."
+  }
+]

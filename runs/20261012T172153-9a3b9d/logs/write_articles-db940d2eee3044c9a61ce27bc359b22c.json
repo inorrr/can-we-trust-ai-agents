@@ -1,0 +1,101 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 1,
+  "started_at": "2026-10-12T17:56:45.146159Z",
+  "finished_at": "2026-10-12T17:57:53.576901Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": null,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_071227c584584e20016acd1f653dc487d29c047edae0846c66",
+      "usage": {
+        "input_tokens": 36120,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1683,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37803
+      },
+      "cost_usd": 0.017140799999999998,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/42e5e49acdf24900b93d03fa1f86d988-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0140df1bd3385c0b016acd1f71114087d2a24062af581234e0",
+      "usage": {
+        "input_tokens": 37847,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1261,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39108
+      },
+      "cost_usd": 0.017156400000000002,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/dfae580b0c5747ccbb42416e605ebbe4-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0954e77a523cc2aa016acd1f81eff087d2ad74318f19c85f71",
+      "usage": {
+        "input_tokens": 39764,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2140,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 41904
+      },
+      "cost_usd": 0.0193296,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/01ee4f82f031436c837f30a224d376de-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_011ac885d39b12b6016acd1f91219487d2bad44ee8254997f8",
+      "usage": {
+        "input_tokens": 41949,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2234,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 44183
+      },
+      "cost_usd": 0.020354000000000004,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/5f4152810b234b5dbcffd3c6f6398138-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "cost_usd": null,
+      "status": "failed",
+      "error_type": "APIConnectionError"
+    }
+  ],
+  "errors": [
+    "OpenAI request failed (APIConnectionError); no automatic retry. Check billing/model access/network."
+  ]
+}

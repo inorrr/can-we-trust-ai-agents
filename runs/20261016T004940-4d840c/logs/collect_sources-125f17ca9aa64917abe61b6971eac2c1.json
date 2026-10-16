@@ -1,0 +1,14 @@
+{
+  "stage": "collect_sources",
+  "status": "completed",
+  "input_count": 0,
+  "output_count": 0,
+  "started_at": "2026-10-16T00:50:20.099802+00:00",
+  "finished_at": "2026-10-16T00:50:33.418975Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

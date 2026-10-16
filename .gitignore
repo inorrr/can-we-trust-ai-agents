@@ -1,0 +1,14 @@
+# Credentials and local runtime
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+data/media/
+
+# Derived downloads and local transient files
+output/*.zip
+*.tmp
+*.lock

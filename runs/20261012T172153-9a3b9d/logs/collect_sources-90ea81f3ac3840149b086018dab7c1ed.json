@@ -1,0 +1,16 @@
+{
+  "stage": "collect_sources",
+  "status": "failed",
+  "input_count": 0,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:21:53.192748+00:00",
+  "finished_at": "2026-10-12T17:28:47.048181Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": [
+    "One or more component stages failed or were incomplete; inspect component receipts"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "publication_name": "The Agent Trust Check",
+  "topic": "Can we trust AI agents that use tools and take actions?",
+  "audience": "Developers and product managers evaluating agents for real workflows; familiar with software products but not necessarily AI security research.",
+  "central_question": "What evidence should we require before giving an AI agent permission to act?",
+  "scope": "Software agents: reliability, indirect prompt injection, tool permissions, human oversight, monitoring, and recovery. Excludes robotics and unsupported predictions about consciousness or existential outcomes.",
+  "voice": "Clear, practical, measured, evidence-focused. Explain mechanisms and limits without anthropomorphizing observed behavior.",
+  "model": "gpt-4.1-mini",
+  "max_items_per_source": 12,
+  "max_editorial_items": 36,
+  "max_output_tokens": 14000,
+  "transcription_model": "whisper-1",
+  "allow_paid_transcription": false,
+  "model_prices_usd_per_million": null
+}

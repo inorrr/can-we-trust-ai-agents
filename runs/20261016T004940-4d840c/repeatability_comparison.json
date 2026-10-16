@@ -1,0 +1,28 @@
+{
+  "first_run": "runs/20261012T172153-9a3b9d",
+  "second_run": "runs/20261016T004940-4d840c",
+  "first_as_of_date": "2026-10-12",
+  "second_as_of_date": "2026-10-16",
+  "second_started_local_date": "2026-10-15",
+  "timezone_note": "Pipeline uses actual UTC execution dates; no backdating.",
+  "live_collector_observations": 14,
+  "changes": {
+    "unchanged": 13,
+    "changed": 1
+  },
+  "eligible_retained_count": 15,
+  "meaningful_new_material_observed": false,
+  "change_details": [
+    {
+      "item_id": "web:7cc0255a3132017e9645f034",
+      "title": "OpenAI \u201crogue\u201d agent activities found on Wikimedia projects",
+      "old_version_id": "1908abdd6011fc980024a6008f2f83a004bba601cf73e7097f3b3b65c5a0cb63",
+      "new_version_id": "ae3f66d8d89575232e9eace2858eaafb4fdffe30b1bd935e84513689b38c65a6",
+      "classification": "non-substantive navigation change",
+      "diff": "observed_navigation_change.diff",
+      "publication_date_unchanged": true
+    }
+  ],
+  "explicit_replay": "output/repeatability_replay",
+  "pipeline_completion": "Component generation completed after retained-draft length recovery; mechanical review passes; status awaiting_review."
+}

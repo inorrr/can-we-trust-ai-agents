@@ -1,0 +1,14 @@
+{
+  "stage": "check_content",
+  "status": "completed",
+  "input_count": 5,
+  "output_count": 1,
+  "started_at": "2026-10-15T23:23:50.291187Z",
+  "finished_at": "2026-10-15T23:23:51.106843Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

@@ -1,0 +1,57 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:48:54.242160Z",
+  "finished_at": "2026-10-12T17:49:33.448935Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.034994,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0cac2e00cfbb45bb016acd1d8de10c87d2be2b0f9caf55d8c2",
+      "usage": {
+        "input_tokens": 36029,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1675,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37704
+      },
+      "cost_usd": 0.0170916,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/9e535e3f931748678cd7327b1f0b0409-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0be18733539ef29c016acd1da0d50c87d29740947f6387906b",
+      "usage": {
+        "input_tokens": 37700,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1764,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39464
+      },
+      "cost_usd": 0.017902400000000002,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/6dda0d43ee1a4c64b334aab7072af1cf-request.json"
+    }
+  ],
+  "errors": [
+    "Draft length remains outside target after one bounded revision"
+  ]
+}

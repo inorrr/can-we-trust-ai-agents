@@ -1,0 +1,47 @@
+{
+  "series": [
+    {
+      "piece_id": "01",
+      "title": "Before You Hand Over the Keys",
+      "substack_url": "https://kumato1.substack.com/p/before-you-hand-over-the-keys",
+      "youtube_url": "https://youtu.be/9VNTJX5ZNDU",
+      "substack_page_accessible": true,
+      "article_links_to_matching_video": true,
+      "source_list_visible": true,
+      "ai_assistance_disclosure_visible": true,
+      "ai_voiceover_disclosure_visible": true,
+      "youtube_links_back_to_article": "confirmed by student; not independently verified",
+      "verification_method": "Visible Substack browser page: title, post text, video link, sources, and disclosure",
+      "full_source_factual_verification": false
+    },
+    {
+      "piece_id": "02",
+      "title": "A Locked Door Should Not Depend on Good Manners",
+      "substack_url": "https://kumato1.substack.com/p/a-locked-door-should-not-depend-on",
+      "youtube_url": "https://youtu.be/spFtXYdjddA",
+      "substack_page_accessible": true,
+      "article_links_to_matching_video": true,
+      "source_list_visible": true,
+      "ai_assistance_disclosure_visible": true,
+      "ai_voiceover_disclosure_visible": true,
+      "youtube_links_back_to_article": "confirmed by student; not independently verified",
+      "verification_method": "Visible Substack browser page: title, post text, video link, sources, and disclosure",
+      "full_source_factual_verification": false
+    },
+    {
+      "piece_id": "03",
+      "title": "The Security Demo Ends. The Work Begins.",
+      "substack_url": "https://kumato1.substack.com/p/the-security-demo-ends-the-work-begins",
+      "youtube_url": "https://youtu.be/SKrj_CnHfjI",
+      "substack_page_accessible": true,
+      "article_links_to_matching_video": true,
+      "source_list_visible": true,
+      "ai_assistance_disclosure_visible": true,
+      "ai_voiceover_disclosure_visible": true,
+      "youtube_links_back_to_article": "confirmed by student; not independently verified",
+      "verification_method": "Visible Substack browser page: title, post text, video link, sources, and disclosure",
+      "full_source_factual_verification": false
+    }
+  ],
+  "status": "Published links received; article pages verified. Does not imply all assignment requirements complete."
+}

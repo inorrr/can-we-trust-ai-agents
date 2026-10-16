@@ -1,0 +1,1604 @@
+If you regulate AI too early, you actually don't solve anything.
+You still just kind of have the same risk ultimately.
+You will the thing into being, but you haven't figured out how to control it.
+The problem we have now is this rift between the labs and the security community
+that keeps coming to two conclusions.
+Sloppy and you're not complete in what you're telling us happened.
+An employee is like 10% chance of species extinction.
+The post is very reasonable, but the atmospherics are not.
+Agent swarms completely flip that.
+These are just roaming drones, but like 5,000, 10,000,
+and they will easily mistake a good task for a bad one.
+So now we need a whole layer internally that just is tracking way more about
+what authentications are being done, what APIs are being done.
+The U.S. about 15 years ago stopped leading in tech antitrust.
+The problem is that Europe is going to lead with that because they have nothing to lose.
+This could change the nature of software fundamentally.
+The center of innovation has just moved.
+This is the signal that.
+The early Internet was riddled with viruses, worms, and security failures.
+We didn't stop building it.
+We learned how to make it safer.
+What should AI take from that history?
+In this episode, I sit down with Aaron Levy,
+Steven Sinofsky, and Martin Casado to debate AI safety, regulation,
+and what changes when agents start operating across the software we use every day.
+We get into why agents could force a rethink of permissions and cybersecurity.
+What decades of software security can teach today's AI labs,
+and why regulating a technology before we understand how it actually fails
+can create problems of its own.
+And we look at a broader shift already underway.
+As models mature, some of the most important AI innovation
+may increasingly happen outside the frontier labs,
+in the systems and software built around them.
+Guys, welcome back to the podcast.
+Good to be here.
+Thank you.
+Great to be here.
+I didn't think we'd ever do this again.
+I can't believe this is great.
+I mean, Martin's just building these $100 billion companies,
+too busy for this podcast.
+Or at least taking credit for it, as VCs do.
+Exactly.
+We've a lot to discuss today, but Aaron, why don't we start with you?
+Pacing the frontier.
+How have you reacted and reflected on what's happened there
+and just the discourse that's followed?
+Oh boy.
+I think we should start with Martin on this one.
+You were fighting lots of good ground wars.
+Maybe I'll say one thing that we probably all agree with,
+and then we can figure out where we maybe kind of fracture off.
+I think we would agree that any AI lab right now at the frontier
+should be building in the safest way possible
+with the highest degree of governance and security
+and whatever your definition of alignment is.
+This is an incredibly important area of research.
+It's an incredibly important area for the diffusion of AI.
+You're not going to have AI diffusion without
+extremely high quality products that can be trusted by enterprises
+and that aren't kind of constantly hacking systems.
+So when at least I read the Dario post,
+I actually didn't disagree with almost anything
+because it was all about how do you have better security of these systems,
+sandboxing, better testing.
+There's going to be some debates around the embedded nature of the testers
+and do you agree with who those are?
+And does the industry all align on that?
+But I think actually all of the major points were probably salient and appropriate.
+Then the only question is,
+does this get sort of user leveraged to do things that maybe we don't agree with,
+which would be like a slowdown of AI dramatically
+because of regulatory controls that would sort of
+not make it easy to compete with the frontier labs.
+Or do politicians kind of end up sort of taking the message and run with it
+and maybe even worse outcomes happen.
+It's used to ban data centers far faster and whatnot.
+So I think the actual substance of the topic is actually incredibly important
+and I think very important for AI advancement in general.
+And then the question is, what do you do about it?
+Especially what do you do about it from a regulatory standpoint?
+And that's probably where the industry is going to land
+on very different points in the continuum.
+But Martin was putting up a good fight on,
+let's make sure that we don't use this for regulatory kind of capture,
+which I also agree with.
+But I think the ideas in the pacing conversation are important.
+Again, it's a little bit of a funny concept
+because maybe it's not even pacing as much as just good hygiene and engineering.
+And so with good engineering, obviously there is a slight slowdown,
+but it's a slowdown that obviously allows acceleration of your diffusion
+because you wouldn't be able to have any of the AI be diffused
+if nobody would trust using it.
+The post is very reasonable, but the atmospherics are not, right?
+So an employee is like, this is going to kill whatever,
+10% chance of species extinction.
+And you know what Dario says?
+I agree with him more than I disagree with him, right?
+Like on TV, the same day that he landed these things.
+And so in some way, you can't have these conversations in isolation,
+which is, of course, if he's going to agree in species extinction,
+this post that he has looks like this milquetoast capitulation
+that's totally not adequate for the task at hand.
+And so I think the atmospherics are totally broken.
+And a lot of my comments were on the atmospherics.
+And then I have this quibble, but it really bothers me because I'm a pedant,
+which is, I think pacing is the wrong way to describe this.
+For one, it is orthogonal to security, right?
+So you can very slowly build a nuclear weapon,
+and that doesn't make anybody feel better than a slow versus fast.
+So that's one.
+The second one, it just feels like a capitulation
+to the pause folks without actually addressing it.
+So you're saying, well, we're not going to pause,
+we're going to pace to make them happy,
+but we'll also somehow make the regulators happy.
+And I think it makes them both unhappy
+because the pause people are like,
+well, that's not a pause, that's just pacing.
+And the regulators are, you're still doing the thing.
+And so I just feel like my sense of what's happening
+is the labs are actually trying to do the right thing.
+And I applaud them for that.
+I think this is a pragmatic proposal,
+and I applaud them for that.
+I think the messaging is wrong
+because they're trying to split the difference
+between an internal kind of fringe faction,
+which are doomers, do some pause,
+and then the regulators on the other side.
+And the problems are making both of them unhappy.
+And I think what they have to do is they need to come out,
+they need to address the X risk question directly.
+They need to say, no, we don't think this stuff
+we're going to do is going to cause extinction.
+And then I think this becomes very sensible.
+And what would you do?
+Just to play the other side for one second.
+What do you do?
+Do you make room for the one possible Venn diagram,
+which is the lab researcher
+that is both simultaneously super scared,
+but also works on advancing the state of AI
+because they believe that it's so important to get right,
+that they want to pursue that.
+And then obviously the language is right now very problematic,
+but that person does exist.
+And that is a real kind of person in our industry,
+which is like, we have to be at the forefront of AI.
+I'm also very scared of it.
+And so that's why I'm working on this.
+So let me address this directly.
+I used to work for Lawrence Livermore National Labs
+on a weapons program, nuclear weapons.
+I know what it's like to work on things that have access.
+You were the first pacer.
+We were part of the first pacer.
+So if a constituency within the labs
+that are the most knowledgeable people
+believe this stuff has existential risk,
+the answer is to nationalize it
+and actually put controls that we know that work, right?
+Now, if they don't actually believe that,
+and in the private conversations I have,
+the most sensible people don't,
+it's a small fraction that do,
+this is an HR problem, right?
+So to me, an HR problem is a company problem.
+Like if they are worried that they can't recruit people,
+or they can't retain people,
+which it seems to me a lot of this is just that concern.
+It's almost more of this kind of researcher currency.
+If that's the case,
+I think that is the wrong reason
+to cause a national level lockdown
+on a very promising technology.
+So listen, I think the post,
+again, I think the post is actually very sensible.
+I think there are real concerns around security.
+We've had many compute epochs
+that have real security concerns.
+I don't think you can reconcile discussions on X risk
+with the proposal that was put out.
+You just can't reconcile those two things.
+And that has always been my primary.
+Right, right.
+Okay, unleashed.
+Okay.
+The first thing is,
+is there a schedule that they've published
+that says when all this stuff,
+whatever bad stuff is going to happen is going to happen?
+They haven't.
+So you can't pace it
+because nobody knows what it was supposed to finish.
+And it also just seems disingenuous.
+It's completely nonsense.
+A hundred percent.
+Like you can't claim,
+this is like when the press reports on
+Apple's latest iPhone is late.
+From what?
+Nobody knows exists.
+They haven't told anybody.
+Yeah, my Apple car was very late.
+Yeah.
+I don't understand.
+In order for something to be slower,
+you need to know the rate at which
+it was moving in the first place.
+So it's all just utter nonsense.
+And you can't escape that.
+And then, by the way,
+this is another problem that like,
+again, from my little quibble on PR is
+nobody believes it anyway.
+Right.
+And so that's the thing.
+Wait, which part?
+The pacing.
+That they're going to pace?
+That they're going to pace.
+I see.
+They've been at a dead run.
+They've raised more money than ever before.
+They've run faster than ever before.
+There's no indication that they're pacing.
+So this is what you're going to hang your.
+I see. I see.
+Yeah.
+Well, the issue, obviously,
+is that the model that everybody has
+internally far exceed what
+anybody else has access to.
+So it's really just the pacing
+of external releases.
+But again, back to your point,
+pacing versus what?
+Right.
+We don't know if the one
+that scares everybody also
+doesn't work for a legal brief.
+It might actually screw all that stuff up.
+Because it's so, who knows?
+Right.
+So there's that.
+And it's just disingenuous
+to claim that you're paid.
+Second, why do they have to announce
+all of this and ask the government
+to tell them to pay?
+Like, that's the part that starts to go,
+well, this is really spooky.
+If you are the most afraid of how
+everything is going to go because
+of your product, just stop.
+Don't do it.
+Like this is like I worked at
+a missile factory in college
+and we had nuclear missiles
+and I walked the floor.
+What's with you guys and missiles?
+I don't know.
+I'm just here with software.
+It's age, it's age.
+I guess.
+There were one or two people
+in college when we were,
+which was either you were protesting
+to keep them off campus.
+Or building up.
+I don't know.
+No, no, no, that was your choice.
+And like, look man, like nuns from the Catholic church
+show up and pour blood all over our missiles,
+and I'm busy just wheeling PCs around on carts
+saying here's a secure PC, and I'm like scared to death,
+I have no idea what's going on,
+and I'm like, it's a nuclear missile.
+And then you find out that that's what stopped the Cold War.
+Like that literally, it was a Pershing missile,
+and that was what did it.
+And so, but you said something
+that I think is super interesting,
+which is pacing is this sort of fuzzy non-word
+between like going and not going.
+And the problem is, you're exactly right,
+like there's no one who's gonna be happy
+with the middle road.
+And so one of the things that people,
+I think it's almost fun for me to watch as a sport,
+they think that they're, that all these people
+saying to the government, do this, don't do this,
+that they think they're gonna get what they want.
+And it's a complete 100% misunderstanding
+of how government works.
+Which is, when you talk to the government,
+they actually know how these things work.
+And they know they're just listening to you,
+and they're listening to everyone,
+and no one is gonna get what they want.
+Because they know, in order to do anything in our system,
+it's a compromise.
+And so everything that, all the inputs
+can make it into the government,
+the output never makes everyone happy.
+100% of the time.
+It either doesn't go far enough,
+or it goes way, way too far.
+And so you can't take the view
+that you're gonna talk to the government
+and talk your way into the solution you want.
+So the bottom line is, if they're asking for pacing,
+they're gonna get the wrong velocity.
+Well, my favorite thing is, what was it,
+David Sachs was like, I think it was David Sachs,
+but someone from the government said,
+you're asking us to regulate you, no.
+So basically the answer was no.
+I'm probably just Trump, I think.
+But the thing that they know now,
+that you just know from experience is,
+once the wheels start on regulating.
+You cancel that one down.
+And now it's become an election issue
+for every party in every jurisdiction,
+up and down the whole government stack.
+So there's now this whole basket goods,
+basket of regulatory approaches.
+Well, the next election will 100% be a referendum on AI.
+So it has to happen that 2028 is the AI election.
+And you can basically run on,
+the problem is, it's not obvious who would run on
+the pro-AI story, because it's gonna be too nebulous
+to tell that story.
+So then it's just basically varying degrees
+of how much do you regulate it,
+or at least try and avoid the topic.
+But it is too bad that we, as a country,
+are in a spot where the pro-AI case is just like,
+it sounds too, it's just like, takes too many words.
+It's way too nuanced.
+It's defensive.
+Yeah, it's defensive.
+It's defensive, and we own none of the vocabulary.
+Right, right.
+The whole debate is pause, it's swarms, it's rogue.
+Every word has been chosen by the people
+who don't wanna do AI.
+And so it means the first thing you have to do
+is invent new words and say that their words are wrong,
+which takes so many words that,
+yeah, so we gotta be like union jobs,
+and cancer, and there needs to be another word cloud
+that emerges.
+What I don't understand is why the labs
+have not taken a position on XRISK.
+Short of that, I don't think this goes in any direction
+other than heavy-handed regulation.
+Yeah.
+Well, it would just be negligent of the government
+to be like, there's a 10% chance of species extinction.
+The CEO of the top company says he agrees with that.
+How can a government not do heavy-handed regulation?
+But what would anybody, knowing this ecosystem, though,
+I don't know that you would be able to pin anybody down
+on that other than something.
+No, I was saying, Dario said it on.
+No, but I'm saying you're not gonna pin anybody down
+on a lower number.
+Well, in fact, he does the worst thing about it,
+which is he agrees with people who claim
+that they believe that there's an X percentage
+of extinction happening.
+But he specifically is out of his way to say,
+I'm not gonna put a percentage on it,
+which I just think is the weirdest.
+To be fair, to be fair.
+No.
+Okay, no.
+Nobody can be fair.
+To be fair, it's not 100% disingenuous or whatever.
+He probably doesn't specifically agree that it's 10%,
+or maybe he does, and it's just too scary
+if you were to say it.
+Well, let's just play binary search.
+But I mean, is it more or is it less?
+No, no, no, no, no, no, no, no, no, no, no, no, no, no.
+The whole thing isn't made up.
+He knew it was a made-up concept that we just created,
+but nobody can, you can't quantify any of this.
+Well, that's sort of Martin's point.
+But you just said an official position, though.
+So the only official position would be,
+I think the only official position you could possibly get
+would be the PR version of this that would be,
+the only thing that would be intellectually honest
+would be there are real risks with AI.
+There's incredibly positive benefits as well.
+We are working to mitigate the risks
+so they are as reduced as humanly possible.
+I don't think that's, I don't think that's true.
+Listen, so we've been through.
+Wait, what do you think the?
+We've been through multiple epochs of technology.
+We've been through compute.
+We've been through the internet.
+We've been through the web.
+We've been through social networking.
+We had a discussion about the risks
+without talking about X risk, right?
+So for example, one thing you can say is
+we do not think the marginal risk
+for species extinction is different than it is.
+But what if they do think it is higher?
+Well, then we should.
+Okay, okay, okay, okay, okay.
+I think the answer is they do think it's more
+than just the internet.
+You have one of two options.
+You believe that we're gonna go extinct
+and we shut it all fucking down, like shut it down, or.
+I believe that there's just a chance that we could.
+No, speaking as.
+10%.
+Speaking as.
+Dario thinks less.
+No.
+Like speaking as cold warriors.
+No one, like the Pentagon, you know,
+they ran a lot of simulations on the chances
+for nuclear war, great movie war games
+about the whole thing, all of that.
+But the thing was, it was non-zero.
+Yeah.
+And so once you said it was.
+Can they say non-zero then?
+Is that allowed?
+I think as soon as you think it's non-zero.
+The problem is if you say non-zero,
+that could be like, you know, shit, man.
+You think I think it's 93%?
+Let's talk, wait, wait, sorry, sorry.
+Just so we're all having a clean conversation.
+Yes.
+Let's talk about marginal risk.
+Yes, yeah.
+We're not talking about absolute risk.
+Right.
+Yes.
+Right, okay.
+It's just that I think if, once you say it's non-zero,
+the only answer, of like catastrophic.
+For marginal.
+The only answer is you have to nationalize it.
+Yes.
+And so.
+Right.
+What he's trying to, what the labs in general
+that have that view are trying to thread
+is they want it to be non-zero
+as a license to do a certain set of things
+without the burden of just becoming a nationalized.
+Well, do you have, I actually don't know
+all of the precedents.
+You hopefully do, but like, there must be some things
+that are non-zero, let's say, X risks
+that are not particularly nationalized,
+but the regulatory environment around them is so heavy
+that it might as well be nationalized
+because of the KYC requirements on, like,
+I'm sure, like, to develop anthrax,
+you have to go to a particular kind of lab.
+Well, BSL-4 labs are, but they're nationalized.
+They are nationalized, okay.
+X risks tends to be nationalized.
+Yes.
+Like, normal human safety, not so much, right?
+I feel like industry oversight,
+that over time becomes federal regulatory.
+Right, and the progression,
+which I think is just super important to this discussion,
+has been since the post-World War II era,
+most industries that are critical to the infrastructure,
+power, and banking, and healthcare,
+the trend has been to basically be nationalized.
+Yeah.
+But just like your examples of KYC and all the other stuff,
+the banks are, for all practical purposes, nationalized,
+and the financial crisis.
+Okay, but you said all practical purposes.
+Right.
+They're literally not nationalized.
+Right.
+So maybe that, but this might be the intent of the labs
+is to look like J.P. Morgan or look like Verizon,
+and it's just like, we're critical infrastructure.
+We get heavily regulated.
+It's not good for open source,
+or at least frontier open source,
+but it's like a plausible outcome
+for this industry in the limit.
+Right, but it's not particularly good
+for innovation, is the problem.
+Oh, 100%.
+Well, I think even that's fine.
+Just don't use species extinction.
+Sure, as you're arguing.
+Yeah, yeah, yeah.
+This literally is like the difference
+between the things that are stuck in the lab.
+And let me just say something.
+I actually think the labs are moving in the right direction.
+Yeah.
+I actually think the actual statement was really good.
+In my discussions with executives and leaders,
+they understand that they have this tension
+and they're going to reconcile it.
+So I actually am quite optimistic
+that the labs are both doing the right things
+and trying to do the right thing.
+I just think that it grew so fast,
+and they're just trying to figure out
+how this machinery works.
+And I think Sanofsky really hit the nail on the head.
+We do.
+The total process is its own thing.
+I don't know if it's naivety or hubris,
+but I just don't think that they kind of know
+how to navigate it.
+Well, I think the tech industry
+has literally over a hundred years
+consistently relearned the lesson
+at each technology wave
+that we don't understand the regulatory climate
+and we can't navigate it.
+And even the companies like AT&T and IBM
+that were born out of basically being
+government monopolies from the start,
+never figured it out.
+Both got sued for antitrust.
+Both got substantially and structurally changed as a result.
+And they had hundreds of lawyers in the 1960s
+navigating them.
+And Microsoft came along.
+Like, we were just like, what?
+We had no idea what was happening to us.
+And there's Bill Gates playing golf with Bill Clinton,
+and then we get slapped with an antitrust lawsuit
+from his administration.
+And Bill was like, I was playing golf.
+Here's the picture.
+And that doesn't help.
+And isn't that what I was supposed to do
+was go and play golf?
+That's a shortened version of the whole story.
+But I think it's just,
+I always use this example,
+which is the Hollywood got together
+during the Red Scare and censorship
+when they were worried about the government
+censoring movies for sexual content.
+and for adult themes, and they all got together,
+and of course they were never going to win in court
+if they tried to, but they were threatening to do it.
+And they got together and they formed
+the Motion Picture Association.
+And movie ratings and all of that,
+and they policed themselves.
+And they haven't done that.
+Do you like the FINRA proposal?
+No, because FINRA is-
+But that's as close to MPAA as you can get with Motif.
+No, it's not, because FINRA becomes legislation,
+which comes with direct oversight.
+Yeah, I think MPAA might not have as much consequence
+in how society functions.
+Well, it was only the First Amendment.
+Yeah.
+Yeah.
+Did I win that?
+No, first of all, fantastic,
+but I still don't know if you won it.
+I agree, free speech is really important,
+but I just think-
+There was no societal risk.
+I just think what's in our movies will be like,
+we'll survive on a different continuum of-
+Every history is always relative.
+And at the time, being a communist was a really bad thing,
+and 30% of Hollywood got fired for all this stuff.
+So it's always a risk to bring up something
+in that kind of way, because it sounds so dumb.
+Nobody thinks about movie ratings.
+And that's because, actually, they were ruled,
+basically, you can't constitutionally mandate them.
+So they couldn't regulate them on cable TV,
+and so we got to grow up with HBO and all this other stuff.
+The problem with FINRA is that is a perfect example
+of essentially nationalizing risk.
+Yes.
+Because even though the banks all pay money into it,
+and that's how it's run and stuff, it's all mandated.
+Okay, wait, so you think we're gonna end up
+with a situation that is better than FINRA?
+FINRA appears to be the best-case scenario.
+It is the best-case scenario.
+But not even anymore.
+I do think this technology is, in the limit, again,
+so powerful for what it can deliver
+that it would be impossible for, eventually,
+Congress not caring about that.
+Like, it's just not possible.
+My question to you guys is, at what point?
+If it's eventually making every recommendation
+in your healthcare process, and it's inside
+of your medical device as an open-weights model,
+and every trading system for high-frequency trading,
+and it's on an airplane, there's no chance
+that the government doesn't say, we need something,
+where FINRA actually is probably the best-case scenario
+of what that looks like.
+Right.
+So now, that's absolutely the most crucial point.
+Because all the people in the Senate now,
+were in the Senate when the Communications Act was passed,
+and liability was not passed through
+to ISPs and to social networks.
+And they sat around, the debate at the time
+was, they would literally say to us,
+the internet is so big, how did we not
+have anything to do with it?
+And that's why Al Gore gets a bunch of abuse
+for saying he created it.
+Right.
+Because he was actually trying to get out
+in front of that and say, no, the government
+was instrumental, and it all backfired
+because it made it look like he was a crazy person.
+But that, it is absolutely the case,
+that they felt like they missed their chance
+to be on top of the internet.
+With Al Gore being on the positive side of innovation.
+That was their point.
+Yeah.
+So who is the Al Gore of?
+There's no one.
+Yeah, yeah, yeah.
+There's a couple, well, Bessett seems to be like that.
+Right, right.
+The defense people sort of want it private,
+but not, which is exactly where they were
+on the internet.
+Right, right.
+It's very interesting that a lot of this
+is just this, like Elizabeth Warren's,
+Senator Warren's tweets were all like,
+we missed this for social networking.
+Yeah, yeah, yeah.
+And it's like, you know.
+There's a lot of pent up energy against tech
+that could end up just all siphoning into AI regulation.
+No, that is exactly what it is.
+Yeah, yeah, yeah.
+That's what's happening.
+Yeah.
+I think there's another problem, which is,
+we're all trying to predict what's bad,
+which is not how we've normally done things.
+Like, by this time on the internet,
+we've taken out like tens of billions of dollars
+of like economic,
+well, we've caused tens of billions of dollars
+of economic damage.
+We've had words that took out 10% of the infrastructure.
+Yeah.
+The internet infrastructure,
+which was running critical infrastructure.
+We had hospitals go down.
+We really should have blocked the internet in like 97.
+How did we?
+Yeah, yeah, okay, okay, okay, okay.
+We had, I mean, I remember when you would
+buy your CD of Windows 95,
+and by the time it was done installing,
+you would have a worm, potentially.
+Way to go, Steven.
+No, no, no, this was the reality of the PC until 2001,
+was you could not install a PC connected to the network
+without getting infected.
+Viruses were everywhere.
+For the time.
+And there were two level, two rounds
+of congressional hearings.
+You had all of the same.
+That is actually, okay, okay,
+I'll grant you this is a very interesting point.
+This type of zeitgeist in 94 would have,
+we would probably not have the internet.
+I mean, the automotive, the airline industry,
+you always have these periods of kind of like
+teeth cutting where you learn about the dangers,
+and you learn about the technology and the internet.
+I mean, we were on the ground floor of this.
+I mean, things were down all the time.
+There's economic damage all the time.
+There was novel, there was new viruses,
+there were new worms that were all over the place.
+Y2K was going to destroy the world.
+Here's the interesting thing about this.
+But I just want to say,
+so when we created policy,
+and we did create a lot of policy,
+it was kind of like with a bunch of very specific data
+points on what you're trying to do.
+And so you know that the policy actually fits
+the fact pattern.
+And in this case, I mean, even when you were talking,
+you're like, well, what if, you know, yada, yada, yada.
+And it's very hard to make predictive policy
+when we don't know.
+Now, one area we can talk about is
+there seems to be novel cybersecurity risk.
+Great.
+And what is nice about the discourse,
+it is actually starting to evolve around that.
+Like you actually hear people from the lab saying,
+novel cybersecurity risk, this is an engineering problem.
+We're talking about that.
+So the more this becomes concrete around
+real identified risks, I think we can all fall in line.
+But that's not been the discussion to date.
+That's a very recent thing.
+Perfect, perfect point.
+Because if you look in 1986,
+the Computer Crime and Fraud Act got signed.
+It was out of a very, very specific scenario,
+which was two groups of hackers broke into GTE Telemail.
+One of them lived in my dorm, go figure.
+And sure, it wasn't you.
+He worked at Cisco later.
+And the problem was that was 1983 and there was no crime.
+And it took two and a half years
+for the law to make it through.
+That made it very, very specific.
+And that's the law that says you can't access
+unauthorized computer systems.
+So I think we'd all agree that we probably have like
+90% of laws already in the applied layer.
+Like you can't hack systems, et cetera.
+Do you think there's anything that should be
+from a liability standpoint in the model layer?
+Which of course then creates-
+Wait, now are you making it technically legal?
+No, the legal, everything, my read of Hugging Face,
+OpenAI, 4, they're all absolutely blatant
+computer crime acts.
+Except for the fact that they carved out
+in amendments later that if you're a white hat,
+it's not illegal anymore.
+And that was because people kept making mistakes
+and they didn't want to go around arresting everybody
+who was actually trying to make the system better
+because they messed something up.
+And so the Justice Department wrote a memo
+that said we're not gonna prosecute for this.
+And we're also not gonna prosecute if you just
+violate the terms of use of a system
+versus actually try to breach it.
+And so I think the law is ample for this scenario.
+And it was all written, this GT Telemat was used by NASA
+and Livermore and all the labs.
+And so that's why it caught the attention of DC
+because it was federal systems that were being broken into.
+And the problem we have now is this rift
+between the labs and the security community
+that keeps looking at all their postmortems
+and coming to two conclusions.
+Sloppy and you're not complete
+in what you're telling us happened.
+And so of course the CVE process came about in the 1980s,
+the computer virus and vulnerability reporting stuff
+out of CMU.
+And for years they worked on very structured reporting
+with obligations and for some reason
+they're not using any of that to do this reporting.
+And so there's this very basic stuff that I look at
+and say well until they're doing that
+they really should stop talking.
+Like they shouldn't do a postmortem on a breach
+that looks like an intern wrote it
+and it's not a postmortem, it's this selective memory.
+It looks like exactly the kind of postmortem you do
+when you hire outside lawyers to investigate
+some random thing and you only give them certain stuff.
+Because you don't have to give the lawyers you hire
+all the information about what happened.
+Like where's all the Slack messages?
+Where's the actual details of what happened?
+Can I just interject an annoying aside?
+Which is more annoying than what I just said.
+No, no, this is good, which is very in line with this
+which is I've been in the security,
+like the actual cybersecurity community for a long time
+and it's always been one of these things
+where they just don't like practical solutions.
+So even if you build a secure system,
+like well what if somebody shows up?
+Oh yeah, yeah.
+Can Russell Crowe can break the encryption
+or something like that?
+It's Mission Impossible.
+Yeah, there's always these kind of like whatever.
+So my favorite thing that happened recently
+was like Noam Brown, we've all said stupid stuff
+on podcasts, I've already said this.
+Oh, you didn't like this one?
+No, it was great.
+I thought it was fun.
+No, it was fantastic.
+Okay, okay, okay.
+I'm setting it up.
+Okay, okay, okay.
+So Noam Brown, I was like listen,
+you don't know what a superintelligence could do.
+It could maybe use like the heat of a CPU
+to exfiltrate itself to another computer.
+Which this brought me back to my,
+I'm like now I'm very comfortable.
+Okay, okay, okay.
+Great, now I can have endless,
+pointless discussions on this.
+But what is interesting is you basically
+have the at-risk people saying something
+you thought was plausible,
+and then you have like the security people
+having this kind of endless discussion.
+And so I think at some level,
+now these communities are being bridged.
+Which is like, you know, I actually think
+that was a very,
+useful thing from Noam Brown to say.
+I think you can pick holes in it,
+but we all say weird stuff on podcasts.
+I actually think actual risk is real.
+I mean, I worked in secure computing environments
+that were highly classified,
+that the covert channels were unbelievable.
+So these are very real comments,
+but we actually have a real discourse.
+And it was the first time
+I saw really hardcore systems people
+having pretty, I would say, constructive-
+Well, they were calculating the bit rate
+and all the-
+Yeah, it was great,
+but it was a constructive discussion.
+You had the typical extras people were engaging.
+Of course, it was Twitter,
+so there's a lot of name-calling, this and that,
+but it was actually, I felt like,
+a real discussion for the first time.
+So I hope we see more of this.
+I hope we see more cyber-related things.
+I think the lab should talk more about it.
+I think it'll engage the community.
+And I think once that happens, we can actually-
+Yeah, Greg's been out there a lot more on this topic,
+which has been good.
+But I think the takeaway is Noam Brown
+should be doing more brainstorms on podcasts.
+I thought it was great.
+It opened people's eyes to the fact
+that actually there's a lot of risks in security
+that most people don't understand.
+And so that means that there's more stuff that,
+like you can't make baseline risk,
+like how is your authentication layer work?
+You can't just wave your hand and say,
+that should go away, and then bring up,
+oh, but space aliens can invade.
+And that's a little bit of what was going on
+that I felt uncomfortable with.
+But like-
+What do you mean?
+It was sort of like, but you know,
+there's also this risk.
+It's how I view that.
+Of the heat thing.
+But at least we're now in a domain where we're comfortable.
+Like I can talk about entropy,
+and we can actually have a concrete discussion
+that's not, oh, well, it's super powerful.
+At least we reduced it to like the laws of physics
+and the laws of systems.
+And most people did, I would say most people had no idea
+that that kind of risk was real.
+I mean, like when I'm walking around the Pershing missiles,
+I actually had to test the graphics cards in PCs
+because a DoD requirement is that the screen memory
+not be sustained when you pull the power.
+Not for zero time.
+Like the minute that the power went off,
+the memory image had to go.
+And if there was like a three second delay,
+that could be read.
+Oh, see, we had people that came into our offices
+and would literally measure the distance of the monitors
+to each other because of Tempest attacks.
+Which is 100% a way to use electromagnetic radiation
+to leak information.
+I've seen the same thing with spread spectrum from the BIOS.
+I've seen it from audio speakers.
+Like we had to remove the speakers out
+because it's a very high back channel.
+These are all very real things.
+Our building had just Muzak speakers aimed at the windows.
+Just to produce interference.
+You need to go run safety at one of these labs.
+I've never seen you more excited
+than Heath based communication.
+Can I tell you the craziest comfort channel I've ever seen?
+So it turns, remember the old CRT?
+I know this is like one of my...
+So I'm glad that someone's older than me.
+Not really, but acting it.
+Remember the old CRT?
+So it turns out if like, let's say it's night
+and you're using a CRT terminal in your room,
+the lightest thing in the room is actually the pixel
+that the raster beam is on.
+So most people think it's like the glow of the monitor,
+but it's actually that given pixel.
+So somebody figured out that like,
+let's say you're in like a hotel room
+and you're on your computer.
+If you have something that can sample
+the color of the window, you can reconstruct the screen.
+Oh, that's crazy.
+Right, you just do it at the same hertz
+that the raster beam is moving.
+Then somebody else figured out
+if you can subvert three pixels,
+you can use those, you know,
+because it just looks like bad pixels,
+you can use those to basically send a message.
+So like, you could literally like sit out in whatever,
+like a parking lot, you sample the message
+and it is a relatively high bandwidth one-way communication.
+And so like what Noam Brown was saying,
+like maybe heat is not the way to do it,
+but that level of sophistication is actually real.
+Like that's a thing.
+When I was at the missile factory,
+like I had to lock my keyboard up.
+That's really an impolite word,
+but that's what we call it.
+I had to lock my keyboard up at night
+because they didn't want the custodians
+who didn't have clearance walking by
+and just noticing which keys were dirtier or cleaner.
+And I once left it out and there's like a note from security
+you know, telling me to report to security
+and pick up my keyboard.
+Like the guard who walked the hallways
+just took the keyboard that night off my machine.
+And that's like basically, I was not cleared,
+I was just that sensitive, you know,
+I was like nothing, I was an intern.
+The big problem with this conversation
+is now this is all in the training data
+of every AI model in the future, so.
+But that's also the threat.
+The threat model for these things is always
+you've got a trusted side and an untrusted side.
+NIST has 500 page manuals.
+Okay, okay, okay.
+This is already out there.
+And the untrusted side, you assume basically
+an oracle that can do and know everything.
+And then the question is,
+can you get information off the trusted side?
+Which by the way, is what Noam was saying,
+which again, this is actually quite.
+Which I do think brings up a super interesting point,
+which I'm going to bridge, which is just that
+I think the thing that people really aren't wrapping
+their heads around and are using the language
+that's really confusing is just that what AI can do
+is it can try all of those things in a very short time.
+And it doesn't get tired, it doesn't get bored.
+And so, but the interesting thing about it is
+there's a whole layer of security
+that you now have to go look at every single API,
+every single service you're running internally
+on your network as like, you know,
+like nobody thinks that their internal GitHub
+or their internal Slack or internal finance expense tool
+is vulnerable to a denial of service attack.
+But swarms look, literally look like
+a denial of service attack.
+And so now we need a whole layer internally
+that just is tracking way more about
+what authentications are being done,
+what APIs are being done.
+And, but that's just like, now it's just going to be basic.
+And all the offsite people that are old
+are like mailing me like,
+why are we swaying to this to everything?
+It's so basic because nobody did it internally.
+But you didn't have to worry about it for your people.
+And that's the, like.
+But now your person is just a piece of software.
+And like unlimited and the.
+Has a credit card.
+Yeah, I mean, we, you kind of got by
+with information security, like to some extent
+on the fact that most people will do the right thing
+95 to 99% of the time.
+Wait, the malicious employee is like one in 10,000.
+Yeah, yeah, yeah, yeah.
+So, so like, so all of these systems
+are basically open to whoever wants to access them
+or like one tap on the shoulder and then you have access
+and agent swarms completely flip that
+because they will, these are just roaming drones.
+Yes, and, but like, yeah, times 10,000
+and they will easily mistake like a good task
+for a bad one and vice versa.
+So, so the data security in our systems is,
+this is going to be a huge upgrade moment.
+I actually, Martina, like I think that
+actually we're going to need a different
+access and security model going forward.
+Where are we going to go on that?
+Because the model we have is not granular enough
+and it's not performance enough to handle this stuff.
+So I want to step back.
+I want to say like a meta point, which is,
+I think this is how these conversations should go.
+We've identified a novel risk, which is like cybersecurity,
+which we actually have proof points
+and now we're talking about solutions.
+I think the entire discourse around AI can be of that form.
+And that's the biggest mistake is that's not what it's been.
+Like, I think the entire industry and community
+is very happy to engage exactly like this.
+And I have something to say about exactly what you're asking,
+I think this is where the conversation should be.
+Yeah, we're known for having healthy conversations
+that everyone should learn from.
+So here's the thing.
+I don't think there's a technical limitation here.
+Like these threat models are very well understood
+and have been in the literature for a long time.
+I mean, like the operating systems research,
+the MLS, the multi-layer security research
+has considered these sorts of things from an academic lens.
+The reason it hasn't been adopted
+is just tended to be a usability issues.
+I guess it's really hard to maintain
+and you didn't have to.
+So you could argue that AI solves the usability issue
+because it's AI is using it.
+So maybe now is going to be a renaissance
+in operating systems and network and computer languages.
+And we should like go back to the old research
+and we should kind of start rebuilding systems
+that are secure by design.
+And oh, by the way, if we don't think that,
+you know, these things are safe to put out,
+we don't put them out until we have these systems built.
+And oh, by the way, the AI is very smart
+so they can help us build it.
+And so I think, again, like computer always evolved.
+Like, you know how much of the stack
+we had to change for the internet?
+Mm-hmm.
+Everything.
+Right.
+Tell me about it.
+And you know how vulnerable everything was?
+Like we could be in one of those moments like,
+oh shit, we got to rethink everything.
+And that's fine.
+We've done that before.
+But I think that's a conversation we should have.
+So I agree.
+It's time to think about evolving these things.
+Well, like look at, like you mentioned earlier,
+like there's booting a PC
+and getting a virus in 30 seconds or whatever.
+So if you look at how like you take an iPhone out of the box,
+which a lot of people are doing this week,
+you know, what happens is the whole network
+is basically shut down except for getting
+the latest version of the operating system.
+Because it doesn't, even though it was pressed,
+you know, six weeks ago, you know,
+some zero-day thing has been discovered since.
+And so actually the whole out-of-box process now
+involves first step doing an update
+where the device can't do anything else
+and it can never do anything else until it's updated.
+That's like, like there are all these benign,
+things that are completely benign
+that we turned off in all of this desktop software
+of the era that used to be good things.
+Like it was having a macro for words
+so you could build automatic citations or something.
+It was like this super cool thing
+until it became a virus.
+We had a thing where you could put a CD in
+and it would just arbitrarily run a program.
+And so then what somebody did was like,
+oh, well, I'm going to burn a clone of that CD
+and replace the program with my virus.
+But it's going to look like the thing
+that's supposed to run.
+And it's just collecting all this stuff and being evil.
+Yeah, I mean, disabled that.
+And so one of the things that's happening right now
+is there's a whole bunch of stuff
+that happens on your own box corp network
+that actually is going to have to just change
+as the standard procedure.
+Two factor of five years ago was not standard
+in most places.
+Like your whole SaaS world,
+like I remember in like 2015 or so
+when
+when you would talk to a new company about their,
+oh, we're gonna do enterprise pricing or whatever,
+and then they realized the first thing they had to do
+would go do Okta integration or Google Auth
+because they could not have their own directory
+of how to manage it, and then that just became a thing.
+And now there's not a SAS program anywhere
+that doesn't just launch with managed authentication.
+And so there's just so many things that need to happen
+before you're even software now.
+Yeah, we're, I mean, there's probably every layer
+of the stack has to evolve a bit on this.
+Like even the lack of granular nature of like,
+you know, you have these modes of like,
+the agent will either ask you every single time,
+you know, if you wanna give a permission to do something,
+or the exact opposite of like,
+it can just like delete your entire computer.
+And like our OS probably wasn't built
+for the right level of granular set of tools
+you wanna give the agent.
+We've kind of done a lot of work in this space
+because obviously like, you know,
+do you wanna give an agent exactly
+like your entire file system?
+Probably not.
+Maybe in some cases you do,
+but oftentimes you wanna have granular controls
+of like in this folder, you can do read, write.
+And in that folder, you can only do read.
+And so how do you kind of make this all intuitive
+for the user?
+So it's very difficult.
+And so there's gonna like, yeah, yeah.
+He just said a very deep comment.
+I know, exactly, yeah.
+Which is basically the conclusion
+of 40 years of Cisco.
+No, 100%.
+But maybe with AI, you actually can.
+Like maybe there is like a UI.
+If you ask me, like walking in,
+like what I wrote down on my note,
+like was my biggest fear,
+is that Europe decides that GDPR was the best thing ever.
+And they're gonna just GDPR AI.
+And the AI will be fine.
+It'll have one prompt for when a text gets omitted
+that just says, this vendor is omitting text
+and it's probably wrong, yes or no.
+That's gonna be, because you can't really,
+at least in North America,
+you're not gonna send your speech.
+In Europe, they still will.
+And they'll have filters and keywords and blog lists.
+But then on any verb,
+anytime that an agent or a background agent
+or a frontline agent touches a third-party product,
+I'm really worried that they're just gonna say,
+we need a GDPR prompt on that.
+And it's gonna be, oh, back to the user through the agent.
+Every single write or every single non-lookup
+becomes like a safety warning,
+like the airbag thing in your car.
+And the regulators love that
+because it's a liability assignment.
+And so it has this sort of legal precedent.
+And I really worry that that's actually
+the middle ground where we're gonna end up.
+And unfortunately, because the US,
+about 15 years ago, stopped leading in tech antitrust,
+the problem is that Europe is gonna lead with that
+because they have nothing to lose.
+And so I don't wanna be sad and down about it,
+but I just can't get out of my head
+that they love prompts.
+They, I mean, look, I have to put in that
+browser value choice thing.
+No, they, because it's the same,
+look, get into a new car,
+which I haven't done in years,
+but you're putting stickers off,
+you have all of these things.
+And someone thinks that that was success.
+And it's like, has anybody ever read,
+what is this, if there's a baby in this seat
+and it's like, well, that's relevant for some people
+some of the time, but it's this.
+It's the entire fabric.
+It's attached to the seat.
+And they love, that is a very particular thing
+that they just love.
+And so I would say if I were an AI now,
+the one thing I would be trying to avoid,
+and look, we added it.
+Okay, FINRA for AI, we'll create that standard.
+I mean, look, we had to put this,
+when the internet was new,
+the big thing was to download a program and run it.
+And of course, if your machine
+is running in administrator mode,
+it was download a virus and take all your files forever.
+And so with Windows XP, which was in 2000,
+we added this thing that prompted you and stopped.
+Like literally your machine stopped,
+user account control.
+And like, it was absolute assault.
+And we have to put it in Word.
+The stupid little macro to help you write your thesis
+also came with a warning.
+Every time you opened your thesis,
+say, this has my address.
+Everybody would just click.
+And everybody, and so you end up in this world
+where just like with GDPR,
+everybody is numb.
+And so then they're like,
+well, it needs to be bigger.
+Although Mac, I mean, Mac kind of.
+Nobody downloads software.
+That's the thing.
+It's a very, very usage pattern on Mac.
+Sorry.
+I don't have like 10 applications on my Mac, but.
+Well, that's like 10 and then you're done.
+Yeah, yeah, yeah.
+But it's a lot of people still do all this stuff.
+Imagine if instead it was every time
+you go to a new website.
+Yes.
+Which you do now.
+No, no, that would be bad.
+I mean, to start from here,
+to bring it kind of back to the macro point,
+like I wish this was the discussion we were having,
+which is like,
+I feel like we've dealt with a lot of these problems.
+I feel like when we talk about philosophical X risk,
+we're not solving these very problematic problems.
+I actually think this is actually
+a constructive conversation to have.
+Maybe prompts would help.
+I don't know.
+And I think part of the problem is just like,
+people don't remember like,
+you know, how unfettered access was
+and how bad it was
+and just how relatively benign that ended up being.
+Like I even remember like,
+this is at Stanford during our PhD,
+I remember the oscilloscope was kind of janky.
+I'm like, what's going on with this oscilloscope?
+Like it's a little slow.
+And I was measuring the network traffic
+and it was like,
+more network traffic than you would expect.
+And I'm like, why is there network traffic?
+I didn't even know the thing had a TCP stack.
+Did somebody like broke in
+because there's an old version of Windows CE
+and was running a porn server?
+You know?
+And so like,
+I've never heard that.
+It used to be,
+Just for the record, no.
+It used to be the case that like,
+anytime you turned over a stone,
+somebody had broken into something.
+And like,
+was it this like,
+worst case malicious, whatever,
+as actually very rarely,
+even though the capability was there.
+And so if we could just somehow tone down the rhetoric
+and put it in context
+and these stellar computer systems,
+and yes, there's very serious stuff
+and people have definitely died
+because networks have gone down.
+There's been real issues,
+but like,
+and then can we just quibble about GDPR?
+That would be amazing.
+But the problem is like,
+that's not the discussion.
+It's not about GDPR and prompts.
+It's about species extinction.
+And philosophy.
+And philosophy and irrefutable things.
+And it's just,
+it's also very soon.
+Like,
+I think that that's such a great point.
+And I think,
+you hear people now talk about,
+we regulate airplanes and we regulate cars.
+And you forget like,
+well, the first cars were at the turn of the century.
+And unsafe at any speed was in the mid 1960s.
+Totally.
+And you know,
+people have been doing selling pharmaceuticals
+during the gold rush.
+And thalidomide happened 50 or 75 years later
+and not even in the US.
+And then there was the FDA.
+And you know,
+people,
+the first pilots were flying obviously
+at the beginning of the 20th century.
+And it wasn't until the 1920s
+that you had to get a license to be a pilot.
+And you literally showed up with your own plane
+and you got a certificate.
+It was like,
+it was literally no different than driver's ed is today.
+And then it was 20 more years
+until they had anything to do with airworthiness
+and looking at your plane.
+But it was minimal.
+And then it wasn't until way after World War II
+that they got involved in like what you think of
+as the modern FAA.
+And so you're looking at 40 years of innovation
+and they were not moving slow.
+I mean,
+have you ever seen that video in black and white
+of like all the different planes that crashed?
+That was 20 years after the Wright brothers.
+And the FAA is incredibly effective.
+And right,
+it's incredibly effective.
+It's the safest form of transportation,
+like, you know,
+and so I do think that this process.
+It's also the slowest,
+most difficult form of innovation.
+And so if you start the F,
+if you had started the FAA in 1910.
+Yeah.
+You'd never have.
+You'd never have.
+Well, I was,
+I was listening to a Nick Bostrom podcast
+just a couple of days ago.
+No, no, I,
+I, I,
+I, it was interesting.
+It was interesting.
+And, and, but no, but, but,
+but he actually makes this point.
+If you regulate AI too early,
+you actually basically don't solve anything.
+And you, you,
+you still just kind of had the same risk ultimately,
+but you don't understand the systems well enough.
+You will the thing into being,
+but you haven't figured out how to control it.
+Yeah.
+We don't know what it actually is yet.
+Like, like there are new things coming out all the time
+and like casting AI completely differently
+than we thought of just six or nine months ago.
+And I think that that,
+like all the innovation that's going to happen
+at the application layer is going to cause things
+to move in and out of the models in different ways.
+And like we're, we, you know,
+we, we thought up until last week,
+I think that, you know,
+text prompts and text coming back
+was going to be the best way to interact with.
+You know, the Jeff shows that Jeff is so good.
+And then I'll talk about that.
+I think why you find it so remarkable.
+Yeah.
+Well, okay.
+So, so the way I think about it is so, okay.
+So LLMs were kind of text in text out, right?
+They generate texts and, and, and they came from chat, right?
+It was to communicate with a human.
+And we spent the last few years trying to take this thing
+that spits out text and cram it into a traditional program.
+Right.
+And, but traditional programs don't really speak text.
+Right.
+And so then you end up doing this janky thing
+where you're like in the prompt, you're like,
+here's this email,
+but like the thing is generating texts
+and it kind of ignores it.
+And it's just been super janky.
+And so what Jeff basically said is that, listen,
+you know, generating the text on the,
+is a very expensive thing, but it's also kind of,
+you know, it's more complicated than you need.
+So why don't we, we will, we'll, we'll read text
+and we'll have all of that kind of knowledge
+to read the text,
+but then rather than generating text,
+which is very expensive, we will just,
+if you give us a set of options,
+we'll choose the best option.
+We can do it incredibly,
+we can do it incredibly fast, incredibly cheaply,
+but also we can do it with much more accuracy
+because we can train just for this.
+And so for all of the use cases that are not talking to,
+to like a chatbot,
+but are actually trying to put it in traditional software,
+this is a great fit.
+And so this has probably been the fastest adoption
+of an AI model since chat GPT.
+It's just been remarkable
+because we're all primed for this.
+I just want to pile on this one,
+I can't tell you how much I love seeing this exact form
+of innovation, because what it does is it does the thing
+that's bugged me from the very beginning,
+which is there's been no user study ever that shows
+interacting with a computer using full natural language
+is efficient.
+It's like literally always the least efficient way,
+and it's very simple, and it's just like, ask yourself,
+how many people are really, really good at asking questions?
+And immediately, that's like less than half the people
+can ask a good question in a meeting.
+And then how often do you look at the answer
+and get really frustrated before it's finished,
+but you have to pay all this money to watch
+the seven paragraphs come out and then apologize
+that it's only a little bit?
+And so that's one, like having a different model.
+And then the other, of course, is my favorite,
+which is the output of it is designed
+for probabilistic programming.
+And so instead of saying like,
+is this a customer service question,
+then route to customer service,
+otherwise route to general help desk or whatever,
+it's like, well, this is 80% customer service.
+And that's exactly simulation.
+And it turns out there's like 50 years
+of computer science research in literally
+like probabilistic if statements.
+And so suddenly, the coolest place to be in computer science
+is gonna be in probabilistic programming,
+which was like all of computer science
+in the 1960s and 70s.
+So it was basically, because all of computers
+started with doing math, and it was all simulation.
+So it was like, let's launch a missile and hit that target,
+but it's windy, but wind isn't constant.
+So like, let's model the wind and decide
+where to put the thrusters in order to do the art.
+And so most programming through like, say, 1970,
+before it got to accounting, was probabilistic.
+And then we ruined everything.
+No, in accounting, there's no probability in accounting.
+But most programming was basically
+this modeling kind of thing.
+And so most programming language design
+was trying to figure out how to put probability
+into if statements or into while loops.
+Like, do this until something happens,
+maybe most of the time.
+And like, so my first CS class,
+like the very second assignment or so
+was a simulation about like waiting in line at a store.
+And I didn't know it at the time.
+I actually looked all this up when I was reading about JED,
+which was like, the whole thing was,
+my professor was like, wrote the book
+called The Theory of Simulation in like 1960.
+And I just didn't know that,
+because it was kind of died by the 80s,
+because it was all replaced by hyper.
+And so this notion of probabilistic,
+and that slide deck you shared about the future,
+though it's different about language models and stuff
+that you said was super good.
+Oh, Halper Flank's one was phenomenal.
+Thomas Dalton.
+It was a great deck.
+But the part that I felt was missing was that like,
+oh, wait, this is not all new.
+Like all of computer science was this probabilistic stuff.
+And so it's gonna be very interesting
+to dust off all of that work,
+because it's exactly what's going on.
+An if statement now is if X percent, not if always.
+And so the way that JED worked is just to like,
+you basically, it's a custom programming language almost,
+which is here's the prompt, come back with a percentage.
+And then you put that in the if statement.
+But the consequential thing is like,
+finally we have a way to integrate these language models
+into a traditional software.
+And I think it's kind of funny,
+because you asked the question,
+why haven't the labs done this, right?
+And it's kind of like, not an indictment,
+but a reflection on how they think.
+Like they're trying to create beings and beings speak.
+If you're trying to create God speaks
+in natural languages or whatever,
+where this is really about something
+that's for traditional software,
+which is kind of not the direction that they've been taken.
+But one of the reasons the uptick has been so dramatic
+is because a lot of us software people
+have been trying to integrate these models into software.
+It just hasn't.
+So even before you get to the probabilistic,
+like if I want a language model to drive an if statement,
+it's really hard today.
+With this model, it makes it much, much, much easier.
+And then of course,
+this could change the nature of software fundamentally
+to make it more stochastic.
+Well, I think, absolutely.
+And I think that what's so cool
+is that it is happening outside the models,
+because that's what I think is just going to happen,
+which is the center of innovation has just moved.
+And it's just, and now people need to,
+like, it turns out that the-
+Outside of the lab.
+Right, the platform providers,
+basically reach a critical, a point of critical mass
+where the innovation stops happening at the platform layer.
+And then, Apple, there's this famous expression
+in the Apple community called Sherlocking,
+where Apple looks around
+and the things from the outside world become features
+and people complain.
+But that's sort of how the innovation works,
+because once you're a platform,
+you're overwhelmed, no matter how many people you add,
+you're overwhelmed with just keeping the thing running
+and compatibility and stuff like that.
+And so I think that this is the signal
+that now people have figured out
+that there's innovation to be done-
+That's awesome.
+To the model, but outside the model.
+Yep, yep.
+Guys, thanks for coming, this was a great episode.
+Okay, great.
+Thanks for listening to this episode of the A16Z podcast.
+If you liked this episode,
+be sure to like, comment, subscribe,
+leave us a rating or review,
+and share it with your friends and family.
+For more episodes, go to YouTube, Apple Podcasts,
+and Spotify.
+Follow us on X, at A16Z,
+and subscribe to our Substack at a16z.substack.com.
+Thanks again for listening,
+and I'll see you in the next episode.
+As a reminder, the content here
+is for informational purposes only.
+It should not be taken as legal business, tax,
+or investment advice,
+or be used to evaluate any investment or security,
+and is not directed at any investors
+or potential investors in any A16Z fund.
+Please note that A16Z and its affiliates
+may also maintain investments
+in the companies discussed in this podcast.
+For more details, including a link to our investments,
+please see A16Z.com forward slash disclosures.

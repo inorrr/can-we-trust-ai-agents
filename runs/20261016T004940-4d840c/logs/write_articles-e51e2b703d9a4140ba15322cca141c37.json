@@ -1,0 +1,133 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 2,
+  "started_at": "2026-10-16T00:52:50.016045Z",
+  "finished_at": "2026-10-16T00:54:28.886804Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.086356,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_05ff59b6905f4590016ad17566d8c487d28692965cea5768b0",
+      "usage": {
+        "input_tokens": 30265,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1559,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 31824
+      },
+      "cost_usd": 0.0146004,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/10e9189b078142bc96d45a98f06e019b-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0ef94dbbc6873be7016ad17577987487d2b7484badb6a14e6a",
+      "usage": {
+        "input_tokens": 17877,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1815,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 19692
+      },
+      "cost_usd": 0.0100548,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/173660c4660e450483fc599219a32b38-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_087086bd61c27303016ad1758513b487d29f7468f66620b097",
+      "usage": {
+        "input_tokens": 19749,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1632,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 21381
+      },
+      "cost_usd": 0.0105108,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/a493c54c1747426da33cd791653719b2-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_04b653a2e69c92c4016ad17596cc6087d2b27b28f4fc41b4cd",
+      "usage": {
+        "input_tokens": 33316,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1782,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 35098
+      },
+      "cost_usd": 0.016177600000000004,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/3ef2c4b6c5ba4fdda4b1d66564956748-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_000c42a077016ce9016ad175a3c5f487d2ab94072a39707af7",
+      "usage": {
+        "input_tokens": 35142,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2028,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37170
+      },
+      "cost_usd": 0.017301600000000004,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/5477d13b2cfd478da057c79f2f8515bf-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_026ddce9e1b344fc016ad175b1774887d2af7b47d29b5b1948",
+      "usage": {
+        "input_tokens": 35389,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2222,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 37611
+      },
+      "cost_usd": 0.0177108,
+      "status": "completed",
+      "request_path": "runs/20261016T004940-4d840c/model_calls/965462946790479eb03f38c3e3d20ded-request.json"
+    }
+  ],
+  "errors": [
+    "Draft length or claim coverage remains invalid after two bounded revisions"
+  ]
+}

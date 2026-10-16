@@ -1,0 +1,14 @@
+{
+  "stage": "store_get",
+  "status": "completed",
+  "input_count": 0,
+  "output_count": 1,
+  "started_at": "2026-10-12T17:22:03.663464Z",
+  "finished_at": "2026-10-12T17:22:03.663939Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

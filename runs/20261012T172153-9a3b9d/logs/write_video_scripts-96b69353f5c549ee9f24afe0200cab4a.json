@@ -1,0 +1,38 @@
+{
+  "stage": "write_video_scripts",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:59:05.547960Z",
+  "finished_at": "2026-10-12T18:00:55.793274Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.0368576,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_01c529afc00e9eb3016acd1ff17a4887d297c6b67c46ff5f37",
+      "usage": {
+        "input_tokens": 36144,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 14000,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 50144
+      },
+      "cost_usd": 0.0368576,
+      "status": "incomplete",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/4cccc3dce3044676a0ccf9dffd230671-request.json"
+    }
+  ],
+  "errors": [
+    "OpenAI returned incomplete response"
+  ]
+}

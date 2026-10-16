@@ -1,0 +1,12 @@
+{
+  "run_id": "20261015T233005-policy-v2",
+  "started_at": "2026-10-15T23:30:05.861755Z",
+  "as_of_date": "2026-10-12",
+  "mode": "policy_comparison",
+  "previous_run_id": "20261012T172153-9a3b9d",
+  "comparison_executed_at": "2026-10-15T23:30:05.861755Z",
+  "evidence_cohort_run_id": "20261012T172153-9a3b9d",
+  "evidence_cohort_as_of_date": "2026-10-12",
+  "fresh_collection": false,
+  "note": "Controlled policy comparison using the exact retained eligible source versions. Does not satisfy a second-day live collection."
+}

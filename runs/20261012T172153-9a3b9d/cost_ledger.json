@@ -1,0 +1,554 @@
+{
+  "limit_usd": 5.0,
+  "entries": [
+    {
+      "id": "d3dfb476a9d549e0b2d68c40c5740a7a",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.061,
+      "cost_usd": null,
+      "state": "unknown",
+      "at": "2026-10-12T17:22:11.789505Z"
+    },
+    {
+      "id": "d284f329afd142c880029f4547d4a3fb",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:22:22.549661Z"
+    },
+    {
+      "id": "ef6ed69e906440c9a849a0ce35a895d0",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:22:48.177855Z"
+    },
+    {
+      "id": "dc794f5ecfa64ff2be40207b80686d48",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:23:15.456707Z"
+    },
+    {
+      "id": "d8c636e965744f80a1e689762e7cc75c",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:23:38.862577Z"
+    },
+    {
+      "id": "f443a70b291540f9873bc3c3777fb065",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:24:04.892980Z"
+    },
+    {
+      "id": "264539aab1904a4996efdd23425a42a4",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.012999000549316407,
+      "cost_usd": 0.012999000549316407,
+      "state": "estimated",
+      "at": "2026-10-12T17:24:27.488496Z"
+    },
+    {
+      "id": "00e8d8daa3844a7e828c23ebc820d1cf",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:24:39.328746Z"
+    },
+    {
+      "id": "5cb79020ed374b1d808d4e72b6ac60e6",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:24:57.666642Z"
+    },
+    {
+      "id": "c97a382394d94d9da8deebe3cadef62f",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:25:21.756641Z"
+    },
+    {
+      "id": "3455d3bbf8d94534bcf02c67af41d15b",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:25:45.762384Z"
+    },
+    {
+      "id": "c38f397d346040cdbd733ac1fe2cdf60",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.04657699890136719,
+      "cost_usd": 0.04657699890136719,
+      "state": "estimated",
+      "at": "2026-10-12T17:26:08.779077Z"
+    },
+    {
+      "id": "79b68527080e43879b4114b77af48b32",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:26:34.339981Z"
+    },
+    {
+      "id": "1695fcdcf8d84c80805afb75ce65daa4",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:27:08.217709Z"
+    },
+    {
+      "id": "ee9b7c46276e433d89136f3bc19b8f65",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:27:41.030108Z"
+    },
+    {
+      "id": "bf10000be9e24c87a09f900384e5ee3d",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:28:13.398146Z"
+    },
+    {
+      "id": "fa27fe25b1b6496d8cc85cc7798cc6c5",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.061,
+      "cost_usd": null,
+      "state": "unknown",
+      "at": "2026-10-12T17:28:46.561981Z"
+    },
+    {
+      "id": "3ba0e65a72664055a09f8b6f7b11450c",
+      "stage": "select_items",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0374424,
+      "cost_usd": 0.0374424,
+      "state": "estimated",
+      "at": "2026-10-12T17:28:47.469748Z"
+    },
+    {
+      "id": "eb3350ab171147318f3ed1fd2e36248d",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:32:05.291372Z"
+    },
+    {
+      "id": "2c969db53da149adb0b2083d96fb13aa",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:32:32.762115Z"
+    },
+    {
+      "id": "384356452104419894c15f9dd0a331cc",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:33:01.153755Z"
+    },
+    {
+      "id": "4764c66143c44ba2b574f62975b0bc00",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.0041340000152587895,
+      "cost_usd": 0.0041340000152587895,
+      "state": "estimated",
+      "at": "2026-10-12T17:33:30.475169Z"
+    },
+    {
+      "id": "874764c085794f529af4a727baac01ba",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:33:39.265891Z"
+    },
+    {
+      "id": "79b7a98dd2c54842b3e82d44d48d272c",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:34:11.753392Z"
+    },
+    {
+      "id": "cc16acfbeb7543dcb33e1df27f94c0be",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.05999400024414063,
+      "cost_usd": 0.05999400024414063,
+      "state": "estimated",
+      "at": "2026-10-12T17:34:35.187373Z"
+    },
+    {
+      "id": "7bcb3e57265b4b2b8e3cfe8c13fed2e9",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:35:06.356128Z"
+    },
+    {
+      "id": "0590fd51606a4090a7e5198f40804ca0",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.059996997070312495,
+      "cost_usd": 0.059996997070312495,
+      "state": "estimated",
+      "at": "2026-10-12T17:35:40.346250Z"
+    },
+    {
+      "id": "1adcd5a1dc9c41ba9daea1cccdda4736",
+      "stage": "extract_content",
+      "model": "whisper-1",
+      "reserved_or_estimated_usd": 0.03597799987792969,
+      "cost_usd": 0.03597799987792969,
+      "state": "estimated",
+      "at": "2026-10-12T17:36:18.100098Z"
+    },
+    {
+      "id": "b2fcf1b723024ef6b31046146a60b645",
+      "stage": "select_items",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.056454800000000006,
+      "cost_usd": 0.056454800000000006,
+      "state": "estimated",
+      "at": "2026-10-12T17:37:34.719390Z"
+    },
+    {
+      "id": "a7060a9fa3224410862c70c69ce59c88",
+      "stage": "create_briefs",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.06096040000000001,
+      "cost_usd": 0.06096040000000001,
+      "state": "estimated",
+      "at": "2026-10-12T17:38:04.028751Z"
+    },
+    {
+      "id": "2ab4e6c65c2b46408b91851263960912",
+      "stage": "select_items",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.055774800000000006,
+      "cost_usd": 0.055774800000000006,
+      "state": "estimated",
+      "at": "2026-10-12T17:39:53.075415Z"
+    },
+    {
+      "id": "29d41ab8da0b49e29bdb98c9a6c5ecd1",
+      "stage": "create_briefs",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.07586920000000001,
+      "cost_usd": 0.07586920000000001,
+      "state": "estimated",
+      "at": "2026-10-12T17:40:18.209917Z"
+    },
+    {
+      "id": "77c66282524e4f7c8c20fa8233075ee9",
+      "stage": "create_briefs",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0465288,
+      "cost_usd": 0.0465288,
+      "state": "estimated",
+      "at": "2026-10-12T17:44:53.865984Z"
+    },
+    {
+      "id": "7860787334b94003b41565d3ea871acf",
+      "stage": "create_briefs",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.048262400000000004,
+      "cost_usd": 0.048262400000000004,
+      "state": "estimated",
+      "at": "2026-10-12T17:45:27.280719Z"
+    },
+    {
+      "id": "71c44b6b418147f6957b46abe238af1d",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0170916,
+      "cost_usd": 0.0170916,
+      "state": "estimated",
+      "at": "2026-10-12T17:49:01.428952Z"
+    },
+    {
+      "id": "a77cc589c56d4664b934ec991fc90d2c",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017902400000000002,
+      "cost_usd": 0.017902400000000002,
+      "state": "estimated",
+      "at": "2026-10-12T17:49:20.535098Z"
+    },
+    {
+      "id": "6424fecf5c40436fbacfe0ceadf91972",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017098400000000003,
+      "cost_usd": 0.017098400000000003,
+      "state": "estimated",
+      "at": "2026-10-12T17:52:29.444383Z"
+    },
+    {
+      "id": "aa6983e3067f45bd87796f95ec2cffe4",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0174308,
+      "cost_usd": 0.0174308,
+      "state": "estimated",
+      "at": "2026-10-12T17:52:41.775731Z"
+    },
+    {
+      "id": "ee16abe8dac842c29b859c2770fa14e0",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017028,
+      "cost_usd": 0.017028,
+      "state": "estimated",
+      "at": "2026-10-12T17:55:53.894340Z"
+    },
+    {
+      "id": "054b72048fe7455491d93381bd848722",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0172212,
+      "cost_usd": 0.0172212,
+      "state": "estimated",
+      "at": "2026-10-12T17:56:05.880300Z"
+    },
+    {
+      "id": "7ff5ce50a97c4490b1246285a55f681d",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017140799999999998,
+      "cost_usd": 0.017140799999999998,
+      "state": "estimated",
+      "at": "2026-10-12T17:56:52.710771Z"
+    },
+    {
+      "id": "6cc1f626fe9c47029fae2cfea779e8ed",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.016768,
+      "cost_usd": 0.016768,
+      "state": "estimated",
+      "at": "2026-10-12T17:57:00.942493Z"
+    },
+    {
+      "id": "ea92036107ba4b92b1fbba60fa05499c",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017156400000000002,
+      "cost_usd": 0.017156400000000002,
+      "state": "estimated",
+      "at": "2026-10-12T17:57:04.777028Z"
+    },
+    {
+      "id": "a3a4d2bfe7a24460b0316f24dc44a787",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.07576120000000001,
+      "cost_usd": null,
+      "state": "unknown",
+      "at": "2026-10-12T17:57:13.328741Z"
+    },
+    {
+      "id": "40c831ba2c0d46bfa80bd6dd383d9e1f",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0193296,
+      "cost_usd": 0.0193296,
+      "state": "estimated",
+      "at": "2026-10-12T17:57:21.680110Z"
+    },
+    {
+      "id": "85371163aebc435781eb20f3dcc7915f",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.020354000000000004,
+      "cost_usd": 0.020354000000000004,
+      "state": "estimated",
+      "at": "2026-10-12T17:57:36.652447Z"
+    },
+    {
+      "id": "221528cecdb74c69b7f7bc7ff2d1cade",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0168016,
+      "cost_usd": 0.0168016,
+      "state": "estimated",
+      "at": "2026-10-12T17:57:52.788443Z"
+    },
+    {
+      "id": "7b78c092285448b7aa2e09b01ab44d9d",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.087654,
+      "cost_usd": null,
+      "state": "unknown",
+      "at": "2026-10-12T17:57:53.409208Z"
+    },
+    {
+      "id": "0fe69c98e7024d24bb768cadf7d54f9c",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017056400000000003,
+      "cost_usd": 0.017056400000000003,
+      "state": "estimated",
+      "at": "2026-10-12T17:58:02.326028Z"
+    },
+    {
+      "id": "f1012dd453164ebf98434cdba155dfe3",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0188992,
+      "cost_usd": 0.0188992,
+      "state": "estimated",
+      "at": "2026-10-12T17:58:26.101884Z"
+    },
+    {
+      "id": "1cc79f3e0c804b46b40cb5639e182a5b",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0194576,
+      "cost_usd": 0.0194576,
+      "state": "estimated",
+      "at": "2026-10-12T17:58:42.372150Z"
+    },
+    {
+      "id": "f2aab346dede4b9ea6781a1da5cf6718",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.019149200000000005,
+      "cost_usd": 0.019149200000000005,
+      "state": "estimated",
+      "at": "2026-10-12T17:58:55.702278Z"
+    },
+    {
+      "id": "211492e829624b0ea03570c0c8dbf57b",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0176708,
+      "cost_usd": 0.0176708,
+      "state": "estimated",
+      "at": "2026-10-12T17:59:12.650032Z"
+    },
+    {
+      "id": "2adb07eecaaf45aabee2aa9c9254fcae",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0368576,
+      "cost_usd": 0.0368576,
+      "state": "estimated",
+      "at": "2026-10-12T17:59:13.149105Z"
+    },
+    {
+      "id": "5e3fe6580c6147ebb1cfc0295d3ebd3a",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.018067600000000003,
+      "cost_usd": 0.018067600000000003,
+      "state": "estimated",
+      "at": "2026-10-12T17:59:28.483228Z"
+    },
+    {
+      "id": "d46c11ca167c4c1c84646f9570555c7b",
+      "stage": "write_articles",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.018061599999999997,
+      "cost_usd": 0.018061599999999997,
+      "state": "estimated",
+      "at": "2026-10-12T17:59:41.167366Z"
+    },
+    {
+      "id": "9f6c1707eee94a9391c2fb0c05323786",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0182768,
+      "cost_usd": 0.0182768,
+      "state": "estimated",
+      "at": "2026-10-12T18:01:39.452563Z"
+    },
+    {
+      "id": "f92b357b5588406198339de4630d81bf",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.018604799999999998,
+      "cost_usd": 0.018604799999999998,
+      "state": "estimated",
+      "at": "2026-10-12T18:01:51.472866Z"
+    },
+    {
+      "id": "c2477a64cd6943c4a69aaad874c3d9bb",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017264400000000003,
+      "cost_usd": 0.017264400000000003,
+      "state": "estimated",
+      "at": "2026-10-12T18:02:05.370080Z"
+    },
+    {
+      "id": "f7c68bde259e48549fac050fa33f0e38",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017799600000000002,
+      "cost_usd": 0.017799600000000002,
+      "state": "estimated",
+      "at": "2026-10-12T18:02:17.747932Z"
+    },
+    {
+      "id": "8f00d0ab0fca489b81666e179006fd51",
+      "stage": "write_video_scripts",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.017192800000000005,
+      "cost_usd": 0.017192800000000005,
+      "state": "estimated",
+      "at": "2026-10-12T18:02:28.654812Z"
+    }
+  ]
+}

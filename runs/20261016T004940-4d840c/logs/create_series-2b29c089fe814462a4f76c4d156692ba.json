@@ -1,0 +1,16 @@
+{
+  "stage": "create_series",
+  "status": "failed",
+  "input_count": 0,
+  "output_count": 0,
+  "started_at": "2026-10-16T00:51:27.036451+00:00",
+  "finished_at": "2026-10-16T00:55:31.106563Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": [
+    "One or more component stages failed or were incomplete; inspect component receipts"
+  ]
+}

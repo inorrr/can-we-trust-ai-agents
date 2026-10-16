@@ -1,0 +1,38 @@
+{
+  "stage": "select_items",
+  "status": "failed",
+  "input_count": 13,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:28:47.114099Z",
+  "finished_at": "2026-10-12T17:29:07.983686Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.0374424,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_00e3c4d4970f7069016acd18d01a5c87d28acf02c0aba29804",
+      "usage": {
+        "input_tokens": 85666,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1985,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 87651
+      },
+      "cost_usd": 0.0374424,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/f6a1436cf3df4d25b959a89bb9e4a095-request.json"
+    }
+  ],
+  "errors": [
+    "Editorial output must cover every eligible item exactly once"
+  ]
+}

@@ -1,0 +1,531 @@
+The AI people are making it impossible for anybody to understand what they've done.
+And they're using words like, well, the AI failed to be aligned.
+Okay, what does that mean?
+What it means is there was a bug in the software.
+When Word ate your file and deleted all your content,
+we didn't think that demons had taken over Word and made it do things against the will of man.
+But software doesn't do what it's supposed to do, it's a bug.
+We're just talking about, we're in DC right now at the FAI office.
+Out at FAI?
+Yeah, we're at FAI.
+And we've been talking about all of the new regulation and new laws that have been proposed
+for the AI industry over the last few weeks, including the Stop Rogue AI Act,
+which was proposed by Josh Gottheimer of New Jersey.
+And you're offering some thoughts on this.
+What's your take?
+Well, sure.
+Well, right now we're in the maximal phase of, let's just throw tons of legislation out there.
+So real quick, I'm just going to take you back.
+I can't believe we're going to take you this far back.
+This is going to seem like infinity years ago in another dimension of time and space.
+But in 1983, I was a freshman in college.
+And one day in the fall, there were two people in our 100-person dorm that had computers,
+me and another guy.
+And that was it.
+And there was nothing to do with them.
+Nobody knew why we had them, blah, blah, blah.
+And one day, literally, G-Men in suits crashed our dorm, confiscated the other guy's computer,
+and arrested him.
+Wow.
+And it turns out, fast forward a little bit, blah, blah, blah, he was part of a hacker group,
+one of the very, very, very first hacker groups called the Inner Circle or the Inner Ring.
+And they were hacking this thing called GTE Telemail.
+GTE was a big communications company.
+And it was one of the very first online mail services that you used a modem and you dialed
+up and you could just mail other people on Telemail.
+Who were some of the clients of it?
+The United States government and NASA in particular.
+And immediately after this series of arrests, they arrested people all over the country in
+this coordinated sting operation.
+I mean, imagine, I'm a freshman in college and they just carted this guy off with his IBM PC
+XT that weighed 50 pounds and a giant monitor.
+And it was like a freshman in the same, we were in the computer science majors together.
+And it turns out that there was no crime committed.
+It wasn't illegal to do what they were doing.
+There was no law that they were violating.
+Oh, wow.
+Suddenly there were all of these hearings and in the hearings in Congress, they're literally
+playing clips of the new movie War Games and explaining like what this is happening.
+Like these kids in high school are going to take over the government and launch all the
+nuclear weapons.
+And that's what really happened.
+And it took several years before the first federal crime statute for hacking.
+And Ronald Reagan signed that.
+And that's what became illegal.
+And then five years later, four years after that, I'm at my first homecoming and I go
+upstairs to the computer science building to go see my old advisor like the day before.
+And there's a press conference going on.
+It was the weirdest thing I'd ever seen, a press conference in the middle of Ithaca,
+New York.
+And it turns out that was the press conference to announce that they've found a computer
+worm called the Morris computer worm that originated from Cordell.
+And that was the very first prosecution under this criminal act.
+And so this stuff for me goes way, way back.
+So I'm very comfortable with all the Congress people posing legislation and having hearings
+being hysterical.
+This all repeated itself in 1998 with the I love you worm, which I managed the team
+that created the situation that made that worm possible and all of this stuff.
+But right now we have this huge problem and well-intentioned people like Congressman
+Geim are getting on TV in the morning and saying, we need a bill to stop rogue AI agents
+and the Stop Rogue AI Act.
+And you listen to all of this and you realize we have a huge problem.
+And this huge problem is just making my head explode, which is the AI people are making
+it impossible for anybody to understand what they've done.
+And they're using words like, well, the AI failed to be aligned.
+Okay, what does that mean?
+What it means is there was a bug in the software.
+The software did not do what we thought it would do.
+But when you say misaligned, it puts all these characteristics on AI that it was thinking
+of doing something, that it had to make a moral judgment, that it had rules and guidelines
+to do things.
+And it's like, wow, we had bugs in spreadsheets where they didn't do what we thought that
+they were supposed to do.
+And we didn't sit around in a circle and pray to the gods of alignment that the spreadsheet
+would do math correctly.
+When Word ate your file and deleted all your content, we didn't think that demons had
+taken over Word and made it do things against the will of man.
+And this is a huge, huge problem because it's literally nonsense what they're saying.
+There was a bug.
+Like when you, you, you, what software doesn't do what it's supposed to do, it's a bug.
+Now there's different kinds of software.
+There's simulations and there's models and there's emulation.
+There are all these ways to decide what to do.
+And just because it decides to do it not based on step one, step two, step three, if A or
+B do step five, but just based on statistics, that doesn't mean you eliminate the idea that
+it should do what you want it to do.
+It means your statistics are wrong.
+It means that you guess a word that should come next that shouldn't have come next.
+And that's just a bug in your product.
+And we've got to get to a place where people are talking about software like it's software.
+You know, in full self-driving blows through a stop sign because the software interpreted
+the stop sign as like a Christmas tree.
+We don't sit around and say, oh, it was not aligned with the idea of, you know, December
+holiday seasons and road signs.
+We actually say it's a bug and it's a very dangerous bug because that stop sign means
+something.
+And Tesla built in all of these tools and Waymo.
+They have all this telemetry, all these diagnostics, all these extra cameras, all of these
+things that you don't normally put in a spreadsheet, but you put in software that life
+depends on it and it's making mathematical statistical decisions on things.
+What I see is the AI models are still in the research project phase.
+They don't have all the tools and all the telemetry and all of the things that you would
+normally put in software doing important things.
+And I lived through this.
+We went through a whole 20 years of building software where we actually never really knew
+why it crashed.
+We it just crashed and we went, oh, software crashes.
+Let's make a list of all the places it crashes and fix the top 10.
+And then one day we said, well, why we literally did say this.
+Someone said, why don't we just write a program such that when it crashes, it uses this new
+Internet thing to tell us that it crashed.
+And suddenly we had telemetry and suddenly we had more bugs to fix that we knew it ever
+existed.
+Like we literally went from like, we're shipping.
+We have no bugs.
+We're ready to go to, oh, my God, we have enough bugs that if we just stopped work, we
+would just fix bugs for the rest of time.
+Yeah.
+I want to shout out our sponsor, Lovable.
+You know, the app you've been meaning to build the internal tool, side project or product
+you'd otherwise lose a weekend to with Lovable, you get software you can ship today.
+That includes an editable code base you can inspect and change.
+Plus two-way GitHub sync.
+Lovable also handles the backend and infrastructure, including managed Postgres, auth, storage,
+hosting, payments and more.
+So you don't have to wire it all up yourself.
+And through Lovable's MCP server, you can create and deploy your project directly from
+the agents you already use.
+Turn ideas into software people love with Lovable.
+Lovable.dev.
+Now onto the episode.
+So when you talk about an AI pause, of course, they should slow down.
+They should stop adding things and go and add the telemetry, the tools, the logging,
+the step-by-step debugging, all of the stuff that you would add if your software did anything
+at all important and you cared if it did it right.
+And you read all the bug reports from OpenAI that they just put out yesterday, and it's
+super clear that they just, they don't know.
+And so they, like, if somebody had handed me a bug report, and this is, here's a real
+bug.
+In, in 1987, the first version of Excel for Windows had a bug in it that somewhere on
+the disk, it wrote the word send dogs.
+Thus, S-I-N-D-O-G-S in a particular Windows set.
+file. It was like Excel got taken over by demons and it wrote this word to the
+file. Nobody knew where that word came from. Everybody was looking through all
+the Excel source code to find the word send dogs and to figure out and no one
+could find it. And so somebody said you know we're gonna do we're just gonna run
+Excel brutally non-stop doing a million different things for days on end. And so
+one tester wrote a script that created graph after graph after graph and
+printed it on an old-school dot matrix printer. And it turns out if you did that
+for like two days it would write send dogs to that one spot in the file.
+And it turns out it was all contextual and it was based on how much memory the
+computer had, how long it ran for, and what printer and device driver was all
+in use. We could have very easily just concluded it did this. The Excel brain
+decided to print send dogs somewhere. But we didn't. We actually went and debugged
+it and then we put in all of this telemetry. The first thing I learned when
+I got to Microsoft was how to figure out buffer overruns and memory allocation
+and to put that code into every product. And then there was a version you know
+what happens is there's a version of Excel that runs that has all this extra
+logging and we ran that internally for the beta tests. And so all of that
+infrastructure I have no idea these models how much is there. I can just tell
+you reading the reports that OpenAI put out it's not enough. They're just
+they're not grown up yet as as platforms for doing what they do. And they've got
+to figure that out. And they should just do that. They should just wake up and say
+we have to go do that. And they shouldn't be like saying okay well
+Congress needs to meet and order us through legislation to fix our software.
+Like literally this is there. It's like you have one job making software that
+works. That's it. That's the job. And if you're gonna be worth a trillion dollars
+then that turns out to be a really important part of your job. Again done
+ranting. Ask me a question. No I really like the like historical perspective
+that you bring to it. I also think like you know the tendency to talk about
+alignment as if it's impossible or as if it's this like mythical impossible task
+is really damaging. Because you have to solve alignment. Yeah like whatever that
+means. I mean I think that that will happen. Like I don't think that it's like
+this unanswerable question or like domain that's impossible. But I do think
+that what's different even if you use the bug analogy is that the total
+addressable surface area of the bug is obviously more catastrophic in theory. Or
+like this is the least surface area that the bug will like ever have. And then in
+the future you know it just becomes like wider and wider. One of the things that
+that I mean again all of these things it I was young once and and I remember
+sitting in a room going yeah our software it's not like mainframe
+software. And all the little IBM people were looking at us saying you know your
+software is really crappy. Like all of your like you Windows is just like crap
+compared to these IBM things that run all the banks and all the all the
+airlines and all the power plants. And for a long time we kept looking at them
+saying no you don't understand. We're different. This is all new and cool and
+we run on 64k not one megabyte and we cost $5,000 not five million dollars. And
+we had all of these reasons to claim that our bugs were okay in terms of bugs.
+And it turns out all we had to do is grow up and watch people use Excel to
+decide how to planes fly. Use Word to file briefs in the Supreme Court. Use
+PowerPoint to present the Challenger space shuttle failure. But like once you
+use your tools for that. And so one of the things that happened was in 1998 the
+very first internet worm happened. So that the internet then is like people
+using America Online and sending email and stuff like that. There's very little
+corporate email. Nobody but it turns out there was just enough that if somebody
+used Outlook, Word and internet email all together they could grind the entire
+United States and world economy to a halt. And that's literally what happened
+in March of 1998. I wake up and there's a reporter hyperventilating on the phone
+to me saying I love you I love you I love you. And it turns out that was a
+virus that got created that then spread over the internet as a worm. And the next
+day the headlines were 12 billion dollars worth of damage the US economy
+in one day. And so that I did that like I and we had to have a meeting and go
+we're gonna pause the development of Outlook right now until we figure this
+out. Nobody had imagined you could create a bug that in 12 hours could do 12
+billion dollars worth of damage. But we did it. Woohoo! Yay team. And and so of course
+the more people use a system the more damage you can do if it goes awry. But
+that's like table stakes. That's like what you literally signed up to do. The
+fact that it caught you off guard or that wow we're so popular we can't
+figure it out so quickly because we're still competing. That's like too bad
+tough luck that one of the most famous tech journalists every time there was a
+bug in in our software and I would do what he would just make fun of me
+because I would say well it's not so straightforward or it's hard or it's
+complicated. He would just look at me and just say Sonofsky that's why you paid
+the big bucks. You know it's not an option. It's not a thing that you get to
+appeal to some higher authority whether it's the United States Congress or you
+know in from you know embedded testers or some other third-party evaluators or
+just like laws of nature. That's not any option. Like this is a tool that human
+beings are building that other humans are using. You've got to figure out how
+to make it work or not sell it. Like those are your two choices. And since
+it's made by people we're fully capable of figuring out how to make it work. It
+wasn't handed down. It didn't show up like an obelisk of 1x4x9 that
+we're supposed to figure out how does it do what it does and what's its source
+of power. It like literally it had no code then it had a little bit of code
+and a few users and a lot of code and a lot of users. We've all been there
+through this. It is pure insanity to just sit and argue that higher
+powers need to be summoned in order to fix this. And alignment has this very
+specific problem which is the only way to be aligned is to have a very large
+set of rules that say what alignment is. You can do this. You can't do that. This
+is safe. This is unsafe. And it turns out software it's well understood that if you
+don't put too many constraints on a system then its system won't work. And
+you'll have an infinite number of unintended side effects. And so you
+can't really just say we're going to align because you're gonna have to come
+up with a rule. And then when you come up with this rule someone's gonna say yeah
+but what about this case? Then you're gonna add another rule. And you know what
+that starts to look like? It starts to look like Google and all the work that
+they constantly have to do to decide how to present search results. And it turns
+out that's really really really hard. And they've spent 20 years and thousands of
+people full-time forever working on that. And so that's what they've just signed
+up for the next level version of it because they're also making up the
+result. Not just searching through the node entities for the results but
+they're also synthesizing it. So they're gonna have to invent a whole bunch of
+stuff but none of it has to do there's no law that's gonna make it invented.
+Like it's just all on them. I'm a little wound up. We'll continue monitoring right
+after this message from our sponsors. 11 labs AI that communicates at human level
+across every channel and modality 11 labs dot IO slash MTS scale your startup
+on neon millions of developers and startups have already chosen neon for
+their back-end start on the free plan or get up to $100,000 in credits for your
+startup at neon comm slash MTS special thanks to our sponsor Kong the AI
+connectivity platform connect API's LLM agents and systems with serious security
+and governance Kong HQ comm finally prove what your AI investment is worth
+with Laird and head to Laird in comm today to start measuring your AI's
+bottom line Mongo DB trusted to run critical applications by 75% of the
+fortune 100 the intelligent data platform for the era apply today for
+access to up to $15,000 in Atlas credits dedicated technical support and exclusive
+events and go-to-market opportunities Mongo DB comm how similar do you think
+AI alignment is to like y2k in that it's you know it's something of a real
+problem it was addressed proactively by companies operating under their own
+incentives and then it ended up not becoming a global catastrophic risk well
+there's there's a cause and effect there there was a lot of worry by
+professionals and then there was a lot of taking of responsibility by
+professionals and then nothing bad happened that that's there's a direct
+causal relationship like the fact that we rented generators and campers and
+moved computers into secure bunkers like that led to the fact that nothing
+happened but we've nobody legislated actually there were actually weird
+regulations about y2k compliance but most of it was industry drafted like we
+all there was a cross consortium of banks and of insurance companies and all
+sorts of people to to generate the rules and what meant we had something that
+open AI needs to get together with
+with all the model frontier people and the labs.
+And they just need to have much better reporting.
+The reporting that they did yesterday,
+sure, it's a great first step,
+but that is not anywhere near the kind of reporting
+that you need as a third party to understand what went on.
+And so like what happened with computer viruses
+way back in the 1990s
+was the Computer Security Research Center
+at Carnegie Mellon got together with industry,
+with people at NIST in Washington
+and created what you see today.
+Every time you see CVE in a computer vulnerability report,
+you see all of this information.
+What versions of software, what are the context of it?
+What are the steps required?
+What other software is impacted?
+What other bugs are related?
+What is it a derivative of?
+Like you see all of this information.
+So we need a version of that for AI.
+And maybe yesterday giving them the benefit of the doubt
+was a first step.
+It still felt more like marketing covering for the event
+because it still said a lot of stuff like,
+well, we are looking into this,
+but we presume at this point,
+okay, well then don't write anything.
+Like go figure out,
+like the Federal Aviation Administration
+does not like announce on the day of some awful event.
+We presume what happened.
+They just keep their mouth shut until they know.
+And then when they know,
+they really, really, really tell you
+with a tick-tock down to the partial second
+with all of the telemetry of the instruments,
+they tell you every single step,
+every single actor,
+every single environmental condition
+that led to the incident.
+And that's what CVEs are.
+And they need to do way, way more
+because these are defects in the software.
+And it's just so critical to wrap our heads around the fact
+that that's what's going on.
+It's not divine intervention.
+It's not, oh my God,
+we need to spark up more of the left brain of this thing
+to make it more rational.
+It's silly.
+Yeah, so I guess with the Stop Rogue AI Act,
+for example,
+do you think that these are people in Congress
+having like imperfect information
+about what's going on in the labs?
+And so then they tend to use this
+like more anthropomorphic language,
+or do you think it's more intentional?
+Like they know that this is what will like
+spark a reaction in the people
+or we'll get some sort of like populist support?
+Well, it's really important right now
+to not ascribe ill motives to people
+when they're doing stuff
+because that's not gonna bring everybody together
+to solve the problem.
+I have no idea why anybody is doing anything.
+I actually think, look,
+AI was 1958 at the Dartmouth Summer Conference.
+They started talking about human brains
+and consciousness and all this stuff.
+So there's a long history
+in all fields of academic research
+to basically be too cutesy about things.
+Like, cause that's how you get attention in academia.
+Your paper has a cool title and all that.
+So it's no surprise that something
+that had its roots in academia
+carried forth all of this terminology.
+But it's just time to stop.
+Like the terminology is driving people apart
+because people presume a vast amount of stuff
+when you use metaphor or allegory or anthropomorphism.
+And it's just not true.
+This stuff is not acting
+with any of the verbs that it says.
+It's goal-seeking in this old school technical sense
+that, oh, well, there's a curve
+and it's trying to get to the min or to the max.
+And that's goal-seeking in those terms.
+But it's not when a normal person
+like a congressman hears goal-seeking.
+They think of a person trying to get an A in college.
+And then when they hear cheating,
+they hear that they did the thing you're not allowed to do.
+And when they hear secretly coordinating,
+they think of spies invading a country.
+They don't think of two pieces of software with a semaphore,
+which is just another form of secretly coordinating.
+Yeah, all of the language
+is absolutely destroying this dialogue.
+And look, the very beginning of the word computer virus
+was kind of a fluke,
+but it turns out it happened at exactly the wrong time.
+It happened right when AIDS and HIV were a thing.
+So virus was like in the air everywhere.
+So if you listen to the computer hearings
+from the 1980s about the first viruses,
+they're scary in that context
+because people are literally thinking about death,
+but that's not at all what was happening.
+It was a metaphor that one person in graduate school
+picked up on from a friend.
+Right.
+And in fact, they were smart enough back then,
+he wrote his thesis on computer viruses
+and it basically proved
+there's nothing you can do about them.
+They're here forever,
+which of course is a metaphor
+to how people thought about HIV at the same time.
+But he also couldn't prove it
+because his university wouldn't let him run the test
+because he was writing a paper
+about how dangerous all this software was
+and they wouldn't let him use the computer to run the test.
+Right.
+Yeah, I mean, it seems like viruses
+are actually like kind of avoidable.
+I mean, obviously like there'll always be some viruses
+out there at all times,
+but we still get to use computers normally
+almost all the time
+without worrying about everything we have getting hacked.
+Yes.
+And why is that?
+Because we have defensive cybersecurity.
+Because, yes, because industry said,
+well, this is bad, we can't allow this to happen.
+And so Apple did a fantastic,
+they did such a good job that they made up TV commercials.
+I'm a Mac and I'm a PC.
+And they told people that Macs are better
+because they get fewer viruses,
+not by some fluke of nature,
+but because they did a whole bunch of work on the Mac
+to prevent viruses from happening.
+And it just so happened it was work
+that was very, very difficult for Windows to do
+because of the business model of Windows
+and all this other stuff.
+Yes.
+Yeah, I remember the like, I'm a Mac, I'm a PC,
+like video ad thing.
+Yes.
+And that PC guy was like sneezing and coughing.
+He was like, oh, I have this terrible virus going around.
+And then the Mac guy's like, oh, I think I'll be,
+I think I'll be good, you know, Macs don't get viruses.
+I think what's funny is that-
+You know, this hurts, those hurt me physically,
+thinking about those commercials, but yes.
+Yeah.
+Yeah, like alignment is like
+just a really advanced capability eventually.
+Or alignment will mean like the same thing
+as like very deeply competent team
+that's able to tackle very, very like high level issues.
+Absolutely.
+You can think of it like we went through a phase
+where we couldn't figure out what a bug was.
+I know that sounds crazy,
+but like some people wanted a bug to only mean
+like you lost your data.
+Other people were like, well, maybe your data's fine,
+but the computer still crashes.
+And we eventually decided a bug just means the software
+and the computer didn't do what you wanted it to do.
+You weren't happy with the result.
+And we allowed customers to tell us any bug in the world
+and we put them all in a database.
+And so suddenly we went from only the bugs we could find
+to the bugs of the universe.
+And we went from thousands to hundreds of thousands,
+but then we put about the severity and a priority.
+And so a severity meant like at one, you lost your data
+and at three, well, it was flaky
+and a priority meant must fix this.
+And so we walked around the whole lingo of our hallway
+was SEV1, PRI1.
+And IBM, the old people at IBM looked at us and said,
+we've been doing this since 1965.
+Like, where have you guys been?
+And we were all proud of ourselves for inventing it.
+And so much of what's going on now
+is we're in the throes of inventing this way to talk about
+what is a bug in a stochastic statistical system.
+But it turns out software has been doing that for years.
+The weather forecast is exactly this.
+It's a statistical model of what's going on.
+And it depends on a bunch of inputs and a bunch of outputs
+and it's wrong.
+And when the weather forecast is wrong,
+like when they predict a hurricane path
+and then the hurricane goes through in a different way,
+the weather people all get together and look at the model
+and talk about the bugs in the model
+that led to the incorrect forecast.
+They don't appeal to Zeus and say,
+please Zeus, tell us why our weather was wrong.
+Right.
+Well, we're coming up on time,
+but it's been great having you on.
+Yeah, we'll need more sort of fresh perspectives
+like this in AI world.
+Yeah, totally.
+Especially from like software veterans.
+Yeah, I'm quite sympathetic to this view.
+We need software, but we also need like the AI people
+to listen to the operational security people
+because everything that happened with Hugging Face
+and OPAI, it was an OPSEC failure.
+There was no intelligence, no consciousness,
+nothing but a pure OPSEC failure.
+And they need to treat it like that
+and they need to talk about it like that.
+Because otherwise we're going to get legislation
+no one is going to be happy with
+because they don't understand what our industry is saying.
+Thanks guys.
+Well, totally.
+Seems like we're on our way there.
+Thanks so much, Steven.
+Steven, thanks so much for coming on MTS.
+A huge thanks to MTS sponsors.
+Blitzy, autonomous software development
+for enterprise code bases.
+Ship 5X faster.
+Blitzy.com.
+AdQuik, make your brand a billboard.
+Out of home advertising as easy to scale as digital.
+AdQuik.com.
+Arena, measuring AI performance in the real world.
+Arena.ai.
+Support for the show comes from VCX,
+the public ticker for private tech.
+The U.S. stock market started history's greatest wave
+of wealth creation from factory workers
+Detroit to farmers in Omaha, anyone could own a piece of the great American companies.
+But today, our most innovative companies are staying private longer, which means everyday
+Americans are missing out. Until now. Introducing VCX, a public ticker for private tech. Visit
+GetVCX.com for more info. That's GetVCX.com. Carefully consider the investment material
+before investing, including objectives, risks, charges, and expenses. This and other information
+can be found in the innovations fund prospectus at GetVCX.com. This is a paid sponsorship.

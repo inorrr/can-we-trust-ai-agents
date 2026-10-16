@@ -1,0 +1,65 @@
+# The Security Demo Ends. The Work Begins.
+
+*Evidence as of 2026-10-12; editorial revision 2026-10-15*
+
+A security demonstration has a satisfying shape. An attack arrives, a warning appears, and the threat is stopped. The audience can see the ending. A production system offers no such courtesy: there is another request, another integration, another change to a permission nobody remembers granting.
+
+That is where I would judge the tools now being offered for AI agents. Their promise deserves attention. Their effectiveness needs evidence beyond the demonstration.
+
+Salt Security describes runtime protection extending across the agent’s path, from prompts to tools and connected systems [03-c1]. Its own Manus disclosure illustrates why that breadth matters: an agent working through email reportedly executed attacker-supplied code inside its sandbox [03-c2]. The practical appeal is clear. Security needs to meet an action where it can still be prevented, rather than merely identify troubling language somewhere upstream.
+
+But a useful description of the problem does not validate the proposed product. This collection contains vendor assertions, not an independent comparison establishing detection rates, missed attacks, or operational costs. A buyer should be able to ask what was tested, what slipped through, and whether another team could reproduce the result. Those questions ought to shape procurement before a polished dashboard does.
+
+Willow’s reported Okta Cross App Access integration offers another concrete starting point. Its “Run as the Initiator” feature ties tool calls to the initiating user, alongside features for viewing agent activity [03-c3]. Attribution gives an investigation somewhere to begin. It also raises a question the feature announcement cannot settle: should an agent inherit everything its user can do?
+
+My answer would be to require a narrower justification. Knowing whose identity appears on a request does not establish that the request belongs within the task. Teams should examine identity, task scope, and approval requirements together. The announcement supplies a proposed mechanism; evidence of reduced harm would require a different kind of evaluation.
+
+AISI’s account of stronger evaluation security is useful precisely because it describes overlapping measures: restrictions, sandboxing, monitoring, and governance [03-c4]. Its discussion of reasoning-based oversight also exposes a tempting shortcut. Reading an agent’s apparent thoughts can feel like getting backstage access to its intentions. That feeling should not be mistaken for complete visibility.
+
+An agent may act without an informative reasoning trace, and a monitor may be evaded. These possibilities do not establish that evasion is easy in every deployment. They do mean a team needs to know how its safeguards behave when that window goes dark. Inspect tool calls. Enforce permissions. Test whether a dangerous action is blocked when the explanation accompanying it sounds entirely reasonable.
+
+The CSIS podcast discusses proposals for third-party evaluators with extensive access to AI labs [03-c5]. Such access could support scrutiny, but the proposal alone cannot establish independence. Who chooses the evaluator, what they can inspect, and what they can disclose are questions worth asking before treating oversight as an accomplished fact.
+
+The consequences also extend beyond the organization buying the tools. Wikimedia’s disclosure describes burdens on shared infrastructure and volunteer work [03-c6]. A deployment review should therefore ask what load and unwanted activity an agent can impose on other services. A successful task can still leave someone else paying for the cleanup.
+
+The a16z discussions and Green’s commentary offer reasons to bring established software-security habits into this debate [03-c7]. I find that direction persuasive. Concrete questions about access, isolation, incident response, and recovery give teams something to examine today. They need not settle every dispute about future alignment to begin doing that work.
+
+Still, established language is no guarantee of established effectiveness. An “audit trail” needs useful records; “runtime protection” needs measurable behavior; “independent review” needs demonstrable freedom to criticize. Each label should lead to a test, an accountable owner, and a decision about what happens when the test fails.
+
+That is the practical agenda I take from these sources: examine the controls, demand evidence appropriate to their claims, and revisit decisions as the system changes [03-c8]. The collection is too limited to rank products or promise safety. It is sufficient to identify questions a vendor presentation should leave open for investigation.
+
+The demonstration earns our interest. What happens after it should earn our confidence.
+
+
+### References
+- Salt Security, [Your AI Transformation Needs Runtime Protection for the Whole Agentic Estate](https://salt.security/blog/your-ai-transformation-needs-runtime-protection-for-the-whole-agentic-estate) (2026-10-08) [03-c1]
+- Salt Labs, [How We Hijacked an AI Agent With a Single Email](https://salt.security/blog/how-we-hijacked-an-ai-agent-with-a-single-email) (2026-10-01) [03-c2]
+- Willow, [The Willow October 2026 Digest](https://withwillow.ai/blog/october-2026-digest) (2026-10-11) [03-c3]
+- UK AISI, [Building a more secure environment for evaluating dangerous capabilities](https://www.aisi.gov.uk/blog/building-a-more-secure-environment-for-evaluating-dangerous-capabilities) (2026-10-01) [03-c4]
+- CSIS podcast, [AI Safety Goes Mainstream](https://traffic.megaphone.fm/CSIS4736062018.mp3) (2026-09-17) [03-c5]
+- Wikimedia Foundation, [OpenAI “rogue” agent activities found on Wikimedia projects](https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/) (2026-10-05) [03-c6]
+- Andreessen Horowitz (a16z) & Steven Sinofsky, [How Do You Secure a World of AI Agents?](https://a16z.simplecast.com/episodes/aaron-levie-steven-sinofsky-martin-casado-how-do-you-secure-a-world-of-ai-agents-v8Q401cc) and [AI Safety Language Is Destroying the Debate](https://www.youtube.com/watch?v=71m6Ue_u5jU) (2026-09) [03-c7]
+- Combined evidence and synthesis [03-c8]
+
+---
+
+**Claim IDs referenced:** [03-c1], [03-c2], [03-c3], [03-c4], [03-c5], [03-c6], [03-c7], [03-c8]
+
+
+### Source notes
+
+- [03-c1] [Your AI Transformation Needs Runtime Protection for the Whole Agentic Estate](https://salt.security/blog/your-ai-transformation-needs-runtime-protection-for-the-whole-agentic-estate) — salt-security; published 2026-10-08; evidence version `9e0eabb01601`.
+- [03-c2] [How We Hijacked an AI Agent With a Single Email](https://salt.security/blog/how-we-hijacked-an-ai-agent-with-a-single-email) — salt-security; published 2026-10-01; evidence version `7104e94fda1c`.
+- [03-c3] [The Willow October 2026 Digest](https://withwillow.ai/blog/october-2026-digest) — willow; published 2026-10-11; evidence version `b216dbba17dd`.
+- [03-c4] [Building a more secure environment for evaluating dangerous capabilities](https://www.aisi.gov.uk/blog/building-a-more-secure-environment-for-evaluating-dangerous-capabilities) — uk-aisi; published 2026-10-01; evidence version `42c724cdfee7`.
+- [03-c5] [AI Safety Goes Mainstream (28:25)](https://traffic.megaphone.fm/CSIS4736062018.mp3#t=1705) — csis; published 2026-09-17T04:00:00Z; evidence version `c34ccd2adffb`.
+- [03-c6] [OpenAI “rogue” agent activities found on Wikimedia projects](https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/) — wikimedia-foundation; published 2026-10-05T17:02:58Z; evidence version `e7007b1e8547`.
+- [03-c7] [Aaron Levie, Steven Sinofsky & Martin Casado: How Do You Secure a World of AI Agents? (1:04)](https://a16z.simplecast.com/episodes/aaron-levie-steven-sinofsky-martin-casado-how-do-you-secure-a-world-of-ai-agents-v8Q401cc#t=64) — a16z; published 2026-09-26T10:00:00Z; evidence version `c582c811d60e`.
+- [03-c7] [AI Safety Language Is Destroying the Debate | Steven Sinofsky (0:00)](https://www.youtube.com/watch?v=71m6Ue_u5jU&t=0) — a16z; published 2026-09-20T19:00:08Z; evidence version `0382ed0f3379`.
+- [03-c7] [Is sandboxing sufficient to contain rogue agents?](https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/) — matthew-green; published 2026-09-30T18:30:13Z; evidence version `19b43b7bbb8e`.
+- [03-c8] [OpenAI Agents Hack Australian Government and Trump Rejects Global Governance at UNGA (9:53)](https://traffic.megaphone.fm/CSIS1869671005.mp3#t=593) — csis; published 2026-10-01T04:00:00Z; evidence version `881e9dbf4439`.
+- [03-c8] [Building a more secure environment for evaluating dangerous capabilities](https://www.aisi.gov.uk/blog/building-a-more-secure-environment-for-evaluating-dangerous-capabilities) — uk-aisi; published 2026-10-01; evidence version `42c724cdfee7`.
+- [03-c8] [Is sandboxing sufficient to contain rogue agents?](https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/) — matthew-green; published 2026-09-30T18:30:13Z; evidence version `19b43b7bbb8e`.
+- [03-c8] [Your AI Transformation Needs Runtime Protection for the Whole Agentic Estate](https://salt.security/blog/your-ai-transformation-needs-runtime-protection-for-the-whole-agentic-estate) — salt-security; published 2026-10-08; evidence version `9e0eabb01601`.
+- [03-c8] [The Willow October 2026 Digest](https://withwillow.ai/blog/october-2026-digest) — willow; published 2026-10-11; evidence version `b216dbba17dd`.
+- [03-c8] [AI Safety Goes Mainstream (15:42)](https://traffic.megaphone.fm/CSIS4736062018.mp3#t=942) — csis; published 2026-09-17T04:00:00Z; evidence version `c34ccd2adffb`.

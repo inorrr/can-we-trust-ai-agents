@@ -1,0 +1,14 @@
+{
+  "stage": "write_video_scripts",
+  "status": "completed",
+  "input_count": 3,
+  "output_count": 1,
+  "started_at": "2026-10-12T18:01:22.376201Z",
+  "finished_at": "2026-10-12T18:01:30.056642Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

@@ -1,0 +1,18 @@
+{
+  "stage": "extract_content",
+  "status": "completed",
+  "input_count": 15,
+  "output_count": 15,
+  "started_at": "2026-10-12T17:37:31.650873Z",
+  "finished_at": "2026-10-12T17:37:34.081538Z",
+  "tools": [
+    "requests",
+    "trafilatura",
+    "yt-dlp"
+  ],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

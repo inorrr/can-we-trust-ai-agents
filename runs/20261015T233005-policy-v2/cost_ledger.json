@@ -1,0 +1,14 @@
+{
+  "limit_usd": 5.0,
+  "entries": [
+    {
+      "id": "1365cad5a47a4dacb6cd8f45aa14dfab",
+      "stage": "select_items",
+      "model": "gpt-4.1-mini",
+      "reserved_or_estimated_usd": 0.0553244,
+      "cost_usd": 0.0553244,
+      "state": "estimated",
+      "at": "2026-10-15T23:30:13.978556Z"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+The Willow October 2026 Digest
+The Willow October Digest: Let Agents Act as Your People. See Every Call.
+This month is about seeing more, spending less, and scaling background agents. In the orgs already running them, adoption is moving fast, because the agents do the work. Safely.
+Around that: new integrations with Okta and Databricks, deeper visibility into what agents actually do, tighter identity around who they act for, and new controls over cost and access. A few of these started as requests you sent us.
+We're also on the road. Our CTO Shalev Shalit took the stage in Toronto last week, and Stockholm is next. Details are further down.
+Tool-call logs you can actually read: Tool Call Flow No more reading raw JSON to work out what an agent did. Hit "View call flow" on any tool call in Monitor and the whole journey lays out visually: the user who made the call, every guard and approval it passed through, the MCP server, and back. Click any step for timing and token counts. The next time someone asks what an agent did and why, the answer is a picture, not a log export. Explore Tool Call.
+Agents that follow the rules you already set: Willow joins Okta Cross App Access. Willow is one of 50+ global AI leaders joining Okta Cross App Access (XAA), the new protocol for how AI connects to enterprise tools. With XAA, agents follow your existing Okta security rules automatically. Fewer authentications, a full audit trail, and no manual approval behind every connection. If Okta is already your identity backbone, your agents now plug straight into it.
+Your questions, your dashboard: Customizable Dashboards. The CISO and the head of AI enablement don't ask the same questions of the same data. Now each can build the dashboard that answers theirs. Drag views and widgets into place, resize them, and add widgets from your saved analytics dashboards or new ones built from a query. AI Adoption and Security stay as starter views you can rename, duplicate, or replace. Build your dashboard.
+Agents act as the person, not a shared account: Run as the initiator. A shared credential makes every agent action look like it came from the same account, with the same access. Set a background agent's integration to "Run as the initiator" and every call runs as the person who triggered it, using their own account instead. If they haven't connected the integration yet, the agent asks them first, right in Slack for Slack agents. One agent for the whole team, each person's own permissions. Set up Slack for Background Agents.
+No browser left outside policy: Willow Guard on Edge Willow Guard is now listed on Microsoft Edge Add-ons, so Edge users get the same browser protection already available on Chrome. Whichever browser your people open, the same guardrails come with it. Guard your team on Edge.
+Also shipped this month: A Git proxy for coding agents, config deployments for Claude Code and Claude Desktop, risk scoring for shadow AI, support for AWS-hosted MCP servers, and SharePoint and Purview conditions in guards. Our partnership with Databricks AI Gateway is also live.
+Around the campfire
+17 badges in our first season on G2. High Performer, Users Love Us, Best Support, Easiest To Do Business With, all voted by the people who actually use Willow. Badges are nice. Customer love is nicer, so thank you to every customer who left a review. See the full list.
+New to watch and read
+If you missed them, here's what we published this month.
+- Willow for Chrome: Govern Claude in Chrome in 30 Seconds. Video with Eyal, 1 min, Sep 15, 2026.
+- How to Stop Autonomous AI Agents From Going Rogue with Eyal Ben Ezra. Podcast, 27 min, Sep 30, 2026.
+- Static Keys, Non-Deterministic Agents: Willow's CEO on Why AI Broke Access Control. Eyal Ben Ezra, Oct 1, 2026.
+- Claude in Chrome Security: The Enterprise Guide (2026). Shalev Shalit, Sep 16, 2026.
+The pattern, if you're tracking it
+Agents already act on their own in Willow, with a matching control for every capability. October answers the two questions that come right after: who is this agent acting as, and what did it just do?
+Run as the initiator and Okta Cross App Access answer the first. Every call carries a real person's identity and follows the rules your identity team already set. Tool Call Flow and Customizable Dashboards answer the second, in a view you can read without opening a log file. That's what lets agents move from a pilot to the work itself: not more trust, more proof.
+Questions on anything above? Reach out, we read every one.
+Background Agents in the Enterprise
+Most teams can spin up an agent. Few can deploy one their security team signs off on. Here's the framework that does both.
+FAQS
+Everything you need to get your Basecamp running.
+Blog
+What's happening on the AI agent frontier.
+Documentation
+Get up and running fast.
+Rollout playbook
+How to deploy across your org without chaos.
+Your agents are already in the wild.
+Give them a Basecamp. Go from AI chaos to AI work, in minutes.

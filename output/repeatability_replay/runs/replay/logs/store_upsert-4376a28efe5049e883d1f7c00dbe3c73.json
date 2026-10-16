@@ -1,0 +1,14 @@
+{
+  "stage": "store_upsert",
+  "status": "completed",
+  "input_count": 1,
+  "output_count": 1,
+  "started_at": "2026-10-16T00:52:40.421046Z",
+  "finished_at": "2026-10-16T00:52:40.422180Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

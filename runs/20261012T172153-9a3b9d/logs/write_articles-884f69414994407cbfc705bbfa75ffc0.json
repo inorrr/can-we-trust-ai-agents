@@ -1,0 +1,14 @@
+{
+  "stage": "write_articles",
+  "status": "completed",
+  "input_count": 3,
+  "output_count": 1,
+  "started_at": "2026-10-12T18:00:57.326148Z",
+  "finished_at": "2026-10-12T18:01:02.532126Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "piece_id": "01",
+    "title": "Before You Hand Over the Keys",
+    "markdown": "output/substack_ready/article_01.md",
+    "html": "output/substack_ready/article_01.html",
+    "youtube_url": "https://youtu.be/9VNTJX5ZNDU",
+    "source_draft": "runs/20261012T172153-9a3b9d/articles/01.md",
+    "public_reference_mapping": {
+      "01-c1": {
+        "references": [
+          1
+        ]
+      },
+      "01-c2": {
+        "references": [
+          1
+        ]
+      },
+      "01-c3": {
+        "references": [
+          1
+        ]
+      },
+      "01-c4": {
+        "references": [
+          1
+        ]
+      },
+      "01-c5": {
+        "references": [
+          2
+        ]
+      },
+      "01-c6": {
+        "references": [
+          1
+        ]
+      },
+      "01-c7": {
+        "references": [
+          3
+        ]
+      },
+      "01-c8": {
+        "references": [
+          1,
+          4,
+          3
+        ]
+      },
+      "01-c9": {
+        "references": [
+          1,
+          4,
+          3
+        ]
+      }
+    },
+    "status": "prepared draft; not published; no final approval inferred",
+    "body_word_count": 709
+  },
+  {
+    "piece_id": "02",
+    "title": "A Locked Door Should Not Depend on Good Manners",
+    "markdown": "output/substack_ready/article_02.md",
+    "html": "output/substack_ready/article_02.html",
+    "youtube_url": "https://youtu.be/spFtXYdjddA",
+    "source_draft": "runs/20261012T172153-9a3b9d/articles/02.md",
+    "public_reference_mapping": {
+      "02-c1": {
+        "references": [
+          1
+        ]
+      },
+      "02-c2": {
+        "references": [
+          2
+        ]
+      },
+      "02-c3": {
+        "references": [
+          3
+        ]
+      },
+      "02-c4": {
+        "references": [
+          4,
+          5
+        ]
+      },
+      "02-c5": {
+        "references": [
+          6
+        ]
+      },
+      "02-c6": {
+        "references": [
+          7,
+          4,
+          2
+        ]
+      },
+      "02-c7": {
+        "references": [
+          2
+        ]
+      },
+      "02-c8": {
+        "references": [
+          2
+        ]
+      },
+      "02-c9": {
+        "references": [
+          1
+        ]
+      }
+    },
+    "status": "prepared draft; not published; no final approval inferred",
+    "body_word_count": 664
+  },
+  {
+    "piece_id": "03",
+    "title": "The Security Demo Ends. The Work Begins.",
+    "markdown": "output/substack_ready/article_03.md",
+    "html": "output/substack_ready/article_03.html",
+    "youtube_url": "https://youtu.be/SKrj_CnHfjI",
+    "source_draft": "runs/20261012T172153-9a3b9d/articles/03.md",
+    "public_reference_mapping": {
+      "03-c2": {
+        "references": [
+          1
+        ]
+      },
+      "03-c3": {
+        "references": [
+          2
+        ]
+      },
+      "03-c4": {
+        "references": [
+          3
+        ]
+      },
+      "03-c6": {
+        "references": [
+          4
+        ]
+      },
+      "03-c7": {
+        "references": [
+          5,
+          6,
+          7
+        ]
+      },
+      "03-c8": {
+        "references": [
+          8,
+          3,
+          7,
+          2
+        ]
+      }
+    },
+    "status": "prepared draft; not published; no final approval inferred",
+    "body_word_count": 623
+  }
+]

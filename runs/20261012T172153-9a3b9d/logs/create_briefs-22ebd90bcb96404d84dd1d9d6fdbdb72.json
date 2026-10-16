@@ -1,0 +1,38 @@
+{
+  "stage": "create_briefs",
+  "status": "failed",
+  "input_count": 15,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:38:03.756626Z",
+  "finished_at": "2026-10-12T17:38:58.972975Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.06096040000000001,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_08243c6da01d7ec3016acd1afc6fd087d2bed8cdc1573b4688",
+      "usage": {
+        "input_tokens": 134049,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 4588,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 138637
+      },
+      "cost_usd": 0.06096040000000001,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/35b0dc1a3a984a4db035b307b3597055-request.json"
+    }
+  ],
+  "errors": [
+    "Piece 01 has fewer than three independent publishers"
+  ]
+}

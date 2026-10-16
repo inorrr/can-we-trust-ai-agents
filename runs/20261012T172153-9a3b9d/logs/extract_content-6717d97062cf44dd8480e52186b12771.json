@@ -1,0 +1,81 @@
+{
+  "stage": "extract_content",
+  "status": "completed",
+  "input_count": 15,
+  "output_count": 15,
+  "started_at": "2026-10-12T17:31:56.237839Z",
+  "finished_at": "2026-10-12T17:36:37.487776Z",
+  "tools": [
+    "requests",
+    "trafilatura",
+    "yt-dlp"
+  ],
+  "models": [
+    "whisper-1"
+  ],
+  "cost_usd": 0.520075989151001,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.0041340000152587895,
+      "audio_seconds": 41.34000015258789,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.05999400024414063,
+      "audio_seconds": 599.9400024414062,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.059996997070312495,
+      "audio_seconds": 599.969970703125,
+      "status": "completed"
+    },
+    {
+      "model": "whisper-1",
+      "cost_usd": 0.03597799987792969,
+      "audio_seconds": 359.7799987792969,
+      "status": "completed"
+    }
+  ],
+  "errors": []
+}

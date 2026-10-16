@@ -1,0 +1,38 @@
+{
+  "evidence_as_of": "2026-10-12",
+  "editorial_revision_date": "2026-10-15",
+  "generated_video": false,
+  "scripts": [
+    {
+      "piece_id": "01",
+      "spoken_words": 482,
+      "estimated_minutes_at_140_wpm": 3.44,
+      "estimated_minutes_at_160_wpm": 3.01,
+      "timing_status": "estimate; actual read-through required",
+      "basis": "Narration only; excludes claim markers, visual directions, descriptions, and sources"
+    },
+    {
+      "piece_id": "02",
+      "spoken_words": 509,
+      "estimated_minutes_at_140_wpm": 3.64,
+      "estimated_minutes_at_160_wpm": 3.18,
+      "timing_status": "estimate; actual read-through required",
+      "basis": "Narration only; excludes claim markers, visual directions, descriptions, and sources"
+    },
+    {
+      "piece_id": "03",
+      "spoken_words": 508,
+      "estimated_minutes_at_140_wpm": 3.63,
+      "estimated_minutes_at_160_wpm": 3.17,
+      "timing_status": "estimate; actual read-through required",
+      "basis": "Narration only; excludes claim markers, visual directions, descriptions, and sources"
+    }
+  ],
+  "student_wording_review": {
+    "date": "2026-10-15",
+    "script_01": "accepted: it's good",
+    "scripts_02_03": "accepted: both scripts are good.",
+    "scope": "wording and spoken style only",
+    "final_publication_approval": false
+  }
+}

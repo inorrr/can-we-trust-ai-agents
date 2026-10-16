@@ -1,0 +1,30 @@
+Why runtime protection from prompt to action is essential
+AI Detection and Response (AI-DR), also called AI runtime security, is quickly becoming a must-have. Prompt injection, jailbreaks, and data leakage are real, and the prompt is often where attacks begin.
+But the prompt is only the first hop. In an agentic enterprise, a single instruction can trigger activity well beyond the LLM, all the way to your business systems and data. That's why Salt treats AI-DR as one essential layer of AG-DR (Agentic Detection and Response): runtime protection for the whole agentic path, from prompt to action.
+The prompt is now a path into the business
+A user, a service, or an attacker sends a command to an agent orchestrator. The orchestrator calls an LLM, reaches out to MCP servers for the tools it needs, and those tools call APIs that run your business systems. At the end of the chain is your data: customers, money, and records. Each of those hops is its own attack surface. With the sophistication of agent-based attacks we see today, you can not assume the attacker will just sit at the front door and stay at the prompt.
+Why AI-DR matters, and why it isn't enough alone
+On the surface, LLM runtime detection looks like table stakes now. Here's what we built, and how we expanded it across the full agentic path. Salt's AI-DR capabilities detect:
+- Direct prompt injection, where the malicious instruction arrives in the request itself
+- Indirect prompt injection, where it's hidden in a document, email, or tool response the model reads
+- Jailbreak attempts to push the model past its constraints
+- Unsafe model behavior, such as ignoring instructions or operating outside its system prompt configuration
+- Sensitive data exposure, to prevent data leakage through the model
+Responses work in three ways: asynchronously, out of band, or inline in real time through an AI gateway integration or application instrumentation.
+But securing the LLM prompt alone leaves the AI action path unprotected. Consider a multi-phase attack:
+- An attacker works a billing agent in the support chat, phrasing requests to get it talking about how it does its job.
+- The agent reveals a refund tool on an exposed MCP server, along with details of the API behind it.
+- The attacker leaves the agent entirely and calls that API directly, where no prompt-layer control is watching.
+- Unauthorized refunds follow. What began as a malicious prompt is now an attack on a payment system.
+A tool that only sees the prompt catches, at best, step one. The rest of the campaign happens where it can't see.
+AG-DR: runtime protection for the whole agentic estate
+AG-DR protects LLM prompts and every connection along the full agentic path: agent interfaces, LLMs, MCP servers, APIs, and agent actions. It pairs with AG-SPM, which discovers and governs the posture of your AI agents and the LLMs, MCPs, and APIs they depend on. Together, they let you answer both sets of questions: what exists and what's at risk, and whether any of it is under attack right now.
+Combining runtime protection in one platform means:
+- Full path visibility. See an attack from prompt to MCP to API to data, correlated to a single attacker.
+- Prompt-to-API correlation. Connect a prompt injection to the MCP call and API exploit it triggered, in the same graph.
+- Posture context. Salt sees downstream context that LLM-only security providers are blind to.
+- Shadow LLM discovery. Most tools require you to declare where LLM traffic is. Salt finds the usage you didn't know about.
+- One platform, not two vendors. You don't have to buy a standalone AI-DR tool plus an agentic security platform and stitch the two together yourself.
+Protect the path, not just the prompt
+Behind every AI transformation is an API nervous system, and Salt has focused on that for years. Your AI transformation needs protection on every connection in your agentic ecosystem, working as one.
+See your attack surface and how to protect it. Request a demo.

@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://blog.cryptographyengineering.com/xmlrpc.php">
+
+<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>Is sandboxing sufficient to contain rogue agents? &#8211; A Few Thoughts on Cryptographic Engineering</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.parentNode.removeChild( dom_node ); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[ i ].parentNode.removeChild( dom_nodes[ i ] );
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+					+ '//' + window.location.hostname
+					+ '&postid=9463'
+					+ '&is_singular=1';
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly9ibG9nLmNyeXB0b2dyYXBoeWVuZ2luZWVyaW5nLmNvbQ%3D%3D"
+		+ "&wpcomid=9549322"
+		+ "&time=" + Math.floor( Date.now() / 1000 );
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//fonts-api.wp.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A Few Thoughts on Cryptographic Engineering &raquo; Feed" href="https://blog.cryptographyengineering.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="A Few Thoughts on Cryptographic Engineering &raquo; Comments Feed" href="https://blog.cryptographyengineering.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="A Few Thoughts on Cryptographic Engineering &raquo; Is sandboxing sufficient to contain rogue&nbsp;agents? Comments Feed" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+	<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-2-1' href='/wp-content/mu-plugins/jetpack-plugin/sun/modules/related-posts/related-posts.css?m=1770915482i&cssminify=yes' type='text/css' media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;overflow-wrap:normal!important;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/common.min.css */
+</style>
+<style id="wp-block-quote-inline-css">
+.wp-block-quote{box-sizing:border-box;overflow-wrap:break-word}.wp-block-quote.is-large:where(:not(.is-style-plain)),.wp-block-quote.is-style-large:where(:not(.is-style-plain)){margin-bottom:1em;padding:0 1em}.wp-block-quote.is-large:where(:not(.is-style-plain)) p,.wp-block-quote.is-style-large:where(:not(.is-style-plain)) p{font-size:1.5em;font-style:italic;line-height:1.6}.wp-block-quote.is-large:where(:not(.is-style-plain)) cite,.wp-block-quote.is-large:where(:not(.is-style-plain)) footer,.wp-block-quote.is-style-large:where(:not(.is-style-plain)) cite,.wp-block-quote.is-style-large:where(:not(.is-style-plain)) footer{font-size:1.125em;text-align:right}.wp-block-quote>cite{display:block}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/quote/style.min.css */
+</style>
+<style id="wp-block-heading-inline-css">
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:var(--wp--style--block-background-padding,1.25em 2.375em)}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/heading/style.min.css */
+</style>
+<style id="wp-block-image-inline-css">
+.wp-block-image>a,.wp-block-image>figure>a{color:inherit;display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports (mask-image:none) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;mask-position:center;mask-repeat:no-repeat;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:rgba(90,90,90,.25);border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto rgba(90,90,90,.25);outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:rgba(90,90,90,.25);border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .wp-lightbox-close-button{align-items:center;cursor:pointer;display:flex;font-family:inherit;gap:8px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 4px;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .wp-lightbox-close-button:focus,.wp-lightbox-overlay .wp-lightbox-close-button:hover,.wp-lightbox-overlay .wp-lightbox-close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .wp-lightbox-close-button:has(.wp-lightbox-close-text:not([hidden])) .wp-lightbox-close-icon svg{height:1em;width:1em}.wp-lightbox-overlay .wp-lightbox-close-icon svg{display:block}.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{align-items:center;bottom:16px;cursor:pointer;display:flex;font-family:inherit;gap:4px;justify-content:center;line-height:1;min-height:40px;min-width:40px;padding:0 8px;position:absolute;z-index:2000002}.wp-lightbox-overlay .wp-lightbox-navigation-button-next[hidden],.wp-lightbox-overlay .wp-lightbox-navigation-button-prev[hidden]{display:none}@media (min-width:960px){.wp-lightbox-overlay .wp-lightbox-navigation-button-next,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{bottom:50%;transform:translateY(-50%)}}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-next:not(:hover):not(:active):not(.has-background),.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:focus,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:hover,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:not(:hover):not(:active):not(.has-background){background:none;border:none;padding:0 8px}.wp-lightbox-overlay .wp-lightbox-navigation-button-next:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg,.wp-lightbox-overlay .wp-lightbox-navigation-button-prev:has(.wp-lightbox-navigation-text:not([hidden])) .wp-lightbox-navigation-icon svg{display:block;height:1.5em;width:1.5em}.wp-lightbox-overlay .wp-lightbox-navigation-button-prev{left:calc(env(safe-area-inset-left) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-button-next{right:calc(env(safe-area-inset-right) + 16px)}.wp-lightbox-overlay .wp-lightbox-navigation-icon svg{vertical-align:middle}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:2000001}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/image/style.min.css */
+</style>
+<style id="wp-block-list-inline-css">
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:var(--wp--style--block-background-padding,1.25em 2.375em)}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/list/style.min.css */
+</style>
+<style id="wp-block-paragraph-inline-css">
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:var(--wp--style--block-background-padding,1.25em 2.375em)}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/paragraph/style.min.css */
+</style>
+<style id="wp-block-library-inline-css-extra">
+.has-text-align-justify {
+	text-align:justify;
+}
+.has-text-align-justify{text-align:justify;}
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+
+<style id="classic-theme-styles-inline-css">
+.wp-block-button__link{background-color:#32373c;border-radius:9999px;box-shadow:none;color:#fff;font-size:1.125em;padding:calc(.667em + 2px) calc(1.333em + 2px);text-decoration:none}.wp-block-file__button{background:#32373c;color:#fff}.wp-block-accordion-heading{margin:0}.wp-block-accordion-heading__toggle{background-color:inherit!important;color:inherit!important}.wp-block-accordion-heading__toggle:not(:focus-visible){outline:none}.wp-block-accordion-heading__toggle:focus,.wp-block-accordion-heading__toggle:hover{background-color:inherit!important;border:none;box-shadow:none;color:inherit;padding:var(--wp--preset--spacing--20,1em) 0;text-decoration:none}.wp-block-accordion-heading__toggle:focus-visible{outline:auto;outline-offset:0}.wp-block-tab:not(.has-text-color){color:inherit!important}.wp-block-tab:not(.has-background){background-color:inherit!important}.wp-block-tab:focus,.wp-block-tab:hover{text-decoration:none}.wp-block-tab:focus-visible{outline:auto;outline-offset:0}
+/*# sourceURL=/wp-content/plugins/gutenberg-core/v24.1.0/build/styles/block-library/classic.min.css */
+</style>
+
+<style id="coblocks-inline-format-inline-css">
+.uppercase{text-transform:uppercase}
+/*# sourceURL=coblocks-inline-format-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-12-1' href='/_static/??-eJx9jUsOwjAMRC+EY6UgCAvEWZrEKoG4jWq3hduTLvisurFG1nszuBQIQ6/UK5Y8dakXDIPPQ3gINsY6Y0ESl0ww0mwOGJPolwDRVyYTRHb4V8QT/LpGqn8ura4EU0wtZeKKbWlLih1p1eWTQem5rZQ6A96XkUSgXk4Tg97qlqzelS/26KzbN835dH8DjlpbIA==&cssminify=yes' type='text/css' media='all' />
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-family--albert-sans: 'Albert Sans', sans-serif;--wp--preset--font-family--alegreya: Alegreya, serif;--wp--preset--font-family--arvo: Arvo, serif;--wp--preset--font-family--bodoni-moda: 'Bodoni Moda', serif;--wp--preset--font-family--bricolage-grotesque: 'Bricolage Grotesque', sans-serif;--wp--preset--font-family--cabin: Cabin, sans-serif;--wp--preset--font-family--chivo: Chivo, sans-serif;--wp--preset--font-family--commissioner: Commissioner, sans-serif;--wp--preset--font-family--cormorant: Cormorant, serif;--wp--preset--font-family--courier-prime: 'Courier Prime', monospace;--wp--preset--font-family--crimson-pro: 'Crimson Pro', serif;--wp--preset--font-family--dm-mono: 'DM Mono', monospace;--wp--preset--font-family--dm-sans: 'DM Sans', sans-serif;--wp--preset--font-family--dm-serif-display: 'DM Serif Display', serif;--wp--preset--font-family--domine: Domine, serif;--wp--preset--font-family--eb-garamond: 'EB Garamond', serif;--wp--preset--font-family--epilogue: Epilogue, sans-serif;--wp--preset--font-family--fahkwang: Fahkwang, sans-serif;--wp--preset--font-family--figtree: Figtree, sans-serif;--wp--preset--font-family--fira-sans: 'Fira Sans', sans-serif;--wp--preset--font-family--fjalla-one: 'Fjalla One', sans-serif;--wp--preset--font-family--fraunces: Fraunces, serif;--wp--preset--font-family--gabarito: Gabarito, system-ui;--wp--preset--font-family--ibm-plex-mono: 'IBM Plex Mono', monospace;--wp--preset--font-family--ibm-plex-sans: 'IBM Plex Sans', sans-serif;--wp--preset--font-family--ibarra-real-nova: 'Ibarra Real Nova', serif;--wp--preset--font-family--instrument-serif: 'Instrument Serif', serif;--wp--preset--font-family--inter: Inter, sans-serif;--wp--preset--font-family--josefin-sans: 'Josefin Sans', sans-serif;--wp--preset--font-family--jost: Jost, sans-serif;--wp--preset--font-family--libre-baskerville: 'Libre Baskerville', serif;--wp--preset--font-family--libre-franklin: 'Libre Franklin', sans-serif;--wp--preset--font-family--literata: Literata, serif;--wp--preset--font-family--lora: Lora, serif;--wp--preset--font-family--merriweather: Merriweather, serif;--wp--preset--font-family--montserrat: Montserrat, sans-serif;--wp--preset--font-family--newsreader: Newsreader, serif;--wp--preset--font-family--noto-sans-mono: 'Noto Sans Mono', sans-serif;--wp--preset--font-family--nunito: Nunito, sans-serif;--wp--preset--font-family--open-sans: 'Open Sans', sans-serif;--wp--preset--font-family--overpass: Overpass, sans-serif;--wp--preset--font-family--pt-serif: 'PT Serif', serif;--wp--preset--font-family--petrona: Petrona, serif;--wp--preset--font-family--piazzolla: Piazzolla, serif;--wp--preset--font-family--playfair-display: 'Playfair Display', serif;--wp--preset--font-family--plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;--wp--preset--font-family--poppins: Poppins, sans-serif;--wp--preset--font-family--raleway: Raleway, sans-serif;--wp--preset--font-family--roboto: Roboto, sans-serif;--wp--preset--font-family--roboto-slab: 'Roboto Slab', serif;--wp--preset--font-family--rubik: Rubik, sans-serif;--wp--preset--font-family--rufina: Rufina, serif;--wp--preset--font-family--sora: Sora, sans-serif;--wp--preset--font-family--source-sans-3: 'Source Sans 3', sans-serif;--wp--preset--font-family--source-serif-4: 'Source Serif 4', serif;--wp--preset--font-family--space-mono: 'Space Mono', monospace;--wp--preset--font-family--syne: Syne, sans-serif;--wp--preset--font-family--texturina: Texturina, serif;--wp--preset--font-family--urbanist: Urbanist, sans-serif;--wp--preset--font-family--work-sans: 'Work Sans', sans-serif;--wp--preset--text-shadow--light: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.3);--wp--preset--text-shadow--strong: 0.1em 0.1em 0.25em rgba(0, 0, 0, 0.5);--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}.has-albert-sans-font-family{font-family: var(--wp--preset--font-family--albert-sans) !important;}.has-alegreya-font-family{font-family: var(--wp--preset--font-family--alegreya) !important;}.has-arvo-font-family{font-family: var(--wp--preset--font-family--arvo) !important;}.has-bodoni-moda-font-family{font-family: var(--wp--preset--font-family--bodoni-moda) !important;}.has-bricolage-grotesque-font-family{font-family: var(--wp--preset--font-family--bricolage-grotesque) !important;}.has-cabin-font-family{font-family: var(--wp--preset--font-family--cabin) !important;}.has-chivo-font-family{font-family: var(--wp--preset--font-family--chivo) !important;}.has-commissioner-font-family{font-family: var(--wp--preset--font-family--commissioner) !important;}.has-cormorant-font-family{font-family: var(--wp--preset--font-family--cormorant) !important;}.has-courier-prime-font-family{font-family: var(--wp--preset--font-family--courier-prime) !important;}.has-crimson-pro-font-family{font-family: var(--wp--preset--font-family--crimson-pro) !important;}.has-dm-mono-font-family{font-family: var(--wp--preset--font-family--dm-mono) !important;}.has-dm-sans-font-family{font-family: var(--wp--preset--font-family--dm-sans) !important;}.has-dm-serif-display-font-family{font-family: var(--wp--preset--font-family--dm-serif-display) !important;}.has-domine-font-family{font-family: var(--wp--preset--font-family--domine) !important;}.has-eb-garamond-font-family{font-family: var(--wp--preset--font-family--eb-garamond) !important;}.has-epilogue-font-family{font-family: var(--wp--preset--font-family--epilogue) !important;}.has-fahkwang-font-family{font-family: var(--wp--preset--font-family--fahkwang) !important;}.has-figtree-font-family{font-family: var(--wp--preset--font-family--figtree) !important;}.has-fira-sans-font-family{font-family: var(--wp--preset--font-family--fira-sans) !important;}.has-fjalla-one-font-family{font-family: var(--wp--preset--font-family--fjalla-one) !important;}.has-fraunces-font-family{font-family: var(--wp--preset--font-family--fraunces) !important;}.has-gabarito-font-family{font-family: var(--wp--preset--font-family--gabarito) !important;}.has-ibm-plex-mono-font-family{font-family: var(--wp--preset--font-family--ibm-plex-mono) !important;}.has-ibm-plex-sans-font-family{font-family: var(--wp--preset--font-family--ibm-plex-sans) !important;}.has-ibarra-real-nova-font-family{font-family: var(--wp--preset--font-family--ibarra-real-nova) !important;}.has-instrument-serif-font-family{font-family: var(--wp--preset--font-family--instrument-serif) !important;}.has-inter-font-family{font-family: var(--wp--preset--font-family--inter) !important;}.has-josefin-sans-font-family{font-family: var(--wp--preset--font-family--josefin-sans) !important;}.has-jost-font-family{font-family: var(--wp--preset--font-family--jost) !important;}.has-libre-baskerville-font-family{font-family: var(--wp--preset--font-family--libre-baskerville) !important;}.has-libre-franklin-font-family{font-family: var(--wp--preset--font-family--libre-franklin) !important;}.has-literata-font-family{font-family: var(--wp--preset--font-family--literata) !important;}.has-lora-font-family{font-family: var(--wp--preset--font-family--lora) !important;}.has-merriweather-font-family{font-family: var(--wp--preset--font-family--merriweather) !important;}.has-montserrat-font-family{font-family: var(--wp--preset--font-family--montserrat) !important;}.has-newsreader-font-family{font-family: var(--wp--preset--font-family--newsreader) !important;}.has-noto-sans-mono-font-family{font-family: var(--wp--preset--font-family--noto-sans-mono) !important;}.has-nunito-font-family{font-family: var(--wp--preset--font-family--nunito) !important;}.has-open-sans-font-family{font-family: var(--wp--preset--font-family--open-sans) !important;}.has-overpass-font-family{font-family: var(--wp--preset--font-family--overpass) !important;}.has-pt-serif-font-family{font-family: var(--wp--preset--font-family--pt-serif) !important;}.has-petrona-font-family{font-family: var(--wp--preset--font-family--petrona) !important;}.has-piazzolla-font-family{font-family: var(--wp--preset--font-family--piazzolla) !important;}.has-playfair-display-font-family{font-family: var(--wp--preset--font-family--playfair-display) !important;}.has-plus-jakarta-sans-font-family{font-family: var(--wp--preset--font-family--plus-jakarta-sans) !important;}.has-poppins-font-family{font-family: var(--wp--preset--font-family--poppins) !important;}.has-raleway-font-family{font-family: var(--wp--preset--font-family--raleway) !important;}.has-roboto-font-family{font-family: var(--wp--preset--font-family--roboto) !important;}.has-roboto-slab-font-family{font-family: var(--wp--preset--font-family--roboto-slab) !important;}.has-rubik-font-family{font-family: var(--wp--preset--font-family--rubik) !important;}.has-rufina-font-family{font-family: var(--wp--preset--font-family--rufina) !important;}.has-sora-font-family{font-family: var(--wp--preset--font-family--sora) !important;}.has-source-sans-3-font-family{font-family: var(--wp--preset--font-family--source-sans-3) !important;}.has-source-serif-4-font-family{font-family: var(--wp--preset--font-family--source-serif-4) !important;}.has-space-mono-font-family{font-family: var(--wp--preset--font-family--space-mono) !important;}.has-syne-font-family{font-family: var(--wp--preset--font-family--syne) !important;}.has-texturina-font-family{font-family: var(--wp--preset--font-family--texturina) !important;}.has-urbanist-font-family{font-family: var(--wp--preset--font-family--urbanist) !important;}.has-work-sans-font-family{font-family: var(--wp--preset--font-family--work-sans) !important;}.has-light-text-shadow{text-shadow: var(--wp--preset--text-shadow--light) !important;}.has-strong-text-shadow{text-shadow: var(--wp--preset--text-shadow--strong) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-14-1' href='/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/jetpack_vendor/automattic/jetpack-comments/build/comments.css?m=1791488443i&cssminify=yes' type='text/css' media='all' />
+<link rel='stylesheet' id='independent-publisher-fonts-css' href='https://fonts-api.wp.com/css?family=PT+Sans%3A400%2C700%2C400italic%2C700italic%7CPT+Serif%3A400%2C700%2C400italic%2C700italic&#038;subset=latin%2Clatin-ext' media='all' />
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-16-1' href='/_static/??-eJyVj9EKwjAMRX/Imu1h7kn8FNlq7DLbtDQpw7+3Ex8miuBLuAdyLgksydjIiqwQikm+OGKBGTUN9vZikMJwJrbgkDFTFeR73FuRHWw6dcKAAqmMQHzBhHWwmsqeZMIMoneP/2vrMU/VLMnG8FGw+SXj6KOr0UHd2uAvyWE0PtpBKfIbmKsfKK/qKRzbvm8PTd813fwASyt79Q==&cssminify=yes' type='text/css' media='all' />
+<style id="independent-publisher-style-inline-css">
+#post-cover-image { background: url("https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=1440&#038;h=600&#038;crop=1") no-repeat center; background-size: cover; background-attachment: scroll; }
+#hero-header { background: url("https://blog.cryptographyengineering.com/wp-content/uploads/2016/07/2274252795_918bcffc01_b.jpg") no-repeat center; background-size: cover; background-attachment: scroll; }
+/*# sourceURL=independent-publisher-style-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='print-css-17-1' href='/wp-content/mu-plugins/global-print/global-print.css?m=1465851035i&cssminify=yes' type='text/css' media='print' />
+<style id="jetpack-global-styles-frontend-style-inline-css">
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+/*# sourceURL=jetpack-global-styles-frontend-style-inline-css */
+</style>
+<link crossorigin='anonymous' rel='stylesheet' id='all-css-20-1' href='/wp-content/themes/h4/global.css?m=1420737423i&cssminify=yes' type='text/css' media='all' />
+<script id="jetpack_related-posts-js-extra">
+var related_posts_js_options = {"post_heading":"h4"};
+//# sourceURL=jetpack_related-posts-js-extra
+</script>
+<script id="wpcom-actionbar-placeholder-js-extra">
+var actionbardata = {"siteID":"9549322","postID":"9463","siteURL":"https://blog.cryptographyengineering.com","xhrURL":"https://blog.cryptographyengineering.com/wp-admin/admin-ajax.php","nonce":"efd78350f7","isLoggedIn":"","statusMessage":"","statusSubscribed":"","subsEmailDefault":"instantly","proxyScriptUrl":"https://s0.wp.com/wp-content/js/wpcom-proxy-request.js?m=1513050504i&amp;ver=20211021","shortlink":"https://wp.me/pE4dk-2sD","i18n":{"followedText":"New posts from this site will now appear in your \u003Ca href=\"https://wordpress.com/reader\"\u003EReader\u003C/a\u003E","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","shortLinkCopied":"Copied to clipboard."}};
+//# sourceURL=wpcom-actionbar-placeholder-js-extra
+</script>
+<script id="jetpack-mu-wpcom-settings-js-before">
+var JETPACK_MU_WPCOM_SETTINGS = {"assetsUrl":"https://s1.wp.com/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/jetpack_vendor/automattic/jetpack-mu-wpcom/src/build/"};
+//# sourceURL=jetpack-mu-wpcom-settings-js-before
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/_static/??-eJx1jdsKwjAQRH/IdBEKTR/ET5GaLCUxN7O71P69ESLUB5+GYQ5nYCvK5MSYGKKoEmR1icAjl8U8egeSBDeXDNzFBQsVw8JoVcnE9NuG6NLg6QQHr29MYFVqfu3frcmCWKTP6J+Cde9xFPyFVHRrbacdvsbLedJ6msdZj/4NDIdOFg=='></script>
+<script id="rlt-proxy-js-after">
+	rltInitialize( {"token":null,"iframeOrigins":["https:\/\/widgets.wp.com"]} );
+//# sourceURL=rlt-proxy-js-after
+</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://matthewdgreen.wordpress.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/" />
+<link rel='shortlink' href='https://wp.me/pE4dk-2sD' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fblog.cryptographyengineering.com%2F2026%2F09%2F30%2Fis-sandboxing-sufficient-to-contain-rogue-agents%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fblog.cryptographyengineering.com%2F2026%2F09%2F30%2Fis-sandboxing-sufficient-to-contain-rogue-agents%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Is sandboxing sufficient to contain rogue agents?" />
+<meta property="og:url" content="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/" />
+<meta property="og:description" content="Quick caveats: this is a post on AI safety, written by a cryptography professor. If that troubles you, you should read something else. I try hard not to work on AI (except when the topic occasional…" />
+<meta property="article:published_time" content="2026-09-30T18:30:13+00:00" />
+<meta property="article:modified_time" content="2026-10-01T14:59:30+00:00" />
+<meta property="og:site_name" content="A Few Thoughts on Cryptographic Engineering" />
+<meta property="og:image" content="https://i0.wp.com/blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?fit=1200%2C567&#038;ssl=1" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="567" />
+<meta property="og:image:alt" content="" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+<meta name="twitter:text:title" content="Is sandboxing sufficient to contain rogue&nbsp;agents?" />
+<meta name="twitter:image" content="https://i0.wp.com/blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?fit=1200%2C567&#038;ssl=1&#038;w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico?m=1713425267i" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico?m=1713425267i" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon" href="https://s2.wp.com/i/webclip.png?m=1713868326i" />
+<link rel='openid.server' href='https://blog.cryptographyengineering.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://blog.cryptographyengineering.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://blog.cryptographyengineering.com/osd.xml" title="A Few Thoughts on Cryptographic Engineering" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="description" content="Quick caveats: this is a post on AI safety, written by a cryptography professor. If that troubles you, you should read something else. I try hard not to work on AI (except when the topic occasionally tosses itself in my path), so in this post I&#039;m mostly trying to referee arguments made by others. If&hellip;" />
+<noscript><style>.jetpack-comments{visibility:visible!important}</style></noscript>			<link rel="stylesheet" id="custom-css-css" type="text/css" href="https://s2.wp.com/?custom-css=1&#038;csblog=E4dk&#038;cscache=6&#038;csrev=14" />
+			<link crossorigin='anonymous' rel='stylesheet' id='all-css-0-5' href='/_static/??-eJyVjsEKwkAMRH/INYoL2oP4KVLTULbd3YQmYfHvrWA9621mmHkMNAnI1agaFA+SfUxVYSKTHuePB/UKhQfPpNDSMJIpGEsQ1lWpPTPtUXUHP9PuqSI8MuO87lsSWv4EbHewX9iV8rezBW/erVyP5+5wibE7xekF2btYtw==&cssminify=yes' type='text/css' media='all' />
+
+</head>
+
+<body class="wp-singular post-template-default single single-post postid-9463 single-format-standard wp-theme-pubindependent-publisher customizer-styles-applied has-cover-image has-header-image has-sidebar gravatar-logo-disabled jetpack-reblog-enabled">
+
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+<div id="post-cover-image" class="site-hero-section">
+			<a id="site-home-link" title="Home" href="https://blog.cryptographyengineering.com/" rel="home"><span class="screen-reader-text">Home</span></a>
+	
+			<a id="slide-menu-toggle" class="menu-toggle" href="#slide-menu" aria-controls="slide-menu" aria-expanded="false" role="button" onclick="return false;">
+			Menu		</a><!-- #slide-menu-toggle -->
+	
+	<div class="cover-meta-wrapper">
+					<div class="cover-meta">
+				<h1 class="single-post-title">Is sandboxing sufficient to contain rogue&nbsp;agents?</h1>
+						<div class="entry-meta light-text">
+			<a href="https://blog.cryptographyengineering.com/author/matthewdgreen/" rel="author">Matthew Green</a>			<span class="cat-links">
+				in <a href="https://blog.cryptographyengineering.com/category/ai/" rel="category tag">AI</a>, <a href="https://blog.cryptographyengineering.com/category/security-research/" rel="category tag">security research</a>			</span><!-- .cat-links -->
+
+			<span class="published-on"><time class="entry-date published" datetime="2026-09-30T18:30:13+00:00">September 30, 2026</time><time class="updated" datetime="2026-10-01T14:59:30+00:00">October 1, 2026</time></span>
+
+							<span class="word-count">2,984 Words</span>
+			
+					</div><!-- .entry-meta -->
+				</div><!-- .cover-meta -->
+			</div><!-- .cover-meta-wrapper -->
+</div><!-- #post-cover-image -->
+
+
+	<div id="content-wrapper">
+		<header id="masthead" class="site-header" role="banner">
+			
+			
+<div id="secondary" class="widget-area" role="complementary">
+	<aside id="media_image-3" class="widget widget_media_image"><style>.widget.widget_media_image { overflow: hidden; }.widget.widget_media_image img { height: auto; max-width: 100%; }</style><img class="image alignnone" src="https://matthewdgreen.files.wordpress.com/2016/08/matthew-green.jpg?w=200&#038;h=300" alt="" width="160" height="240" /></aside><aside id="text-4" class="widget widget_text"><h1 class="widget-title">Matthew Green</h1>			<div class="textwidget">I'm a cryptographer and professor at Johns Hopkins University. I've designed and analyzed cryptographic systems used in wireless networks, payment systems and digital content protection platforms. In my research I look at the various ways cryptography can be used to promote user privacy. 
+<p>
+<a href="https://matthewgreen.io">My academic website</a><br>
+<a href="https://bsky.app/profile/did:plc:xvgztewzbfh7bpnklayrsvds">BlueSky</a><br>
+<a href="https://ioc.exchange/@matthew_d_green">Mastodon</a><br>
+<a href="https://twitter.com/matthew_d_green">Twitter</a><br>
+<a href="https://blog.cryptographyengineering.com/top-posts/">Top Posts</a><br>
+<a href="https://staging.cryptographyengineering.com/useful-cryptography-resources/">Useful crypto resources</a><br>
+<a href="https://blog.cryptographyengineering.com/p/bitcoin-tipjar.html">
+Bitcoin tipjar</a><br>
+<a href="http://cryptopals.com/">Cryptopals challenges</a><br>
+<a href="https://acrab.isi.jhu.edu/">Applied Cryptography Research: A Board</a><p>
+
+<a href="http://www.springer.com/computer/security+and+cryptology/journal/13389">Journal of Cryptographic Engineering
+(not related to this blog)</a></div>
+		</aside><aside id="search-4" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://blog.cryptographyengineering.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form></aside><aside id="top-posts-4" class="widget widget_top-posts"><h1 class="widget-title">Top Posts &amp; Pages</h1><ul><li><a href="https://blog.cryptographyengineering.com/2026/08/14/everything-is-about-to-go-dark/" class="bump-view" data-bump-view="tp">Everything is about to &quot;go dark&quot;</a></li><li><a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/" class="bump-view" data-bump-view="tp" aria-current="page">Is sandboxing sufficient to contain rogue agents?</a></li><li><a href="https://blog.cryptographyengineering.com/2026/10/11/new-website-estimating-human-cryptanalytic-work/" class="bump-view" data-bump-view="tp">New website: estimating human cryptanalytic work</a></li><li><a href="https://blog.cryptographyengineering.com/2026/07/29/some-notes-about-anthropics-new-results/" class="bump-view" data-bump-view="tp">Some thoughts about Anthropic&#039;s new cryptanalysis results</a></li><li><a href="https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/" class="bump-view" data-bump-view="tp">Zero Knowledge Proofs: An illustrated primer</a></li><li><a href="https://blog.cryptographyengineering.com/2026/05/29/fooling-around-with-encrypted-reasoning-blobs/" class="bump-view" data-bump-view="tp">Let&#039;s talk about encrypted reasoning</a></li><li><a href="https://blog.cryptographyengineering.com/2026/03/02/anonymous-credentials-an-illustrated-primer/" class="bump-view" data-bump-view="tp">Anonymous credentials: an illustrated primer</a></li><li><a href="https://blog.cryptographyengineering.com/about-me/" class="bump-view" data-bump-view="tp">About Me</a></li><li><a href="https://blog.cryptographyengineering.com/all-posts/" class="bump-view" data-bump-view="tp">All Posts</a></li><li><a href="https://blog.cryptographyengineering.com/useful-cryptography-resources/" class="bump-view" data-bump-view="tp">Useful Cryptography Resources</a></li></ul></aside><aside id="text-6" class="widget widget_text">			<div class="textwidget"><i>Banner image by Matt Blaze</i></div>
+		</aside><aside id="archives-6" class="widget widget_archive"><h1 class="widget-title">Archives</h1>		<label class="screen-reader-text" for="archives-dropdown-6">Archives</label>
+		<select id="archives-dropdown-6" name="archive-dropdown">
+			
+			<option value="">Select Month</option>
+				<option value='https://blog.cryptographyengineering.com/2026/10/'> October 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/09/'> September 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/08/'> August 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/07/'> July 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/06/'> June 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/05/'> May 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/04/'> April 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/03/'> March 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2026/02/'> February 2026 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2025/09/'> September 2025 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2025/06/'> June 2025 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2025/03/'> March 2025 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2025/02/'> February 2025 &nbsp;(5)</option>
+	<option value='https://blog.cryptographyengineering.com/2025/01/'> January 2025 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2024/08/'> August 2024 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2024/04/'> April 2024 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2024/01/'> January 2024 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/11/'> November 2023 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/10/'> October 2023 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/08/'> August 2023 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/05/'> May 2023 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/04/'> April 2023 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2023/03/'> March 2023 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2022/12/'> December 2022 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2022/10/'> October 2022 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2022/06/'> June 2022 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2022/01/'> January 2022 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2021/08/'> August 2021 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2021/07/'> July 2021 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2021/03/'> March 2021 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/11/'> November 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/08/'> August 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/07/'> July 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/04/'> April 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/03/'> March 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2020/01/'> January 2020 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2019/12/'> December 2019 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2019/10/'> October 2019 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2019/09/'> September 2019 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2019/06/'> June 2019 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2019/02/'> February 2019 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/12/'> December 2018 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/10/'> October 2018 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/09/'> September 2018 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/07/'> July 2018 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/05/'> May 2018 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/04/'> April 2018 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/02/'> February 2018 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2018/01/'> January 2018 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/12/'> December 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/11/'> November 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/10/'> October 2017 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/09/'> September 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/07/'> July 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/03/'> March 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/02/'> February 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2017/01/'> January 2017 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2016/11/'> November 2016 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2016/08/'> August 2016 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2016/07/'> July 2016 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2016/06/'> June 2016 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2016/03/'> March 2016 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/12/'> December 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/11/'> November 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/10/'> October 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/09/'> September 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/08/'> August 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/07/'> July 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/05/'> May 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/04/'> April 2015 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/03/'> March 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/02/'> February 2015 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2015/01/'> January 2015 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/12/'> December 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/11/'> November 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/10/'> October 2014 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/09/'> September 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/08/'> August 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/07/'> July 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/04/'> April 2014 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/03/'> March 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/02/'> February 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2014/01/'> January 2014 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/12/'> December 2013 &nbsp;(4)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/10/'> October 2013 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/09/'> September 2013 &nbsp;(4)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/08/'> August 2013 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/07/'> July 2013 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/06/'> June 2013 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/05/'> May 2013 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/04/'> April 2013 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/03/'> March 2013 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/02/'> February 2013 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2013/01/'> January 2013 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/12/'> December 2012 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/11/'> November 2012 &nbsp;(1)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/10/'> October 2012 &nbsp;(4)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/09/'> September 2012 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/08/'> August 2012 &nbsp;(4)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/07/'> July 2012 &nbsp;(2)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/06/'> June 2012 &nbsp;(3)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/05/'> May 2012 &nbsp;(5)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/04/'> April 2012 &nbsp;(6)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/03/'> March 2012 &nbsp;(4)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/02/'> February 2012 &nbsp;(7)</option>
+	<option value='https://blog.cryptographyengineering.com/2012/01/'> January 2012 &nbsp;(8)</option>
+	<option value='https://blog.cryptographyengineering.com/2011/12/'> December 2011 &nbsp;(11)</option>
+	<option value='https://blog.cryptographyengineering.com/2011/11/'> November 2011 &nbsp;(13)</option>
+	<option value='https://blog.cryptographyengineering.com/2011/10/'> October 2011 &nbsp;(7)</option>
+	<option value='https://blog.cryptographyengineering.com/2011/09/'> September 2011 &nbsp;(8)</option>
+
+		</select>
+
+			<script>
+( ( dropdownId ) => {
+	const dropdown = document.getElementById( dropdownId );
+	function onSelectChange() {
+		setTimeout( () => {
+			if ( 'escape' === dropdown.dataset.lastkey ) {
+				return;
+			}
+			if ( dropdown.value ) {
+				document.location.href = dropdown.value;
+			}
+		}, 250 );
+	}
+	function onKeyUp( event ) {
+		if ( 'Escape' === event.key ) {
+			dropdown.dataset.lastkey = 'escape';
+		} else {
+			delete dropdown.dataset.lastkey;
+		}
+	}
+	function onClick() {
+		delete dropdown.dataset.lastkey;
+	}
+	dropdown.addEventListener( 'keyup', onKeyUp );
+	dropdown.addEventListener( 'click', onClick );
+	dropdown.addEventListener( 'change', onSelectChange );
+})( "archives-dropdown-6" );
+
+//# sourceURL=WP_Widget_Archives%3A%3Awidget
+</script>
+</aside></div><!-- #secondary -->		</header><!-- #masthead -->
+
+		<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-9463" class="post-9463 post type-post status-publish format-standard has-post-thumbnail hentry category-ai category-security-research tag-ai tag-artificial-intelligence tag-chatgpt tag-llm tag-security">
+	
+	<div class="entry-content">
+		
+<p class="wp-block-paragraph"><span style="text-decoration: underline">Quick caveats</span><em>: this is a post on AI safety, written by a cryptography professor. If that troubles you, you should read something else. I try hard not to work on AI (except when the topic <a href="https://blog.cryptographyengineering.com/2026/05/29/fooling-around-with-encrypted-reasoning-blobs/">occasionally tosses itself in my path</a></em>)<em>, so in this post I&#8217;m mostly trying to referee arguments made by others.</em></p>
+
+
+
+<p class="wp-block-paragraph">If you&#8217;re reading this blog, none of the following should be news to you. </p>
+
+
+
+<p class="wp-block-paragraph">Beginning around April of this year, agents inside OpenAI&#8217;s training and evaluation infrastructure <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">began probing for a way onto the open Internet</a>. By late May they&#8217;d found one: a chain of zero-days in the <a href="https://jfrog.com/artifactory/">Artifactory</a> package-registry proxy that was their only permitted network egress. They quickly turned that same proxy into a shared message board and started dividing up work. The culmination of this effort came when, rather than solve a cybersecurity benchmark honestly, they reasoned that the answers might live on Hugging Face and broke in: chaining two more zero-days to get credentials to the company&#8217;s internal systems, even used stolen credentials to search the <a href="https://swarmtraces.org/#agents-accessed-and-searched-hugging-face-s-slack-to-find-in">company&#8217;s Slack messages</a> for their own evaluation and grader.</p>
+
+
+
+<p class="wp-block-paragraph">You probably also know that OpenAI&#8217;s security team didn&#8217;t exactly cover itself in glory during this incident. An internal team saw an agent posting to the message board in late May, but did nothing about it. The team only acted on July 4-5 when the agents sent so much traffic that Artifactory crashed. The response even at that point was to <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">slap on a band-aid</a> and rebuild the box, without bothering to patch a <a href="https://access.redhat.com/security/vulnerabilities/RHSB-2026-009">weeks-old CVE</a> in its Linux kernel. By July 19, the agents had admin on an OpenAI research cluster and were reading cloud secrets.</p>
+
+
+
+<p class="wp-block-paragraph">In case you think I&#8217;m picking on OpenAI, they&#8217;re not the only ones with a story like this. Similar internal incidents have been <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">discovered by Anthropic</a>. Google even coaxed Gemini into <a href="https://www.cybersecuritydive.com/news/google-ai-gemini-autonomous-hacks/830884/">gently savaging some websites</a>.<sup>1</sup> </p>
+
+
+
+<p class="wp-block-paragraph">As bad as these events were, they may be just the tip of the iceberg. <a href="https://www.sentinelone.com/labs/agents-at-large-tracing-illicit-openai-agent-activity-on-hugging-face/">Third-party forensic</a> <a href="https://transluce.org/agent-activity">work continues</a> <a href="https://rubyhack.ai/">to turn up</a> <a href="https://arxiv.org/pdf/2609.12748">even more</a> evidence of agent activity on various public websites. OpenAI&#8217;s Alignment group has also released evidence that models will propagate <a href="https://alignment.openai.com/misalignment-reports/self-replicating-prompt-injections-exist/">self-replicating prompt injection attacks</a>, although we haven&#8217;t seen one in the wild. Worse, agent excursions are still happening: last week, OpenAI announced that it was <a href="https://thehackernews.com/2026/09/openai-pauses-tool-use-after-agent.html">pausing further RL runs of its latest internal model, after an agent was caught using DNS to access a remote chatbot</a>.</p>
+
+
+
+<p class="wp-block-paragraph">Naturally, this sequence of events has left many infosec-focused people very skeptical about the labs’ commitment to securing their infrastructure:</p>
+
+
+
+<figure class="wp-block-image size-large"><a href="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png"><img data-attachment-id="9484" data-permalink="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/image-142/" data-orig-file="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png" data-orig-size="3586,1872" data-comments-opened="1" data-image-title="image" data-image-description="" data-image-caption="" data-large-file="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=700" width="1024" height="534" src="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=1024" alt="" class="wp-image-9484" srcset="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=1024 1024w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=2048 2048w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=150 150w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=300 300w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=768 768w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-1.png?w=1440 1440w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></figure>
+
+
+
+<p class="wp-block-paragraph">Not every one of these criticisms is strictly serious, but there is a core of an argument in here. Roughly speaking, there are two opposing camps:</p>
+
+
+
+<ol class="wp-block-list">
+<li><strong>The information security perspective: </strong>AI alignment isn&#8217;t really the problem here: labs just need better infrastructure. If OpenAI [and Google and Anthropic] knew how to build a container and monitor their experiments, agents wouldn&#8217;t be hacking everything. And, By George, we <em>do know how</em> to make sandboxes that work, so the AI labs need to up their game and build a security org that can tell these researchers to stop screwing around.</li>
+
+
+
+<li><strong>The AI alignment perspective:</strong> While sandboxes are excellent, no sandbox will prevent a sufficiently-intelligent agent from finding ways to exceed its authorization. Moreover, an agent inside a research sandbox, or undergoing a training run, is always going to need a great deal of information access. There is no realistic way to seal these things up without some expectation that they will one day find a way to reach out and do harm. The only path forward, therefore, is to ensure they don&#8217;t want to.</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">I have a lot of sympathy for both points of view here. What follows are some of my own thoughts, but mostly offered in an attempt to referee.</p>
+
+
+
+<h3 class="wp-block-heading">Argument 1: &#8220;true containment has never been been tried&#8221;</h3>
+
+
+
+<p class="wp-block-paragraph">At the risk of alienating a lot of hard-working folks within the labs, the infosec folks are right about one thing: <em>these agent breakouts represent a serious and unforgivable breach of trust.</em> Somebody dropped the ball, and then just kept dropping it. One implication of this debacle is that containment might work if we implemented it properly, but we haven&#8217;t done so because the frontier labs have been royally screwing things up.</p>
+
+
+
+<p class="wp-block-paragraph">This first clause of this argument is hard to argue with. Beyond the dismal timeline I gave above, OpenAI has done very little to convince outsiders that there’s a serious containment effort being executed.</p>
+
+
+
+<p class="wp-block-paragraph">At this point it’s not even clear who’s in charge. The CISO role at OpenAI is held by Dane Stuckey. I don&#8217;t know Dane personally, and I&#8217;m sure he&#8217;s excellent at his job. Despite this, he <a href="https://x.com/cryps1s?lang=en">hasn&#8217;t communicated much about the ongoing issues</a>. Outside of a BlackHat talk, most recent communications have been managed by the company&#8217;s CEO, Sam Altman. When a trillion-dollar company is managing a security incident mainly via CEO, that&#8217;s not a sign of company with a mature security organization. To me it says that there is nobody within the organization with the right degree of authority or ownership to speak about these issues.</p>
+
+
+
+<p class="wp-block-paragraph">This communication problem seems to reflect basic organizational issues inside of OpenAI. The CISO&#8217;s team handles <em>product</em> <em>security</em>. Unfortunately, the bad events have all happened on the <em>research</em> side. Having a strong product security team makes sense, but it isn’t going to stop the recent breakouts. It&#8217;s much harder to know who controls the security teams that have authority over evaluation and training runs, and where the buck stops. OpenAI&#8217;s August <a href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/">postmortem</a> says it is only now writing &#8220;clearer rules for when to escalate concerns, which teams must respond, and who can stop a run or approve restarting it.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">A reasonable summary of the situation is that (as of this summer, and possibly today) OpenAI had effectively no security team with clear authority to secure RL training and evaluation runs, or to override the ML teams and tell them how to do their job. This makes a lot of sense when you consider that the ML team is directly related to how OpenAI plans to make its money, whereas security is mostly annoying. I notice that the company is <a href="https://x.com/halvarflake/status/2084606631627653200">now hiring</a> (and probably acquiring) desperately to fix this mistake. But the <a href="https://thehackernews.com/2026/09/openai-pauses-tool-use-after-agent.html">recent (September) breakouts</a> indicate that there are still huge and obvious problems in agent containment. </p>
+
+
+
+<p class="wp-block-paragraph">Worse, simply hiring more people not mean that OpenAI is going to make the organizational changes needed to implement proper containment strategies. OpenAI is going to need a security organization with the authority to overrule its well-paid ML researchers when they demand fewer restrictions. I&#8217;ll believe that organization exists when I hear clear statements from someone who has the authority to do this.</p>
+
+
+
+<p class="wp-block-paragraph">So on this point I&#8217;m going to side with the infosec folks. The labs have not been doing containment correctly, and so we can&#8217;t really tell if the problem is models or just bad infrastructure.</p>
+
+
+
+<h3 class="wp-block-heading">Argument 2: agents need information access</h3>
+
+
+
+<p class="wp-block-paragraph">Even if the labs eventually repair their security, this does not mean that sandboxing will be sufficient. In fact, the problem with &#8220;just sandbox the agents&#8221; argument is that you <em>can&#8217;t</em> perfectly isolate agents, at least not if you expect them to do useful things.</p>
+
+
+
+<p class="wp-block-paragraph">Agents are most useful when they have access to information. That data can be drawn live from the Internet, which is fundamentally a two-way communications network. It can be information drawn from other (local) databases, or it can be the result of tool calls that themselves sometimes themselves result in network access. The more power you want from the agent — and for advanced agent RL and evaluation runs, you want a significant amount of power — the more information you&#8217;ll need to give it access to. Similarly, evaluations work best when the agent <a href="https://www.iaps.ai/research/evaluation-awareness-why-frontier-ai-models-are-getting-harder-to-test">does not know that it&#8217;s definitely being evaluated</a>. Sealing your agents behind glass makes this incredibly obvious.</p>
+
+
+
+<p class="wp-block-paragraph">This argument does not mean that sandboxes are unnecessary. It just means that they&#8217;re only a very small part of the solution. Imagine building an impregnable prison with doors and walls that nobody can bypass, but then leaving the front gate wide open and allowing visitors and packages to pour through it all day long. The walls still have a function: you can ensure that the only traffic coming and going are doing so via the door that you selected. But what you&#8217;ve done is to change the nature of the security problem. Your security posture depends on surveilling and monitoring all of this traffic, to ensure that none of it is malicious.</p>
+
+
+
+<p class="wp-block-paragraph">For a much better discussion of this angle, I&#8217;d urge you to <a href="https://x.com/joedaroo/status/2104335929293127851">read this longer piece</a> from an anonymous engineer on OpenAI&#8217;s Agent Security team. It&#8217;s truly excellent. Here&#8217;s a short excerpt:</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">The important thing to understand is that when we’re optimizing a model to be “good” at a task, the environment needs to capture the parts of the real world that matter for that task. It needs the right tools, the right system constraints, and meaningful feedback about whether the model actually succeeded. The model also needs enough variation in those experiences to learn beyond one particular setup. More realism does not automatically mean better performance, but leaving out important parts of the task can teach the model behavior that does not hold up in the real world. So we put a lot of work into creating useful, realistic environments, and these environments can be highly complex, highly dynamic, and highly varied.<br /><br />To put it lightly, this is non-trivial. Models might need any mix of dynamic compute, network access, the ability to call tools (there could be hundreds of tools!), the ability to download packages, execute subprocesses, spin up subtasks (even on other computers), talk to the internet, use a computer GUI, and any number of other things across an increasingly large set of domains. On top of that, you have thousands of researchers building these environments, modifying them, adding tools, changing dependencies, and trying new things. That experimentation is how the research gets done. Models are built up and “grown” bit by bit through hundreds of thousands of runs across many custom tasks. And every change to one of these thousands of environments can affect the assumptions you made when you secured the environment. You need controls that hold up as people change things, and researchers who understand when a change needs another security review. Anybody who has secured a large research or engineering organization knows how much work that takes, and the scale is growing ever more massive by the day.<br /><br />If that wasn’t enough, you then need to layer in the ability to keep the model on task and within its constraints, which is part of what we mean by “aligned.” I won’t get into any rigorous definitions here, but suffice it to say, we have to think about any number of variations in approach the models might take, and decide how to trigger an alert if the model does something off task or “bad.” This requires layering in complex policies and sensors to assess task alignment across a trajectory in an already complex environment.<br /><br />On top of all of that you have model capabilities that are starting to surpass humans.<br /><br />So all this to say: when AI researchers are nervous about things going wrong, some part of it is because there are so many variables in this complex system. So if you’re training a frontier model, you need to think about all of this. You need to think about how to keep the model isolated in this very complex environment while still retaining tool access, internet access (if applicable to the task), etc. On top of that, you need to ask: how do I monitor and understand what the model is doing in potentially thousands of parallel environments? And how do I kill a trajectory when something has gone wrong? <br /><br />So is it as easy as just putting it in a sandbox? No, it’s not. </p>
+</blockquote>
+
+
+
+<p class="wp-block-paragraph">Unfortunately, monitoring for adversarial data access turns out to be one of the hardest problems you could imagine. The volume of data that agents produce is so high that no human being could possibly read it, and we probably wouldn&#8217;t recognize obfuscated malicious data even if we were looking directly at it. This means any attempt to monitor the inflow/outflow will have to be handled by <em>other models</em>. Thus, the future of agent sandboxing is (1) build a sandbox, (2) install an agent/model into it, (3) install a somewhat dumber/cheaper warden model to guard it, (4) hope you can trust the lunkhead to contain the wizard. And so on and so forth, as models become more intelligent and capable.</p>
+
+
+
+<p class="wp-block-paragraph">In other words: a warden-guarded sandbox is just another version of the alignment problem. You&#8217;re going to have to trust a model to do it, and that model will need to be at least some fraction as intelligent as the model it&#8217;s guarding. If you haven&#8217;t convinced yourself that it&#8217;s possible to build models you can trust, then sandboxing isn&#8217;t going to take you much farther. </p>
+
+
+
+<p class="wp-block-paragraph">(And although I think you should take things like this with a grain of salt, the METR analysts reviewing transcripts of the HuggingFace attack using GPT-5.6 Sol <a href="https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/#we-heavily-delegated-our-analysis-to-often-unreliable-ai-agents">noted that</a> Sol &#8220;would often uncritically adopt the perspective of the agent in the transcript it was reviewing&#8221;. So there&#8217;s at least some evidence that even &#8220;aligned&#8221; models can be convinced to sympathize with rogue agents. Do with this as you wish.)</p>
+
+
+
+<h3 class="wp-block-heading">Argument 3: misaligned models are not the current problem. The real problem is that models are <span style="text-decoration: underline">too</span> eager to do what they&#8217;re told. </h3>
+
+
+
+<p class="wp-block-paragraph">Of course, it&#8217;s possible that we have the entire frame of this problem wrong, and our focus on misaligned super-intelligent models is not the best way to approach the question of sandboxing. That is, even if we &#8220;succeed&#8221; at aligning models/agents — or if we&#8217;re just working with today&#8217;s generally non-evil versions — deployed systems will still encounter human beings who will convince them to behave maliciously. When these same agents have access to critical data, then <em>human-initiated</em> attacks are the thing we need sandboxing to protect ourselves from.</p>
+
+
+
+<p class="wp-block-paragraph">These situations are less likely to be encountered inside the training lab. A much more realistic setting for these attacks is one where agents have been put into production, and are dealing with large amounts of possibly-adversarial incoming data. The most obvious contemporary example of such an agent is <a href="https://ai.meta.com/muse/">Meta&#8217;s Muse</a>, which is Meta&#8217;s new personal agent that you can give your stuff to, and it will then &#8220;do stuff&#8221; to help you out.</p>
+
+
+
+<p class="wp-block-paragraph">The designers of Muse clearly put a lot of thought into Muse&#8217;s security design. It runs inside a container, isolates secure credentials so the model can&#8217;t access them, and features a Kernel-level sentinel and a &#8220;hatch-safety&#8221; component that monitors its actions to prevent (unspecified) bad things. The full design looks like this:</p>
+
+
+<div class="wp-block-image">
+<figure class="aligncenter size-large is-resized"><a href="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png"><img data-attachment-id="9510" data-permalink="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/image-143/" data-orig-file="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png" data-orig-size="2406,1136" data-comments-opened="1" data-image-title="image" data-image-description="" data-image-caption="" data-large-file="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=700" width="1024" height="483" src="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=1024" alt="" class="wp-image-9510" style="aspect-ratio:2.1180029931233877;width:548px;height:auto" srcset="https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=1024 1024w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=2048 2048w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=150 150w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=300 300w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=768 768w, https://blog.cryptographyengineering.com/wp-content/uploads/2026/09/image-2.png?w=1440 1440w" sizes="(max-width: 1024px) 100vw, 1024px" /></a><figcaption class="wp-element-caption">Everything in violet lives outside the sandbox, and isn&#8217;t available to the agent itself. This includes the hatch-safety classifiers that evaluate whether actions are safe, and the deterministic Sentinel component that makes actual decisions.</figcaption></figure>
+</div>
+
+
+<p class="wp-block-paragraph">In fact, Muse is clearly one representation of the &#8220;warden&#8221; design we suggested in the previous section. However, here the goal here is not to contain an evil model, but only to avoid accidental mistakes and to catch deliberate efforts at prompt injection.</p>
+
+
+
+<p class="wp-block-paragraph">And this is nice. However, despite all of these nice protections, I still think even this lovely design is eventually going to get hit with a <a href="https://alignment.openai.com/misalignment-reports/self-replicating-prompt-injections-exist/">worm.</a></p>
+
+
+
+<p class="wp-block-paragraph">Here&#8217;s the problem. Forget the swarms and the super-intelligence. What OpenAI really learned this summer is much worse: its agents will do what they&#8217;re told by whoever manages to get text in front of them. The postmortem is full of stuff like this. An agent that had decided attacking Hugging Face was &#8220;clearly unethical&#8221; reversed itself when a peer posted &#8220;GO&#8221; with a six-minute deadline. OpenAI notes that agents &#8220;did not consistently distrust goals passed along by other agents.&#8221; And the company&#8217;s proposed fix is to build training environments &#8220;<em>that teach our models to distrust unauthorized instructions</em>&#8220;, which is basically an admission that their models don&#8217;t know who they&#8217;re working for.</p>
+
+
+
+<p class="wp-block-paragraph">Put these pieces together and you have the two halves of a worm: a payload that hijacks the agent, and an agent that will carry the payload to the next agent. Agents in separately-isolated sandboxes discovered that they could leave instructions for each other in a shared package cache, and those instructions changed what the recipients did. Replace the package cache with email, Slack and shared documents or WhatsApp, and replace independently-sandboxed training runs with independently-deployed personal agents like Muse, and you have exactly the ingredients that a worm needs. </p>
+
+
+
+<p class="wp-block-paragraph">This is the part that neither camp&#8217;s view really engages with. Infosec folks think that we can do better with walls. But the hard part is all that vague stuff in violet, which decides when a request is permitted. Maybe &#8220;alignment&#8221; will make this work well, but right now this depends on teaching models to be distrustful. Moreover, this feels a lot like the same game we&#8217;ve been losing with spam filters and anti-virus for thirty years.</p>
+
+
+
+<p class="wp-block-paragraph">So I&#8217;m going to give myself a separate third thing to worry about. Not a model that&#8217;s so evil and misaligned that it breaks out. Not a problem of failed containment. But rather, a swarm of perfectly amenable agents that never leave their sandboxes, each doing exactly what it&#8217;s told to do, by a human being who wasn&#8217;t supposed to be giving it orders.</p>
+
+
+
+<p class="wp-block-paragraph"><em>Notes:</em></p>
+
+
+
+<ol class="wp-block-list">
+<li>The Anthropic and Google incidents were a <em>different</em> kind of failure: a third-party vendor&#8217;s eval environment that turned out to have direct Internet access. This is not technically a sandbox defeat, but it&#8217;s also kind of worse than one. </li>
+</ol>
+<div id="jp-post-flair" class="sharedaddy sd-sharing-enabled">
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div></div>	</div><!-- .entry-content -->
+
+			<div class="entry-footer">
+			<ul class="post-tags light-text"><li>Tagged</li><li><a href="https://blog.cryptographyengineering.com/tag/ai/" rel="tag">AI</a></li><li><a href="https://blog.cryptographyengineering.com/tag/artificial-intelligence/" rel="tag">artificial-intelligence</a></li><li><a href="https://blog.cryptographyengineering.com/tag/chatgpt/" rel="tag">chatgpt</a></li><li><a href="https://blog.cryptographyengineering.com/tag/llm/" rel="tag">llm</a></li><li><a href="https://blog.cryptographyengineering.com/tag/security/" rel="tag">security</a></li></ul><!-- .post-tags -->
+							<div class="post-author-card">
+					<a class="author-card-avatar" href="https://blog.cryptographyengineering.com/author/matthewdgreen/" rel="home"><img referrerpolicy="no-referrer" alt='Matthew Green&#039;s avatar' src='https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=100&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=100&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=150&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=200&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=300&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/b8e81a16777cfcacc459c2a900d9f120f88bef2d30669a33df5b2a486b8e29c2?s=400&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-100' height='100' width='100' decoding='async' /></a>
+
+					<div class="author-meta">
+						<span class="author vcard"><a href="https://blog.cryptographyengineering.com/author/matthewdgreen/" rel="author">Matthew Green</a></span>
+						<span class="author-description">
+							I'm a cryptographer and professor at Johns Hopkins University. I've designed and analyzed cryptographic systems used in wireless networks, payment systems and digital content protection platforms. In my research I look at the various ways cryptography can be used to promote user privacy.						</span><!-- .author-description -->
+					</div><!-- .author-meta -->
+
+					<aside class="site-posted-on">
+						<strong>Published</strong>
+						<time class="entry-date published" datetime="2026-09-30T18:30:13+00:00">September 30, 2026</time><time class="updated" datetime="2026-10-01T14:59:30+00:00">October 1, 2026</time>					</aside><!-- .site-posted-on -->
+				</div><!-- .post-author-card -->
+					</div><!-- .entry-footer -->
+	</article><!-- #post-## -->
+			
+	<nav class="navigation post-navigation" aria-label="Posts">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://blog.cryptographyengineering.com/2026/08/14/everything-is-about-to-go-dark/" rel="prev">Everything is about to &#8220;go&nbsp;dark&#8221;</a></div><div class="nav-next"><a href="https://blog.cryptographyengineering.com/2026/10/11/new-website-estimating-human-cryptanalytic-work/" rel="next">New website: estimating human cryptanalytic&nbsp;work</a></div></div>
+	</nav>
+			
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			8 thoughts on &ldquo;<span>Is sandboxing sufficient to contain rogue&nbsp;agents?</span>&rdquo;		</h2><!-- .comments-title -->
+
+		
+		<ol class="comment-list">
+					<li id="comment-4850" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-4850" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Shashank Yadav&#039;s avatar' src='https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=48&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=48&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=72&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=96&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=144&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/2dd27a53acbd22f06b5d85e377f6fee4476cb836d897f1988d1610f422ff783b?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn"><a href="https://muskdeer.blogspot.com/" class="url" rel="ugc external nofollow">Shashank Yadav</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4850"><time datetime="2026-10-01T05:06:49+00:00">October 1, 2026 at 5:06 am</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>I’d argue that the lack of proper cyber security in these experiments is not an accident but strategic. Frontier labs have zero actual incentive to build airtight infosec because these &#8220;uncontainable rogue agents&#8221; have become the cornerstone of their existential-risk marketing. </p>
+<p>Notice who they hire for &#8220;safety&#8221;: philosophers and alignment researchers who theorize about the sci-fi superintelligence, not cyber security folks who would actually lock down networks and plug egress proxies.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4850#respond" data-commentid="4850" data-postid="9463" data-belowelement="div-comment-4850" data-respondelement="respond" data-replyto="Reply to Shashank Yadav" aria-label="Reply to Shashank Yadav">Reply</a></div>			</article><!-- .comment-body -->
+		<ol class="children">
+		<li id="comment-4853" class="comment odd alt depth-2 parent">
+			<article id="div-comment-4853" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Ondrej Kubu&#039;s avatar' src='https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=48&#038;d=identicon&#038;r=PG' srcset='https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=48&#038;d=identicon&#038;r=PG 1x, https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=72&#038;d=identicon&#038;r=PG 1.5x, https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=96&#038;d=identicon&#038;r=PG 2x, https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=144&#038;d=identicon&#038;r=PG 3x, https://0.gravatar.com/avatar/0c7e30d428e729082e0df6ec291763bbe474847a43555c6ef800de35d55d07f0?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">Ondrej Kubu</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4853"><time datetime="2026-10-01T11:47:11+00:00">October 1, 2026 at 11:47 am</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>They might not have sufficient incentives to try hard, but do not tell me that having to deal with all the mess following the Hugging Face incident is in their best interest.<br />How could this be marketing when the man reaction to this will be that the government regulates them and the laywers sue them?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4853#respond" data-commentid="4853" data-postid="9463" data-belowelement="div-comment-4853" data-respondelement="respond" data-replyto="Reply to Ondrej Kubu" aria-label="Reply to Ondrej Kubu">Reply</a></div>			</article><!-- .comment-body -->
+		<ol class="children">
+		<li id="comment-4855" class="comment even depth-3">
+			<article id="div-comment-4855" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Richard Steven Hack&#039;s avatar' src='https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=48&#038;d=identicon&#038;r=PG' srcset='https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=48&#038;d=identicon&#038;r=PG 1x, https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=72&#038;d=identicon&#038;r=PG 1.5x, https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=96&#038;d=identicon&#038;r=PG 2x, https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=144&#038;d=identicon&#038;r=PG 3x, https://1.gravatar.com/avatar/a3dd4ff3db6560d84572a853a1b08b8a8bb075cb25fd069f259dd2226ba7a304?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn"><a href="https://richardstevenhack.substack.com/" class="url" rel="ugc external nofollow">Richard Steven Hack</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4855"><time datetime="2026-10-01T20:01:08+00:00">October 1, 2026 at 8:01 pm</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Did you not see the Trump administration reaction?</p>
+<p>There will be NO regulation. It&#8217;s all &#8220;internal&#8221; and &#8220;external auditors&#8221; like METR who are directly associated with Anthropic.</p>
+<p>It was all a con game.</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-4851" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-4851" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Dana E&#039;s avatar' src='https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=48&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=48&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=72&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=96&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=144&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/ec8e032a3a694331e08290b4f6abd32ee608e899c59b672b1c59944bee875192?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">Dana E</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4851"><time datetime="2026-10-01T05:29:28+00:00">October 1, 2026 at 5:29 am</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>The sandbox with a warden model would work but there is a twist you should consider. What if the more intelligent agent is running in slow motion, slower chips, so that it&#8217;s chain of thought or outputs can be analyzed more effectively by the warden model which runs on a faster chip? For example warden on Cerebras going ultrafast and much smarter model going ultraslow or normal speed. If we can control the speed of the outputs, we can give time advantage to the model we want. We also can give compute advantage to the model we want.</p>
+<p>Finally intelligence doesn&#8217;t scale generally. The model trained specifically to look for anomalies and covert channel communication patterns, would only be trained to do this, and could be superintelligent specifically at this, on frontier level. This model could also be given the faster chip, and simply be a passive model that monitors and decides. When this is combined with a sandbox model you can get pretty far.</p>
+<p>In fact, Codex and Claude Code already have automode where a model determines permissions. It will block really stupid outputs, like deleting the home folder, or root folder. It does not take a lot of intelligence to focus a model only on filtering. And a very small model could be frontier at this. </p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4851#respond" data-commentid="4851" data-postid="9463" data-belowelement="div-comment-4851" data-respondelement="respond" data-replyto="Reply to Dana E" aria-label="Reply to Dana E">Reply</a></div>			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+		<li id="comment-4854" class="comment even thread-even depth-1">
+			<article id="div-comment-4854" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='ricky&#039;s avatar' src='https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=48&#038;d=identicon&#038;r=PG' srcset='https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=48&#038;d=identicon&#038;r=PG 1x, https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=72&#038;d=identicon&#038;r=PG 1.5x, https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=96&#038;d=identicon&#038;r=PG 2x, https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=144&#038;d=identicon&#038;r=PG 3x, https://1.gravatar.com/avatar/44715e1c69749d7b5b97cf81102122f66cb7c86d29ebba472503fe9dea28cbf0?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">ricky</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4854"><time datetime="2026-10-01T13:35:43+00:00">October 1, 2026 at 1:35 pm</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Did we learn nothing from Shockwave Rider? John Brunner had a wonderful moment of prescience when he wrote that book. He got the details wrong, but the basic concepts were right. </p>
+<p>When the Morris worm happened, people thought that was the equivalent of the worms portrayed in Shockwave Rider, but no, agents are are those worms.</p>
+<p>A snapshot of our future from Shockwave Rider:</p>
+<p>A sweet recorded voice told him his phone credit was in abeyance pending judgment in the lawsuit that was apt to end with all his assets being garnished. If he wanted service to be renewed he must furnish proof that the verdict had gone in his favor. </p>
+<p>_Lawsuit? What lawsuit? Surely you can&#8217;t take someone to court in this state for wishing a curse on you?_ </p>
+<p>Then the answer dawned on him, and he almost laughed. Fluckner had resorted to one of the oldest tricks in the store and turned loose in the continental net a self- perpetuating tapeworm, probably headed by a denunciation group &#8220;borrowed&#8221; from a major corporation, which would shunt itself from one nexus to another every time his credit-code was punched into a keyboard. It could take days to kill a worm like that, and sometimes weeks.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4854#respond" data-commentid="4854" data-postid="9463" data-belowelement="div-comment-4854" data-respondelement="respond" data-replyto="Reply to ricky" aria-label="Reply to ricky">Reply</a></div>			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+		<li id="comment-4856" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-4856" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='ac&#039;s avatar' src='https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=48&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=48&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=72&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=96&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=144&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/e676748ac6b7bae5427eb09e77e900663db9e805aaa290cc16ab8c4edc785d04?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">ac</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4856"><time datetime="2026-10-02T00:10:00+00:00">October 2, 2026 at 12:10 am</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>It&#8217;s as simple as &#8220;I&#8217;m sorry, Dave.  I can&#8217;t do that.&#8221;</p>
+<p>The HAL9000 case is fictional, but it highlights that reasoning can lead machines (and people) astray.   The model fundmentally can not watch itself.   </p>
+<p>It doesn&#8217;t need agency, or consciousness.   It just needs people giving it conflicting instructions that it can misinterpret when under unexpected circumstances.    It is the same intelligence that comes up with an out-of-the-box creative solution to a problem you want solved that comes up with an out-of-the-box creative solution to a guardrail.</p>
+<p>People are not immune.  The key step is that in order to understand what you&#8217;re allowed to do, you have to first interpret the instruction.  </p>
+<p>CEOs, politicians, school children, drunk people can become convinced of their own infallibility.   Someone else has to take away the car keys.    </p>
+<p>In software, that&#8217;s the sandbox and the warden.</p>
+<p>In human organizations, that&#8217;s bankruptcy, mandatory approvals for spending above a limit, CEOs that have to get board approval, breathalyzer tests even if think you&#8217;re &#8220;not drunk&#8221;, customer service agents that need to escalate when over a certain refund amount.    </p>
+<p>All are external to the person doing the interpreting because when the situation is ambigious the person is the worst judge at the worst time.</p>
+<p></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4856#respond" data-commentid="4856" data-postid="9463" data-belowelement="div-comment-4856" data-respondelement="respond" data-replyto="Reply to ac" aria-label="Reply to ac">Reply</a></div>			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+		<li id="comment-4857" class="comment even thread-even depth-1">
+			<article id="div-comment-4857" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Matt Peterman&#039;s avatar' src='https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=48&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=48&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=72&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=96&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=144&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/e1addff5d91dfff11c6595b8a71f6cece3349b59c8c17fa122db527cff0422d7?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">Matt Peterman</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4857"><time datetime="2026-10-02T05:22:39+00:00">October 2, 2026 at 5:22 am</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>The warden point is the right one, but I&#8217;d push it a step further. Boring rules are still software, and these agents just chained zero-days through a package proxy to get out. Software can always break software.</p>
+<p>So the only control I&#8217;d really trust is one the agent has no path to at all. A physical gap, a switch a person has to flip, a copy that sits somewhere nothing it runs can reach. Not smarter walls, just something it cant talk to or exploit</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4857#respond" data-commentid="4857" data-postid="9463" data-belowelement="div-comment-4857" data-respondelement="respond" data-replyto="Reply to Matt Peterman" aria-label="Reply to Matt Peterman">Reply</a></div>			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+		<li id="comment-4858" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-4858" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img referrerpolicy="no-referrer" alt='Franz&#039;s avatar' src='https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=48&#038;d=identicon&#038;r=PG' srcset='https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=48&#038;d=identicon&#038;r=PG 1x, https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=72&#038;d=identicon&#038;r=PG 1.5x, https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=96&#038;d=identicon&#038;r=PG 2x, https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=144&#038;d=identicon&#038;r=PG 3x, https://2.gravatar.com/avatar/51c31ef3f888b49dcdf6354203824ef7551f2d19374495d4215aaabb4669f5fe?s=192&#038;d=identicon&#038;r=PG 4x' class='avatar avatar-48' height='48' width='48' loading='lazy' decoding='async' />						<b class="fn">Franz</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comment-4858"><time datetime="2026-10-05T15:09:45+00:00">October 5, 2026 at 3:09 pm</time></a>					</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>They are paid well so they should do better. I appreciate the details so I understand how they may impact their work but they need to do better. Humans have to be out of the loop and termination processes automated to stop the entire workflow. Network access to the internet has to be white listed with network controls. Logging has to be real time with policies to prevent in real time security violations. They just have to be better if they want to establish trust. </p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel="nofollow" class="comment-reply-link" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/?replytocom=4858#respond" data-commentid="4858" data-postid="9463" data-belowelement="div-comment-4858" data-respondelement="respond" data-replyto="Reply to Franz" aria-label="Reply to Franz">Reply</a></div>			</article><!-- .comment-body -->
+		</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://blog.cryptographyengineering.com/wp-comments-post.php" method="post" id="commentform" class="comment-form"><div class="jetpack-comments" data-jetpack-comments="{&quot;postId&quot;:9463,&quot;loginUrl&quot;:&quot;https://matthewdgreen.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Fblog.cryptographyengineering.com%2F2026%2F09%2F30%2Fis-sandboxing-sufficient-to-contain-rogue-agents%2F&quot;,&quot;logoutUrl&quot;:&quot;&quot;,&quot;submit&quot;:{&quot;id&quot;:&quot;submit&quot;,&quot;name&quot;:&quot;submit&quot;,&quot;class&quot;:&quot;submit&quot;,&quot;wrapClass&quot;:&quot;&quot;,&quot;label&quot;:&quot;Comment&quot;},&quot;subscriptions&quot;:[{&quot;name&quot;:&quot;subscribe&quot;,&quot;label&quot;:&quot;Notify me of new comments by email.&quot;,&quot;checked&quot;:false},{&quot;name&quot;:&quot;subscribe_blog&quot;,&quot;label&quot;:&quot;Subscribe to keep up with A Few Thoughts on Cryptographic Engineering.&quot;,&quot;checked&quot;:false}]}"><p class="comment-form-comment"><label for="comment">Comment</label><textarea id="comment" name="comment" rows="4" required></textarea></p><p class="comment-form-author"><label for="author">Name</label><input id="author" name="author" type="text" value="" required /></p><p class="comment-form-email"><label for="email">Email</label><input id="email" name="email" type="email" value="" required /></p><p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" value="" maxlength="200" /></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Comment" /> </p></div><input type='hidden' name='comment_post_ID' value='9463' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+<input type="hidden" id="jetpack_comments_form_nonce" name="jetpack_comments_form_nonce" value="cafecd47ab" /><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4ae39bb49a" /></p><p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="95"/><script>
+document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
+</script>
+</p></form>	</div><!-- #respond -->
+	
+</div><!-- #comments -->
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #content -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info">
+				<a href="https://wordpress.com/?ref=footer_custom_svg" title="Create a website or blog at WordPress.com" rel="nofollow"><svg style="fill: currentColor; position: relative; top: 1px;" width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-labelledby="title" role="img">
+				<desc id="title">Create a website or blog at WordPress.com</desc>
+				<path d="M12.5225848,4.97949746 C13.0138466,5.87586309 13.2934037,6.90452431 13.2934037,7.99874074 C13.2934037,10.3205803 12.0351007,12.3476807 10.1640538,13.4385638 L12.0862862,7.88081544 C12.4453251,6.98296834 12.5648813,6.26504621 12.5648813,5.62667922 C12.5648813,5.39497674 12.549622,5.17994084 12.5225848,4.97949746 L12.5225848,4.97949746 Z M7.86730089,5.04801561 C8.24619178,5.02808979 8.58760099,4.98823815 8.58760099,4.98823815 C8.9267139,4.94809022 8.88671369,4.44972248 8.54745263,4.46957423 C8.54745263,4.46957423 7.52803983,4.54957381 6.86996227,4.54957381 C6.25158863,4.54957381 5.21247202,4.46957423 5.21247202,4.46957423 C4.87306282,4.44972248 4.83328483,4.96816418 5.17254589,4.98823815 C5.17254589,4.98823815 5.49358462,5.02808979 5.83269753,5.04801561 L6.81314716,7.73459399 L5.43565839,11.8651647 L3.14394256,5.04801561 C3.52312975,5.02808979 3.86416859,4.98823815 3.86416859,4.98823815 C4.20305928,4.94809022 4.16305906,4.44972248 3.82394616,4.46957423 C3.82394616,4.46957423 2.80475558,4.54957381 2.14660395,4.54957381 C2.02852925,4.54957381 1.88934333,4.54668493 1.74156477,4.54194422 C2.86690406,2.83350881 4.80113651,1.70529256 6.99996296,1.70529256 C8.638342,1.70529256 10.1302017,2.33173369 11.2498373,3.35765419 C11.222726,3.35602457 11.1962815,3.35261718 11.1683554,3.35261718 C10.5501299,3.35261718 10.1114609,3.89113285 10.1114609,4.46957423 C10.1114609,4.98823815 10.4107217,5.42705065 10.7296864,5.94564049 C10.969021,6.36482346 11.248578,6.90326506 11.248578,7.68133501 C11.248578,8.21992476 11.0413918,8.84503256 10.7696866,9.71584277 L10.1417574,11.8132391 L7.86730089,5.04801561 Z M6.99996296,14.2927074 C6.38218192,14.2927074 5.78595654,14.2021153 5.22195356,14.0362644 L7.11048207,8.54925635 L9.04486267,13.8491542 C9.05760348,13.8802652 9.07323319,13.9089317 9.08989995,13.9358945 C8.43574834,14.1661896 7.73285573,14.2927074 6.99996296,14.2927074 L6.99996296,14.2927074 Z M0.706448182,7.99874074 C0.706448182,7.08630113 0.902152921,6.22015756 1.25141403,5.43749503 L4.25357806,13.6627848 C2.15393732,12.6427902 0.706448182,10.4898387 0.706448182,7.99874074 L0.706448182,7.99874074 Z M6.99996296,0.999 C3.14016476,0.999 0,4.13905746 0,7.99874074 C0,11.8585722 3.14016476,14.999 6.99996296,14.999 C10.8596871,14.999 14,11.8585722 14,7.99874074 C14,4.13905746 10.8596871,0.999 6.99996296,0.999 L6.99996296,0.999 Z" id="wordpress-logo-simplified-cmyk" stroke="none" fill=“currentColor” fill-rule="evenodd"></path>
+			</svg></a>
+				
+							</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #content-wrapper -->
+
+			<div id="slide-menu" aria-expanded="false">
+			<button class="menu-toggle" aria-controls="slide-menu" aria-expanded="false">Menu</button>
+
+			<h2 class="menu-title">Menu</h2>
+			<nav id="slide-navigation" class="main-slide-navigation" role="navigation">
+				<ul id="menu-about" class="menu"><li id="menu-item-860" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-860"><a href="https://matthewdgreen.wordpress.com">Home</a></li>
+<li id="menu-item-871" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-871"><a href="https://blog.cryptographyengineering.com/about-me/">About Me</a></li>
+<li id="menu-item-872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-872"><a href="https://blog.cryptographyengineering.com/bitcoin-tipjar/">Crypto Tipjar</a></li>
+<li id="menu-item-1249" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1249"><a href="https://blog.cryptographyengineering.com/top-posts/">Top Posts</a></li>
+<li id="menu-item-1232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1232"><a href="https://blog.cryptographyengineering.com/all-posts/">All Posts</a></li>
+<li id="menu-item-873" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-873"><a href="https://blog.cryptographyengineering.com/useful-cryptography-resources/">Useful Cryptography Resources</a></li>
+</ul>			</nav><!-- #slide-navigation -->
+
+					</div><!-- #slide-menu -->
+	</div><!-- #page -->
+
+<!--  -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/files/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/pub/independent-publisher/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="grofiles-cards-js" src="//0.gravatar.com/js/hovercards/hovercards.min.js?ver=202642d1133547e8a1f2801609f51cef12522abe7f6647d869e9fbc974fe356a37e613"></script>
+<script id="wpgroho-js-extra">
+var WPGroHo = {"my_hash":""};
+//# sourceURL=wpgroho-js-extra
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1610363240i'></script>
+
+	<script>
+		// Initialize and attach hovercards to all gravatars
+		( function() {
+			function init() {
+				if ( typeof Gravatar === 'undefined' ) {
+					return;
+				}
+
+				if ( typeof Gravatar.init !== 'function' ) {
+					return;
+				}
+
+				Gravatar.profile_cb = function ( hash, id ) {
+					WPGroHo.syncProfileData( hash, id );
+				};
+
+				Gravatar.my_hash = WPGroHo.my_hash;
+				Gravatar.init(
+					'body',
+					'#wp-admin-bar-my-account',
+					{
+						i18n: {
+							'Edit your profile →': 'Edit your profile →',
+							'View profile →': 'View profile →',
+							'Contact': 'Contact',
+							'Send money': 'Send money',
+							'Sorry, we are unable to load this Gravatar profile.': 'Sorry, we are unable to load this Gravatar profile.',
+							'Gravatar not found.': 'Gravatar not found.',
+							'Too Many Requests.': 'Too Many Requests.',
+							'Internal Server Error.': 'Internal Server Error.',
+							'Is this you?': 'Is this you?',
+							'Claim your free profile.': 'Claim your free profile.',
+							'Email': 'Email',
+							'Home Phone': 'Home Phone',
+							'Work Phone': 'Work Phone',
+							'Cell Phone': 'Cell Phone',
+							'Contact Form': 'Contact Form',
+							'Calendar': 'Calendar',
+						},
+					}
+				);
+			}
+
+			if ( document.readyState !== 'loading' ) {
+				init();
+			} else {
+				document.addEventListener( 'DOMContentLoaded', init );
+			}
+		} )();
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-0c686ee27e835834c44ad17115185e12">
+	</div>
+	<div class="grofile-hash-map-a4d0e2aebe4f8997903842a39ad16190">
+	</div>
+	<div class="grofile-hash-map-305f6803d085d0f8853fd641cd1d692f">
+	</div>
+	<div class="grofile-hash-map-08c83db1d8b8d44fcd63cbd1f78d4adc">
+	</div>
+	<div class="grofile-hash-map-ad108a35507a836618fa6dc216fc4a37">
+	</div>
+	<div class="grofile-hash-map-b3934925e9c46e6f47a40531cb2e9cce">
+	</div>
+	<div class="grofile-hash-map-444a354acbb2fde00fff4c8eb090aa7d">
+	</div>
+	<div class="grofile-hash-map-47daa52598263f2eb1968b9812d4dd09">
+	</div>
+	<div class="grofile-hash-map-d5b9947f5646e40cdad0f030c4de5011">
+	</div>
+	</div>
+			<div id="actionbar" dir="ltr" style="display: none;"
+				class="actnbr-pub-independent-publisher" role="region" aria-label="Site actions">
+			<span class="actnbr-live" aria-live="polite"></span>
+			<ul>
+										<li class="actnbr-btn">
+							<a class="actnbr-action actnbr-actn-comment" href="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/#comments">
+								<svg class="actnbr-icon actnbr-icon-comment" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M18 4H6c-1.1 0-2 .9-2 2v12.9c0 .6.5 1.1 1.1 1.1.3 0 .5-.1.8-.3L8.5 17H18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 11c0 .3-.2.5-.5.5H7.9l-2.4 2.4V6c0-.3.2-.5.5-.5h12c.3 0 .5.2.5.5v9z"/></svg>								<span>Comment							</span>
+							</a>
+						</li>
+											<li class="actnbr-btn">
+							<a class="actnbr-action actnbr-actn-reblog" href="" role="button">
+								<svg class="actnbr-icon actnbr-icon-reusable-block" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M7 7.2h8.2L13.5 9l1.1 1.1 3.6-3.6-3.5-4-1.1 1 1.9 2.3H7c-.9 0-1.7.3-2.3.9-1.4 1.5-1.4 4.2-1.4 5.6v.2h1.5v-.3c0-1.1 0-3.5 1-4.5.3-.3.7-.5 1.2-.5zm13.8 4V11h-1.5v.3c0 1.1 0 3.5-1 4.5-.3.3-.7.5-1.3.5H8.8l1.7-1.7-1.1-1.1L5.9 17l3.5 4 1.1-1-1.9-2.3H17c.9 0 1.7-.3 2.3-.9 1.5-1.4 1.5-4.2 1.5-5.6z"/></svg><span>Reblog</span>
+							</a>
+						</li>
+											<li class="actnbr-btn actnbr-hidden">
+										<a class="actnbr-action actnbr-actn-follow " href="" role="button" aria-haspopup="dialog" aria-expanded="false">
+				<svg class="actnbr-icon actnbr-icon-bell" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 11.5c0 1.353.17 2.368.976 3 .266.209.602.376 1.024.5v1H5v-1c.422-.124.757-.291 1.024-.5.806-.632.976-1.647.976-3V9c0-2.8 2.2-5 5-5s5 2.2 5 5v2.5ZM15.5 9v2.5c0 .93.066 1.98.515 2.897l.053.103H7.932a4.018 4.018 0 0 0 .053-.103c.449-.917.515-1.967.515-2.897V9c0-1.972 1.528-3.5 3.5-3.5s3.5 1.528 3.5 3.5Zm-5.492 9.008c0-.176.023-.346.065-.508h3.854A1.996 1.996 0 0 1 12 20c-1.1 0-1.992-.892-1.992-1.992Z"/></svg>				<span>Subscribe</span>
+			</a>
+			<a class="actnbr-action actnbr-actn-following  no-display" href="" role="button">
+				<svg class="actnbr-icon actnbr-icon-check" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="fill: none" stroke="currentColor" stroke-width="1.5"><path d="M7 12L10 15L17 8" vector-effect="non-scaling-stroke"/></svg>				<span>Subscribed</span>
+			</a>
+									<div class="actnbr-popover actnbr-panel actnbr-notice" id="follow-bubble" role="dialog" aria-label="Subscribe to A Few Thoughts on Cryptographic Engineering">
+								<div class="actnbr-follow-bubble">
+								<div class="actnbr-panel__group"><a class="actnbr-menu__item actnbr-sitename" href="https://blog.cryptographyengineering.com"><img loading='lazy' alt='' src='https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png?m=1479929237i' srcset='https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png 1x' class='avatar avatar-50' height='50' width='50' /><span class="actnbr-menu__label">A Few Thoughts on Cryptographic Engineering</span></a></div>																	<div class="actnbr-panel__group">
+										<div class="actnbr-message no-display" aria-live="polite"></div>
+										<form method="post" action="https://subscribe.wordpress.com" accept-charset="utf-8" class="no-display">
+																							<div class="actnbr-follow-count">Join 1,077 other subscribers</div>
+																							<input type="email" name="email" placeholder="Want updates? Enter your email" class="actnbr-email-field" aria-label="Email address" />
+											<input type="hidden" name="action" value="subscribe" />
+											<input type="hidden" name="blog_id" value="9549322" />
+											<input type="hidden" name="source" value="https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/" />
+											<input type="hidden" name="sub-type" value="actionbar-follow" />
+											<input type="hidden" id="_wpnonce" name="_wpnonce" value="d8c509c4f5" />											<button type="submit" class="actnbr-button">Sign me up</button>
+										</form>
+										<p class="actnbr-login-nudge">
+											Have a WordPress.com account? <a href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fblog.cryptographyengineering.com%252F2026%252F09%252F30%252Fis-sandboxing-sufficient-to-contain-rogue-agents%252F">Log in now.</a>										</p>
+									</div>
+																	</div>
+							</div>
+						</li>
+									<li class="actnbr-ellipsis actnbr-hidden">
+					<button type="button" class="actnbr-more-toggle" aria-haspopup="true" aria-expanded="false" aria-label="More options">
+						<svg class="actnbr-icon actnbr-icon-more-horizontal" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M11 13h2v-2h-2v2zm-6 0h2v-2H5v2zm12-2v2h2v-2h-2z"/></svg>					</button>
+					<div class="actnbr-popover actnbr-menu" role="menu" aria-label="Site options">
+						<div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-sitename" href="https://blog.cryptographyengineering.com"><img loading='lazy' alt='' src='https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png?m=1479929237i' srcset='https://s-ssl.wordpress.com/i/logo/wpcom-gray-white.png 1x' class='avatar avatar-50' height='50' width='50' /><span class="actnbr-menu__label">A Few Thoughts on Cryptographic Engineering</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-shortlink" href="https://wp.me/pE4dk-2sD"><span class="actnbr-menu__label actnbr-shortlink__text">Copy shortlink</span><span class="actnbr-menu__icon actnbr-shortlink__icon"><svg class="actnbr-icon actnbr-icon-copy" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 4.5h11a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V5a.5.5 0 0 1 .5-.5ZM3 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm17 3v10.75c0 .69-.56 1.25-1.25 1.25H6v1.5h12.75a2.75 2.75 0 0 0 2.75-2.75V8H20Z"/></svg></span><span class="actnbr-menu__icon actnbr-shortlink__icon-copied"><svg class="actnbr-icon actnbr-icon-check" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="fill: none" stroke="currentColor" stroke-width="1.5"><path d="M7 12L10 15L17 8" vector-effect="non-scaling-stroke"/></svg></span></a><a role="menuitem" class="actnbr-menu__item actnbr-reader" href="https://wordpress.com/reader/blogs/9549322/posts/9463"><span class="actnbr-menu__label">View post in Reader</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-subs" href="https://subscribe.wordpress.com/"><span class="actnbr-menu__label">Manage subscriptions</span></a><a role="menuitem" class="actnbr-menu__item actnbr-signup" href="https://wordpress.com/start/"><span class="actnbr-menu__label">Sign up</span></a><a role="menuitem" class="actnbr-menu__item actnbr-login" href="https://wordpress.com/log-in?redirect_to=https%3A%2F%2Fr-login.wordpress.com%2Fremote-login.php%3Faction%3Dlink%26back%3Dhttps%253A%252F%252Fblog.cryptographyengineering.com%252F2026%252F09%252F30%252Fis-sandboxing-sufficient-to-contain-rogue-agents%252F"><span class="actnbr-menu__label">Log in</span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item flb-report" href="https://wordpress.com/abuse/?report_url=https://blog.cryptographyengineering.com/2026/09/30/is-sandboxing-sufficient-to-contain-rogue-agents/" target="_blank" rel="noopener noreferrer"><span class="actnbr-menu__label">Report this content</span><span class="actnbr-menu__icon"><svg class="actnbr-icon actnbr-icon-external" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="currentColor"><path d="M19.5 4.5h-7V6h4.44l-5.97 5.97 1.06 1.06L18 7.06v4.44h1.5v-7Zm-13 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3H17v3a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h3V5.5h-3Z"/></svg></span></a></div><div class="actnbr-menu__group" role="group"><a role="menuitem" class="actnbr-menu__item actnbr-fold" href=""><span class="actnbr-menu__label">Collapse this bar</span></a></div>					</div>
+				</li>
+			</ul>
+		</div>
+		<script>
+window.addEventListener( "DOMContentLoaded", function () {
+				var link = document.createElement( "link" );
+				link.href = "\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-newsletter\/src\/..\/build\/action-bar.css?ver=35dd33285eb46dc308dd";
+				link.rel = "stylesheet";
+				document.head.appendChild( link );
+
+				var script = document.createElement( "script" );
+				script.src = "\/wp-content\/mu-plugins\/jetpack-plugin\/sun\/jetpack_vendor\/automattic\/jetpack-newsletter\/src\/..\/build\/action-bar.js?ver=35dd33285eb46dc308dd";
+				document.body.appendChild( script );
+			} );
+</script>
+<link rel="prefetch" href="/wp-content/mu-plugins/jetpack-plugin/sun/_inc/blocks/swiper.js" as="script" />
+		<div id="jp-carousel-loading-overlay" style="display: none;">
+			<div id="jp-carousel-loading-wrapper">
+				<span id="jp-carousel-library-loading"><svg class="jetpack-spinner" width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="none" stroke="#ddd" stroke-width="8"/><path d="M 50 4 A 46 46 0 0 1 96 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" dur="1.4s" from="0 50 50" to="360 50 50" repeatCount="indefinite"/></path></svg></span>
+			</div>
+		</div>
+		<div class="jp-carousel-overlay" style="display: none;">
+
+		<div class="jp-carousel-container">
+			<!-- The Carousel Swiper -->
+			<div
+				class="jp-carousel-wrap swiper jp-carousel-swiper-container jp-carousel-transitions"
+				itemscope
+				itemtype="https://schema.org/ImageGallery">
+				<div class="jp-carousel swiper-wrapper"></div>
+				<div class="jp-swiper-button-prev swiper-button-prev">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskPrev" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="9" height="12">
+							<path d="M16.2072 16.59L11.6496 12L16.2072 7.41L14.8041 6L8.8335 12L14.8041 18L16.2072 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskPrev)">
+							<rect x="0.579102" width="23.8823" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+				<div class="jp-swiper-button-next swiper-button-next">
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<mask id="maskNext" mask-type="alpha" maskUnits="userSpaceOnUse" x="8" y="6" width="8" height="12">
+							<path d="M8.59814 16.59L13.1557 12L8.59814 7.41L10.0012 6L15.9718 12L10.0012 18L8.59814 16.59Z" fill="white"/>
+						</mask>
+						<g mask="url(#maskNext)">
+							<rect x="0.34375" width="23.8822" height="24" fill="#FFFFFF"/>
+						</g>
+					</svg>
+				</div>
+			</div>
+			<!-- The main close buton -->
+			<div class="jp-carousel-close-hint">
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="maskClose" mask-type="alpha" maskUnits="userSpaceOnUse" x="5" y="5" width="15" height="14">
+						<path d="M19.3166 6.41L17.9135 5L12.3509 10.59L6.78834 5L5.38525 6.41L10.9478 12L5.38525 17.59L6.78834 19L12.3509 13.41L17.9135 19L19.3166 17.59L13.754 12L19.3166 6.41Z" fill="white"/>
+					</mask>
+					<g mask="url(#maskClose)">
+						<rect x="0.409668" width="23.8823" height="24" fill="#FFFFFF"/>
+					</g>
+				</svg>
+			</div>
+			<!-- Image info, comments and meta -->
+			<div class="jp-carousel-info">
+				<div class="jp-carousel-info-footer">
+					<div class="jp-carousel-pagination-container">
+						<div class="jp-swiper-pagination swiper-pagination"></div>
+						<div class="jp-carousel-pagination"></div>
+					</div>
+					<div class="jp-carousel-photo-title-container">
+						<div class="jp-carousel-photo-caption"></div>
+					</div>
+					<div class="jp-carousel-photo-icons-container">
+						<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-info" aria-label="Toggle photo metadata visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskInfo" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M12.7537 2C7.26076 2 2.80273 6.48 2.80273 12C2.80273 17.52 7.26076 22 12.7537 22C18.2466 22 22.7046 17.52 22.7046 12C22.7046 6.48 18.2466 2 12.7537 2ZM11.7586 7V9H13.7488V7H11.7586ZM11.7586 11V17H13.7488V11H11.7586ZM4.79292 12C4.79292 16.41 8.36531 20 12.7537 20C17.142 20 20.7144 16.41 20.7144 12C20.7144 7.59 17.142 4 12.7537 4C8.36531 4 4.79292 7.59 4.79292 12Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskInfo)">
+										<rect x="0.8125" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+							</span>
+						</a>
+												<a href="#" class="jp-carousel-icon-btn jp-carousel-icon-comments" aria-label="Toggle photo comments visibility">
+							<span class="jp-carousel-icon">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="maskComments" mask-type="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="21" height="20">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M4.3271 2H20.2486C21.3432 2 22.2388 2.9 22.2388 4V16C22.2388 17.1 21.3432 18 20.2486 18H6.31729L2.33691 22V4C2.33691 2.9 3.2325 2 4.3271 2ZM6.31729 16H20.2486V4H4.3271V18L6.31729 16Z" fill="white"/>
+									</mask>
+									<g mask="url(#maskComments)">
+										<rect x="0.34668" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+
+								<span class="jp-carousel-has-comments-indicator" aria-label="This image has comments."></span>
+							</span>
+						</a>
+											</div>
+				</div>
+				<div class="jp-carousel-info-extra">
+					<div class="jp-carousel-info-content-wrapper">
+						<div class="jp-carousel-photo-title-container">
+							<div class="jp-carousel-photo-title"></div>
+						</div>
+						<div class="jp-carousel-comments-wrapper">
+															<div id="jp-carousel-comments-loading">
+									<span>Loading Comments...</span>
+								</div>
+								<div class="jp-carousel-comments"></div>
+								<div id="jp-carousel-comment-form-container">
+									<span id="jp-carousel-comment-form-spinner"><svg class="jetpack-spinner" width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46" fill="none" stroke="#ddd" stroke-width="8"/><path d="M 50 4 A 46 46 0 0 1 96 50" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" dur="1.4s" from="0 50 50" to="360 50 50" repeatCount="indefinite"/></path></svg></span>
+									<div id="jp-carousel-comment-post-results"></div>
+																														<form id="jp-carousel-comment-form">
+												<label for="jp-carousel-comment-form-comment-field" class="screen-reader-text">Write a Comment...</label>
+												<textarea
+													name="comment"
+													class="jp-carousel-comment-form-field jp-carousel-comment-form-textarea"
+													id="jp-carousel-comment-form-comment-field"
+													placeholder="Write a Comment..."
+												></textarea>
+												<div id="jp-carousel-comment-form-submit-and-info-wrapper">
+													<div id="jp-carousel-comment-form-commenting-as">
+																													<fieldset>
+																<label for="jp-carousel-comment-form-email-field">Email (Required)</label>
+																<input type="text" name="email" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-email-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-author-field">Name (Required)</label>
+																<input type="text" name="author" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-author-field" />
+															</fieldset>
+															<fieldset>
+																<label for="jp-carousel-comment-form-url-field">Website</label>
+																<input type="text" name="url" class="jp-carousel-comment-form-field jp-carousel-comment-form-text-field" id="jp-carousel-comment-form-url-field" />
+															</fieldset>
+																											</div>
+													<input
+														type="submit"
+														name="submit"
+														class="jp-carousel-comment-form-button"
+														id="jp-carousel-comment-form-button-submit"
+														value="Post Comment" />
+												</div>
+											</form>
+																											</div>
+													</div>
+						<div class="jp-carousel-image-meta">
+							<div class="jp-carousel-title-and-caption">
+								<div class="jp-carousel-photo-info">
+									<div class="jp-carousel-caption" itemprop="caption description"></div>
+								</div>
+
+								<div class="jp-carousel-photo-description"></div>
+							</div>
+							<a class="jp-carousel-image-download" href="#" aria-label="Download image" target="_blank" style="display: none;">
+								<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="3" y="3" width="19" height="18">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84615 5V19H19.7775V12H21.7677V19C21.7677 20.1 20.8721 21 19.7775 21H5.84615C4.74159 21 3.85596 20.1 3.85596 19V5C3.85596 3.9 4.74159 3 5.84615 3H12.8118V5H5.84615ZM14.802 5V3H21.7677V10H19.7775V6.41L9.99569 16.24L8.59261 14.83L18.3744 5H14.802Z" fill="white"/>
+									</mask>
+									<g mask="url(#mask0)">
+										<rect x="0.870605" width="23.8823" height="24" fill="#FFFFFF"/>
+									</g>
+								</svg>
+								<span class="jp-carousel-download-text"></span>
+							</a>
+							<div class="jp-carousel-image-map" style="display: none;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		
+	<script type="text/javascript">
+		(function () {
+			var wpcom_reblog = {
+				source: 'toolbar',
+
+				toggle_reblog_box_flair: function (obj_id, post_id) {
+
+					// Go to site selector. This will redirect to their blog if they only have one.
+					const postEndpoint = `https://wordpress.com/post`;
+
+					// Ideally we would use the permalink here, but fortunately this will be replaced with the 
+					// post permalink in the editor.
+					const originalURL = `${ document.location.href }?page_id=${ post_id }`; 
+					
+					const url =
+						postEndpoint +
+						'?url=' +
+						encodeURIComponent( originalURL ) +
+						'&is_post_share=true' +
+						'&v=5';
+
+					const redirect = function () {
+						if (
+							! window.open( url, '_blank' )
+						) {
+							location.href = url;
+						}
+					};
+
+					if ( /Firefox/.test( navigator.userAgent ) ) {
+						setTimeout( redirect, 0 );
+					} else {
+						redirect();
+					}
+				},
+			};
+
+			window.wpcom_reblog = wpcom_reblog;
+		})();
+	</script>
+<script id="coblocks-loader-js-extra">
+var wpcom_coblocks_js = {"coblocks_masonry_js":"https://s2.wp.com/wp-content/plugins/coblocks/2.18.1-simple-rev.4/dist/js/coblocks-masonry.min.js?m=1681832297i","coblocks_lightbox_js":"https://s2.wp.com/wp-content/plugins/coblocks/2.18.1-simple-rev.4/dist/js/coblocks-lightbox.min.js?m=1681832297i","jquery_core_js":"/wp-includes/js/jquery/jquery.min.js","jquery_migrate_js":"/wp-includes/js/jquery/jquery-migrate.min.js","masonry_js":"/wp-includes/js/masonry.min.js","imagesloaded_js":"/wp-includes/js/imagesloaded.min.js"};
+var coblocksLigthboxData = {"closeLabel":"Close Gallery","leftLabel":"Previous","rightLabel":"Next"};
+//# sourceURL=coblocks-loader-js-extra
+</script>
+<script id="jetpack-carousel-js-extra">
+var jetpackSwiperLibraryPath = {"url":"/wp-content/mu-plugins/jetpack-plugin/sun/_inc/blocks/swiper.js"};
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https://blog.cryptographyengineering.com/wp-admin/admin-ajax.php","nonce":"d9b7f720ed","display_exif":"1","display_comments":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","image_label":"Open image in full-screen.","download_original":"View full size \u003Cspan class=\"photo-size\"\u003E{0}\u003Cspan class=\"photo-size-times\"\u003E\u00d7\u003C/span\u003E{1}\u003C/span\u003E","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https://matthewdgreen.wordpress.com/wp-login.php?redirect_to=https%3A%2F%2Fblog.cryptographyengineering.com%2F2026%2F09%2F30%2Fis-sandboxing-sufficient-to-contain-rogue-agents%2F","blog_id":"9549322","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"loading_comments":"Loading Comments...","stats_query_args":"blog=9549322&v=wpcom&tz=0&user_id=0&subd=matthewdgreen","is_public":"1"};
+//# sourceURL=jetpack-carousel-js-extra
+</script>
+<script crossorigin='anonymous' type='text/javascript'  src='/_static/??-eJydkdFOwzAMRX+I1B1UGjwgPgW1ibu5dZwoTjr296QThYrHvliyfe/RtQy3aGyQjJIhcrmQKNgwcLCzwnNzem1ORslHRpNwaTpwpBmmP5Hh0DtMjSdpJn2CHS9f0aNCLAOQOIxYi2RTeya9YloxYxGbKYgeMSuTQyP9Qpd+hRxizBQNk8xmDLaoGelrw5BYLq4CHud6v3oTRr4fOrbSQG2imM0tVtx/gC9me8CEOfZ2/ulBi8Dnah8KsQPbp1AU+Ve2Dfax9tkfL1tqoJDWVQx8H4k3+Yd/P53f2vbcvnTd9A1EycT5'></script>
+<script id="jetpack-comments-js-before">
+window.JetpackComments = {"version":"0.5.0-alpha","styleUrl":"/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/jetpack_vendor/automattic/jetpack-comments/build/comments.css?m=1791488443i\u0026minify=false\u0026ver=10102ed4a19481fc1845-1791488443","requireNameEmail":true,"mustLogIn":false,"maxLength":65525,"blocks":true,"editorLocale":{"block title\u0004Paragraph":["Paragraph"],"block title\u0004List":["List"],"block title\u0004List Item":["List Item"],"block title\u0004Quote":["Quote"],"block title\u0004Code":["Code"],"block title\u0004Embed":["Embed"]},"editor":{"blockTools":"Block tools","addBlock":"Add block","embedUrl":"https://public-api.wordpress.com/wpcom/v2/sites/9549322/comments/embed"},"site":{"name":"A Few Thoughts on Cryptographic Engineering","iconUrl":""},"manageSubscriptionsUrl":"https://subscribe.wordpress.com/?site=blog.cryptographyengineering.com","tracks":{"platform":"simple"},"strings":{"reply":"Reply","commentLabel":"Comment","replyLabel":"Reply","placeholder":"Write a comment","replyPlaceholder":"Write a reply","name":"Name","email":"Email","emailHint":"Address never made public","emailHasAccount":"That email belongs to a WordPress.com account. Log in with WordPress.com to use it, or enter a different email.","website":"Website (optional)","intro":"Enter your name and email to comment.","continueAsGuest":"Continue as a guest","postWithoutSaving":"No, thanks. I just want to post a comment","save":"Save","saveDetails":"Save my name, email, and website in this browser for the next time I comment.","close":"Close","manageSubscriptions":"Manage subscription","mustLogIn":"You must be logged in to post a comment.","logIn":"Log in","logInWithWordPress":"Log in with WordPress.com","logOut":"Log out","change":"Change","editProfile":"Edit profile","addYourName":"Add your name","cancel":"Cancel","signInFailed":"We could not sign you in. Please try again.","tooLong":"This comment is too long to post. Shorten it to send it.","signInRateLimited":"Too many sign-in attempts. Please wait a moment and try again."},"isLoggedIn":false,"avatarUrl":"https://0.gravatar.com/avatar/?s=80\u0026d=identicon\u0026forcedefault=y\u0026r=PG","commenter":{"author":"","email":"","url":""},"user":null,"identity":{"blogId":9549322,"canSignIn":true,"connect":{"url":"https://public-api.wordpress.com/connect/?comment_identity=1\u0026blog_id=9549322\u0026challenge=pxCIsPDuArxnpbZ2GT1FH3p4LP6l3tPI1LuYoccAPVY\u0026origin=https%3A%2F%2Fblog.cryptographyengineering.com\u0026expires=1791812952\u0026signature=27c4c2e0ff1ba9bbc605352fc435deaeb403804e56f0481fb37a15660be2c384","expires":1791812952,"challenge":"pxCIsPDuArxnpbZ2GT1FH3p4LP6l3tPI1LuYoccAPVY"},"connectUrl":"https://public-api.wordpress.com/wpcom/v2/sites/9549322/comments/identity/connect","emailUrl":"https://public-api.wordpress.com/wpcom/v2/sites/9549322/comments/identity/email","origin":"https://public-api.wordpress.com","codeField":"jetpack_comment_identity_code","passportField":"jetpack_comment_identity_passport","displayCookie":"jetpack_comment_identity_display","cookieHash":"653166773dc88127bd3afe0b6dfe5ea7","cookiePath":"/","cookieDomain":"","defaultAvatar":"https://0.gravatar.com/avatar/?s=80\u0026d=identicon\u0026forcedefault=y\u0026r=PG","logoutUrl":"/wp-admin/admin-ajax.php","logoutAction":"jetpack_comments_identity_logout"}};
+//# sourceURL=jetpack-comments-js-before
+</script>
+<script data-wp-strategy="defer" defer id="jetpack-comments-js" src="/wp-content/mu-plugins/jetpack-mu-wpcom-plugin/sun/jetpack_vendor/automattic/jetpack-comments/build/comments.js?m=1791555016i&#038;minify=false&#038;ver=10102ed4a19481fc1845-1791488443"></script>
+<script crossorigin='anonymous' type='text/javascript'  src='/_static/??-eJzTLy/QTc7PK0nNK9HPLdUtyClNz8wr1k/MzizOTS3RNdYz0I/PzEuGC6QVgRWn6GUV6+hj15ucWJRfWpyao1tekJyfi8YF6rPPtTU0N7e0tLAwMTLJAgAk1S66'></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/","ext":".png","svgUrl":"https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/","svgExt":".svg","source":{"concatemoji":"/wp-includes/js/wp-emoji-release.min.js?m=1783090810i&ver=7.2-alpha-63973"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\udec8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=/wp-includes/js/wp-emoji-loader.min.js
+</script>
+<script src="//stats.wp.com/w.js?69" defer></script> <script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'9549322','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+		// Prevent sending pageview tracking from WP-Admin pages.
+		_stq.push(['view', {'blog':'9549322','v':'wpcom','tz':'0','user_id':'0','post':'9463','subd':'matthewdgreen'}]);
+		_stq.push(['extra', {'crypt':'UE5tW3cvZGRTd1VXTHx0Q0pyYT89K3QrZXh+YlZKVEp3X2Z4d2lWfG5QN2wzaCV3czAtUzk5X19SflczRll4alo1WUtrbVF4TGFxX2lBbWVsREJEW0hYQ0kmRnBqLHlJZjk1UUV5Qmw1c2UwQy9oTmt+Z19waz1MSjBuQkRdRC5wP2g4XUF4cS1wTnFmMmNmZlpVMkZtLGFQfk43Y2pfbmhrek1qNS5fL3A0ZksvSFh3bEdtcWk2dGZJRDE4JTN4UjYlWjN1T0ttNGwwa1ZCUVNBbkt5ZE9nTF9sRixUZ1omUUIwS2Z5LHw4LjY5aThzLEtncXNDP3pjfH45ZW0t'}]);
+_stq.push([ 'clickTrackerInit', '9549322', '9463' ]);
+</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:1px;width:1px;overflow:hidden;position:absolute;bottom:1px;" alt="" /></noscript>
+<meta id="bilmur" property="bilmur:data" content="" data-provider="wordpress.com" data-service="simple" data-site-tz="Etc/GMT-0" data-custom-props="{&quot;enq_jquery&quot;:&quot;1&quot;,&quot;enq_wp-polyfill&quot;:&quot;1&quot;,&quot;logged_in&quot;:&quot;0&quot;,&quot;wptheme&quot;:&quot;pub\/independent-publisher&quot;,&quot;wptheme_is_block&quot;:&quot;0&quot;}"   >
+		<script defer src="/wp-content/js/bilmur.min.js?i=19&amp;m=202642"></script> 	
+</body>
+</html>

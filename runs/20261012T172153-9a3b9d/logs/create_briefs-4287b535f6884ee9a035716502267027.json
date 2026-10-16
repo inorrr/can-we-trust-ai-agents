@@ -1,0 +1,16 @@
+{
+  "stage": "create_briefs",
+  "status": "completed",
+  "input_count": 15,
+  "output_count": 3,
+  "started_at": "2026-10-12T17:48:53.633529Z",
+  "finished_at": "2026-10-12T17:48:54.195060Z",
+  "tools": [
+    "saved_openai_response"
+  ],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

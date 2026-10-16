@@ -1,0 +1,133 @@
+{
+  "stage": "write_articles",
+  "status": "failed",
+  "input_count": 3,
+  "output_count": 1,
+  "started_at": "2026-10-12T17:58:18.664419Z",
+  "finished_at": "2026-10-12T17:59:55.453708Z",
+  "tools": [],
+  "models": [
+    "gpt-4.1-mini"
+  ],
+  "cost_usd": 0.111306,
+  "cost_estimated": true,
+  "model_calls": [
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0032f25ad089412d016acd1fc2872487d29f2e31b58ce700ef",
+      "usage": {
+        "input_tokens": 39764,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1871,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 41635
+      },
+      "cost_usd": 0.0188992,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/0a71113953014aa7ad1a9f4f22158889-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0ec2fb050242e9a8016acd1fd2aba087d285d9067012d04445",
+      "usage": {
+        "input_tokens": 41680,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1741,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 43421
+      },
+      "cost_usd": 0.0194576,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/79fa52900da34237a811316378413bf5-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_06eeef35b89fe998016acd1fe00e5c87d28343f7eddff3d8df",
+      "usage": {
+        "input_tokens": 41549,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1581,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 43130
+      },
+      "cost_usd": 0.019149200000000005,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/81f59853132649eda7080468ca9ecb00-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0b1a16f388d5c33c016acd1ff0e3e887d2b7b7b2f50af44608",
+      "usage": {
+        "input_tokens": 36385,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1948,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 38333
+      },
+      "cost_usd": 0.0176708,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/47dd079047204b029fcb39a3dc2d5b6e-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0a303ec80dd03062016acd2000b9c487d2930dbc41b35b8d4f",
+      "usage": {
+        "input_tokens": 38381,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1697,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 40078
+      },
+      "cost_usd": 0.018067600000000003,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/a0c0e9043a34430b9dee7e60ece6eca4-request.json"
+    },
+    {
+      "model": "gpt-4.1-mini",
+      "response_id": "resp_0d12977655157489016acd200d7a1887d2ad885af64395ad51",
+      "usage": {
+        "input_tokens": 38130,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 1756,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 39886
+      },
+      "cost_usd": 0.018061599999999997,
+      "status": "completed",
+      "request_path": "runs/20261012T172153-9a3b9d/model_calls/8341752753974805b85cd5e753ffe5bc-request.json"
+    }
+  ],
+  "errors": [
+    "Draft length or claim coverage remains invalid after two bounded revisions"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "stage": "prepare_package",
+  "status": "completed",
+  "input_count": 6,
+  "output_count": 9,
+  "started_at": "2026-10-16T01:06:11.511791Z",
+  "finished_at": "2026-10-16T01:06:27.274458Z",
+  "tools": [],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": []
+}

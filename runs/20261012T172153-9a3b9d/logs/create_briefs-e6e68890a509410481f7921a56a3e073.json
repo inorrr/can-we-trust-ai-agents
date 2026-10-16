@@ -1,0 +1,18 @@
+{
+  "stage": "create_briefs",
+  "status": "failed",
+  "input_count": 15,
+  "output_count": 0,
+  "started_at": "2026-10-12T17:47:55.997037Z",
+  "finished_at": "2026-10-12T17:47:56.500177Z",
+  "tools": [
+    "saved_openai_response"
+  ],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": [
+    "Brief uses material not selected for its piece"
+  ]
+}

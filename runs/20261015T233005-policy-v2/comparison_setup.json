@@ -1,0 +1,12 @@
+{
+  "baseline_run": "runs/20261012T172153-9a3b9d",
+  "baseline_policy": "docs/policy_history/editorial_policy-v1.md",
+  "new_policy": "config/editorial_policy.md",
+  "baseline_decisions": "runs/20261012T172153-9a3b9d/decisions.jsonl",
+  "input_identical": true,
+  "changed_inputs": [
+    "editorial_policy.md"
+  ],
+  "student_labels_supplied_to_model": false,
+  "key_presence_only": true
+}

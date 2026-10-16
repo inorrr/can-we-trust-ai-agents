@@ -1,0 +1,24 @@
+{
+  "stage": "extract_content",
+  "status": "failed",
+  "input_count": 15,
+  "output_count": 10,
+  "started_at": "2026-10-12T17:20:10.832537Z",
+  "finished_at": "2026-10-12T17:20:36.917958Z",
+  "tools": [
+    "requests",
+    "trafilatura",
+    "yt-dlp"
+  ],
+  "models": [],
+  "cost_usd": 0,
+  "cost_estimated": false,
+  "model_calls": [],
+  "errors": [
+    "recording:a16z-sinofsky-20260921: extraction incomplete: HTTPError",
+    "recording:cloud-security-gateways-20260917: extraction incomplete: HTTPError",
+    "podcast:535f4a9c1ba146315730e390: extraction incomplete: No accessible timestamped transcript; paid transcription is disabled",
+    "podcast:74d4dd378ce184845fadf184: extraction incomplete: No accessible timestamped transcript; paid transcription is disabled",
+    "recording:a16z-security-20260926: extraction incomplete: No accessible timestamped transcript; paid transcription is disabled"
+  ]
+}

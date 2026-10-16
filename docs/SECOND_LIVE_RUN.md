@@ -20,6 +20,6 @@ The original article writer failed because Article 3 remained above the word lim
 
 [Isolated withheld-item replay](../output/repeatability_replay/README.md): deliberately retain 14 real records, introduce one previously withheld eligible record, then replay all 15. Actual results are one new record followed by 15 unchanged records. This is labeled replay, not fresh discovery or a simulated live change. The main evidence store is untouched by this demonstration.
 
-## What remains
+## Submission disposition
 
-The later drafts are inspection artifacts, not a second published series or reviewed replacements for the original three pairs. Final factual/transcript review and human approval, GitHub repository/final submission fields, and the student's technical demonstration remain. The model's failure to produce rejected/deferred decisions is reported explicitly; three student rejections are disagreements with AI acceptance, not retroactive AI rejections.
+The later drafts are inspection artifacts, not a second published series or reviewed replacements for the original three pairs. Final factual/transcript review, human approval, repository completion, publication links, and the student's [technical demonstration](https://youtu.be/P9cKPBVAGNo) are recorded in the submission. The model's failure to produce rejected/deferred decisions is reported explicitly; three student rejections are disagreements with AI acceptance, not retroactive AI rejections.

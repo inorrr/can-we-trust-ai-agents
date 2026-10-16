@@ -43,5 +43,14 @@
       "full_source_factual_verification": false
     }
   ],
-  "status": "Published links received; article pages verified. Does not imply all assignment requirements complete."
+  "technical_demo": {
+    "youtube_url": "https://youtu.be/P9cKPBVAGNo",
+    "title": "Technical Demo",
+    "duration_seconds": 350,
+    "duration": "5:50",
+    "visibility": "unlisted",
+    "url_accessible": true,
+    "verification_method": "URL resolution and public YouTube metadata extraction on 2026-10-16."
+  },
+  "status": "All three article/video pairs and the separate technical demonstration are linked. Article pages were inspected; the technical-demo URL was confirmed to resolve to YouTube."
 }

@@ -1,16 +1,18 @@
 {
-  "status_basis": "Student supplied final factual approval and authorized repository/submission completion. Published pages and run artifacts inspected.",
+  "status_basis": "Student supplied final factual approval and the technical demonstration URL. Published pages and run artifacts were inspected; the demo URL was confirmed to resolve to YouTube.",
   "live_runs": [
     "runs/20261012T172153-9a3b9d",
     "runs/20261016T004940-4d840c"
   ],
   "source_review_and_policy_comparison_complete": true,
   "published_series_links": "docs/publication_links.json",
-  "remaining_manual_actions": [
-    "Record the 4\u20136-minute technical demonstration and replace DEMO_VIDEO_URL in SUBMISSION.md"
-  ],
+  "remaining_manual_actions": [],
   "student": "Yinuo Zhao",
   "repository_url": "https://github.com/inorrr/can-we-trust-ai-agents",
-  "technical_demo_url": null,
-  "technical_demo_placeholder": "DEMO_VIDEO_URL \u2014 add after recording"
+  "technical_demo_url": "https://youtu.be/P9cKPBVAGNo",
+  "technical_demo_title": "Technical Demo",
+  "technical_demo_duration_seconds": 350,
+  "technical_demo_visibility": "unlisted",
+  "technical_demo_url_checked_on": "2026-10-16",
+  "technical_demo_url_check": "Resolved successfully and metadata confirmed through YouTube extraction."
 }

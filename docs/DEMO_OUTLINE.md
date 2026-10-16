@@ -10,6 +10,6 @@ Use these talking points, not a memorized script. Record the actual screen and s
 - **3:50–4:35 — A real failure and a tradeoff.** Show docs/RECOVERY_LOG.md and an actual failed collector/extractor receipt from October 12. Explain caption rate limits, transcription fallback, retained unknown-cost calls, and recovery. SQLite and a single store interface make local provenance inspectable; the workflow is not a self-directed agent loop.
 - **4:35–5:25 — Outputs and practical limits.** Open SUBMISSION.md’s three Substack/YouTube pairs and the later run report. Show costs and check results. Explain that readable citations, timestamps, mechanical checks, and student voice/source reviews support inspection but do not prove factual correctness. Final approval is a separate human decision; no approval.json is created by the assistant.
 
-## Before recording
+## Recording record
 
-Confirm the later run's actual status and final counts in docs/SECOND_LIVE_RUN.md rather than presenting intermediate output as completed. Keep .env.local and account/credential pages off-screen. If demonstrating a command, show its saved output or run an appropriate read-only command; do not trigger unnecessary paid generation. The demonstration recording itself remains the student's deliverable.
+The student completed the recording and supplied the final [YouTube demonstration](https://youtu.be/P9cKPBVAGNo). The link is also recorded in `SUBMISSION.md`, `docs/publication_links.json`, and `docs/PROJECT_STATUS.json`.

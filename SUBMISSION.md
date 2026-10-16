@@ -2,11 +2,11 @@
 
 **Student:** Yinuo Zhao
 **Independent GitHub repository:** [https://github.com/inorrr/can-we-trust-ai-agents](https://github.com/inorrr/can-we-trust-ai-agents)
-**Status:** Project, two live runs, editorial review, final student approval, and three published article/video pairs are recorded. The separate technical-demo video is the only remaining deliverable.
+**Status:** Complete and ready for submission. The project, two live runs, editorial review, final student approval, three published article/video pairs, and separate technical demonstration are recorded.
 
-**Technical demonstration (4–6 minutes):** `DEMO_VIDEO_URL — add after recording`
+**Technical demonstration (5:50):** [Watch on YouTube](https://youtu.be/P9cKPBVAGNo)
 
-[Recording talking points](docs/DEMO_OUTLINE.md). Replace the placeholder above with the actual accessible video link after recording.
+[Full narrated demo script](docs/DEMO_SCRIPT.md) · [Condensed recording talking points](docs/DEMO_OUTLINE.md)
 
 ## Topic, audience, and publication purpose
 
@@ -37,7 +37,7 @@ bash run.sh --package runs/20261012T172153-9a3b9d
 
 OpenAI credentials belong in the environment or ignored .env.local; no key is included. Text generation uses GPT-4.1 mini with structured Responses outputs. The transcript fallback uses whisper-1 and imageio-ffmpeg. Setup documents dependencies, the local $5 per-run cap, replay behavior, source retrieval, and omitted media.
 
-The normal pipeline stops for review. Final approval must come from the student. Google Vids production, Substack/YouTube publication, and the demo recording are manual handoffs. The published series uses the reviewed October 12 evidence date; later drafts do not replace it.
+The normal pipeline stops for review. Final approval must come from the student. Google Vids production, Substack/YouTube publication, and the demo recording were completed as manual handoffs. The published series uses the reviewed October 12 evidence date; later drafts do not replace it.
 
 ## Evidence and run records
 
@@ -77,4 +77,4 @@ Nine offline contract tests pass. Both live runs retain real network/model artif
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-The only intentionally unfinished submission field is the clearly labeled technical-demo URL above.
+All required submission links and records are complete. The student-supplied technical demonstration was verified as an accessible 5:50 unlisted YouTube video on October 16, 2026.
